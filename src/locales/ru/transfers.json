@@ -1,0 +1,12 @@
+{
+  "transfers": {
+    "title": "Трансферы",
+    "transferCard": {
+      "maxSeats": "Макс. пассажиров",
+      "other": "Другое",
+      "price": "Цена",
+      "type": "Тип"
+    },
+    "book": "Заказать"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "common": {
+    "units": {
+      "hours": "სთ",
+      "kilometers": "კმ",
+      "meters": "მ"
+    }
+  },
+  "navigation": {
+    "about": "შესახებ",
+    "contact": "კონტაქტი",
+    "home": "სახლში",
+    "instructors": "ინსტრუქტორები",
+    "merch": "საქონელი",
+    "tours": "ტურები",
+    "transfers": "ტრანსფერები"
+  }
+}
