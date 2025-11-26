@@ -1,0 +1,18 @@
+{
+  "common": {
+    "units": {
+      "hours": "h",
+      "kilometers": "km",
+      "meters": "m"
+    }
+  },
+  "navigation": {
+    "about": "About",
+    "contact": "Contact",
+    "home": "Home",
+    "instructors": "Instructors",
+    "merch": "Merch",
+    "tours": "Tours",
+    "transfers": "Transfers"
+  }
+}

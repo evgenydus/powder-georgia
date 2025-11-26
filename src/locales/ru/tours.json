@@ -1,0 +1,16 @@
+{
+  "tours": {
+    "title": {
+      "description": "Описание",
+      "difficulty": "Сложность",
+      "duration": "Продолжительность",
+      "equipment": "Необходимое снаряжение",
+      "groupSize": "Размер группы",
+      "price": "Цена",
+      "routeLength": "Длина маршрута",
+      "schedule": "Расписание",
+      "verticalDrop": "Перепад высот"
+    },
+    "book": "Забронировать"
+  }
+}

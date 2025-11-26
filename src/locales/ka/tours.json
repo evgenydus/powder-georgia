@@ -1,0 +1,16 @@
+{
+  "tours": {
+    "title": {
+      "description": "აღწერა",
+      "difficulty": "სირთულე",
+      "duration": "ხანგრძლივობა",
+      "equipment": "საჭირო აღჭურვილობა",
+      "groupSize": "ჯგუფის ზომა",
+      "price": "ფასი",
+      "routeLength": "მარშრუტის სიგრძე",
+      "schedule": "განრიგი",
+      "verticalDrop": "ვერტიკალური ვარდნა"
+    },
+    "book": "Წიგნი"
+  }
+}

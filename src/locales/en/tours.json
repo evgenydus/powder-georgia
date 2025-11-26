@@ -1,0 +1,16 @@
+{
+  "tours": {
+    "title": {
+      "description": "Description",
+      "difficulty": "Difficulty",
+      "duration": "Duration",
+      "equipment": "Required equipment",
+      "groupSize": "Group size",
+      "price": "Price",
+      "routeLength": "Route length",
+      "schedule": "Schedule",
+      "verticalDrop": "Vertical drop"
+    },
+    "book": "Book now"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "transfers": {
+    "title": "ტრანსფერები",
+    "transferCard": {
+      "maxSeats": "მაქს. სავარძლები",
+      "other": "სხვა",
+      "price": "ფასი",
+      "type": "ტიპი"
+    },
+    "book": "შეკვეთა"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "contact": {
+    "title": "Contact me",
+    "description": "For inquiries or to book a mountain adventure, please feel free to contact me. I am available to discuss your outdoor aspirations, provide detailed information on trip itineraries, and answer any questions you may have. Lets connect and make your mountain dreams a reality.",
+    "form": {
+      "placeholder": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message"
+      },
+      "submit": "Send"
+    }
+  }
+}

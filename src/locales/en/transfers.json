@@ -1,0 +1,12 @@
+{
+  "transfers": {
+    "title": "Transfers",
+    "transferCard": {
+      "maxSeats": "Max. seats",
+      "other": "Other",
+      "price": "Price",
+      "type": "Type"
+    },
+    "book": "Book now"
+  }
+}
