@@ -1,35 +1,35 @@
-export const SITE_NAME = 'Powder Georgia'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-export const SITE_DESCRIPTION = 'Explore the wonders of Georgian mountains with Powder Georgia'
+export const siteName = 'Powder Georgia'
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+export const siteDescription = 'Explore the wonders of Georgian mountains with Powder Georgia'
 
-export const LANGUAGES = {
+export const languages = {
   en: 'English',
   ka: 'Georgian',
   ru: 'Russian',
 } as const
 
-export const DEFAULT_LANGUAGE = 'en' as const
+export const defaultLanguage = 'en' as const
 
-export const SUPPORTED_LANGUAGES = Object.keys(LANGUAGES) as Array<keyof typeof LANGUAGES>
+export const supportedLanguages = Object.keys(languages) as Array<keyof typeof languages>
 
-export const ROUTES = {
-  HOME: '/',
-  TOURS: '/tours',
-  TRANSFERS: '/transfers',
-  INSTRUCTORS: '/instructors',
-  APARTMENTS: '/apartments',
-  ABOUT: '/about',
-  CONTACT: '/contact',
-  ADMIN: '/admin',
-  ADMIN_TOURS: '/admin/tours',
-  ADMIN_TRANSFERS: '/admin/transfers',
-  ADMIN_INSTRUCTORS: '/admin/instructors',
-  ADMIN_APARTMENTS: '/admin/apartments',
-  ADMIN_INQUIRIES: '/admin/inquiries',
-  ADMIN_SETTINGS: '/admin/settings',
+export const routes = {
+  home: '/',
+  tours: '/tours',
+  transfers: '/transfers',
+  instructors: '/instructors',
+  apartments: '/apartments',
+  about: '/about',
+  contact: '/contact',
+  admin: '/admin',
+  adminTours: '/admin/tours',
+  adminTransfers: '/admin/transfers',
+  adminInstructors: '/admin/instructors',
+  adminApartments: '/admin/apartments',
+  adminInquiries: '/admin/inquiries',
+  adminSettings: '/admin/settings',
 } as const
 
-export const DIFFICULTY_LEVELS = {
+export const difficultyLevels = {
   1: 'Beginner',
   2: 'Easy',
   3: 'Intermediate',
@@ -37,7 +37,7 @@ export const DIFFICULTY_LEVELS = {
   5: 'Expert',
 } as const
 
-export const VEHICLE_TYPES = {
+export const vehicleTypes = {
   van: 'Van',
   suv: 'SUV',
   bus: 'Bus',
