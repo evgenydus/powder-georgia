@@ -1,0 +1,84 @@
+{
+  "common": {
+    "siteName": "Powder Georgia",
+    "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად"
+  },
+  "navigation": {
+    "home": "მთავარი",
+    "tours": "ტური",
+    "transfers": "ტრანსფერი",
+    "instructors": "ინსტრუქტორი",
+    "apartments": "ბინები",
+    "about": "ჩვენ შესახებ",
+    "contact": "კონტაქტი",
+    "language": "ენა"
+  },
+  "home": {
+    "title": "Powder Georgia",
+    "subtitle": "აღმოაჩინეთ ქართული მთების სამოთხე",
+    "cta": "ტურის ჩვენება",
+    "featured": "პოპულარული ტური"
+  },
+  "tours": {
+    "title": "ტური",
+    "description": "აღმოაჩინეთ ჩვენი საოცარი ლიჯის ტური",
+    "difficulty": "სირთულე",
+    "duration": "ხანგრძლივობა",
+    "groupSize": "ჯგუფის ზომა",
+    "verticalDrop": "ვერტიკალური ვარდნა",
+    "price": "ფასი",
+    "details": "დეტალები",
+    "bookNow": "დაჯავშნე",
+    "requiredEquipment": "საჭირო აღჭურვილობა"
+  },
+  "transfers": {
+    "title": "ტრანსფერი",
+    "description": "კომფორტული ტრანსპორტი მთებში",
+    "vehicle": "მანქანა",
+    "capacity": "ტევადობა",
+    "route": "მარშრუტი",
+    "bookNow": "დაჯავშნე ტრანსფერი"
+  },
+  "instructors": {
+    "title": "ინსტრუქტორი",
+    "description": "პროფესიონალური მთის გიდი",
+    "specialization": "სპეციალიზაცია",
+    "bio": "ბიოგრაფია",
+    "services": "სერვისი",
+    "pricePerHour": "ფასი საათში",
+    "contact": "კონტაქტი"
+  },
+  "apartments": {
+    "title": "ბინები",
+    "description": "კომფორტული საცხობელი",
+    "capacity": "ტევადობა",
+    "amenities": "მოხერხებულობა",
+    "pricePerNight": "ფასი ღამეში",
+    "bookNow": "დაჯავშნე"
+  },
+  "about": {
+    "title": "ჩვენ შესახებ",
+    "description": "გაიცანით Powder Georgia"
+  },
+  "contact": {
+    "title": "დაგვიკავშირდით",
+    "description": "დაგვიკავშირდით",
+    "name": "სახელი",
+    "email": "ელფოსტა",
+    "phone": "ტელეფონი",
+    "message": "შეტყობინება",
+    "send": "გაგზავნა",
+    "phone_number": "+995 123 456 789",
+    "email_address": "info@powder.ge"
+  },
+  "footer": {
+    "copyright": "© 2024 Powder Georgia. ყველა უფლება დაცულია.",
+    "followUs": "მოჰყვით ჩვენს",
+    "quickLinks": "სწრაფი ბმულები"
+  },
+  "errors": {
+    "notFound": "გვერდი ვერ მოიძებნა",
+    "serverError": "სერვერის შეცდომა",
+    "tryAgain": "ხელახლა სცადეთ"
+  }
+}

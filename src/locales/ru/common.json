@@ -1,0 +1,84 @@
+{
+  "common": {
+    "siteName": "Powder Georgia",
+    "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia"
+  },
+  "navigation": {
+    "home": "Главная",
+    "tours": "Туры",
+    "transfers": "Трансферы",
+    "instructors": "Инструкторы",
+    "apartments": "Апартаменты",
+    "about": "О нас",
+    "contact": "Контакты",
+    "language": "Язык"
+  },
+  "home": {
+    "title": "Powder Georgia",
+    "subtitle": "Откройте для себя чудеса грузинских гор",
+    "cta": "Посмотреть туры",
+    "featured": "Популярные туры"
+  },
+  "tours": {
+    "title": "Туры",
+    "description": "Откройте для себя наши потрясающие лыжные туры",
+    "difficulty": "Сложность",
+    "duration": "Продолжительность",
+    "groupSize": "Размер группы",
+    "verticalDrop": "Вертикальный спуск",
+    "price": "Цена",
+    "details": "Подробнее",
+    "bookNow": "Забронировать",
+    "requiredEquipment": "Необходимое оборудование"
+  },
+  "transfers": {
+    "title": "Трансферы",
+    "description": "Комфортные трансферы в горы",
+    "vehicle": "Транспорт",
+    "capacity": "Вместимость",
+    "route": "Маршрут",
+    "bookNow": "Забронировать трансфер"
+  },
+  "instructors": {
+    "title": "Инструкторы",
+    "description": "Профессиональные горные гиды",
+    "specialization": "Специализация",
+    "bio": "Биография",
+    "services": "Услуги",
+    "pricePerHour": "Цена в час",
+    "contact": "Контакты"
+  },
+  "apartments": {
+    "title": "Апартаменты",
+    "description": "Комфортное жилье",
+    "capacity": "Вместимость",
+    "amenities": "Удобства",
+    "pricePerNight": "Цена за ночь",
+    "bookNow": "Забронировать"
+  },
+  "about": {
+    "title": "О нас",
+    "description": "Узнайте о Powder Georgia"
+  },
+  "contact": {
+    "title": "Свяжитесь с нами",
+    "description": "Свяжитесь с нами",
+    "name": "Имя",
+    "email": "Email",
+    "phone": "Телефон",
+    "message": "Сообщение",
+    "send": "Отправить",
+    "phone_number": "+995 123 456 789",
+    "email_address": "info@powder.ge"
+  },
+  "footer": {
+    "copyright": "© 2024 Powder Georgia. Все права защищены.",
+    "followUs": "Следите за нами",
+    "quickLinks": "Быстрые ссылки"
+  },
+  "errors": {
+    "notFound": "Страница не найдена",
+    "serverError": "Ошибка сервера",
+    "tryAgain": "Попробуйте еще раз"
+  }
+}
