@@ -1,23 +1,8 @@
-'use client'
-
-import { Button } from "@/components/ui"
-
-const Home = () => {
-  const handleClick = () => {
-    console.log('Button clicked!')
-  }
-
+export default function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main
-        className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between bg-white px-16 py-32 sm:items-start dark:bg-black">
-        <Button onClick={handleClick}>
-          Welcome to the Home Page
-        </Button>
-      </main>
-    </div>
-  );
+    <main className="flex min-h-screen flex-col items-center justify-center bg-primary p-24">
+      <h1 className="text-4xl font-bold text-white">Powder Georgia</h1>
+      <p className="mt-4 text-lg text-secondary">Coming soon...</p>
+    </main>
+  )
 }
-
-export default Home
