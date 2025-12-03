@@ -1,16 +1,24 @@
 import { getTranslations } from 'next-intl/server'
+import { supabase } from '@/lib/supabase'
 import { TourGrid } from '@/components/tours'
 import type { Tour } from '@/types'
 
 async function getTours(): Promise<Tour[]> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/tours`,
-      { next: { revalidate: 3600 } }
-    )
-    if (!response.ok) return []
-    return response.json()
-  } catch {
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase error:', error)
+      return []
+    }
+
+    return data || []
+  } catch (error) {
+    console.error('Error fetching tours:', error)
     return []
   }
 }

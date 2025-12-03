@@ -1,16 +1,24 @@
 import { getTranslations } from 'next-intl/server'
+import { supabase } from '@/lib/supabase'
 import { TransferGrid } from '@/components/transfers'
 import type { Transfer } from '@/types'
 
 async function getTransfers(): Promise<Transfer[]> {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/transfers`,
-      { next: { revalidate: 3600 } }
-    )
-    if (!response.ok) return []
-    return response.json()
-  } catch {
+    const { data, error } = await supabase
+      .from('transfers')
+      .select('*')
+      .eq('is_active', true)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase error:', error)
+      return []
+    }
+
+    return data || []
+  } catch (error) {
+    console.error('Error fetching transfers:', error)
     return []
   }
 }
