@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { TourGrid } from '@/components/tours'
 import type { Tour } from '@/types'
 
@@ -21,7 +21,7 @@ export default async function ToursPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = useTranslations()
+  const t = await getTranslations()
   const tours = await getTours()
 
   return (

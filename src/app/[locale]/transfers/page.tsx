@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { TransferGrid } from '@/components/transfers'
 import type { Transfer } from '@/types'
 
@@ -21,7 +21,7 @@ export default async function TransfersPage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = useTranslations()
+  const t = await getTranslations()
   const transfers = await getTransfers()
 
   return (

@@ -1,7 +1,9 @@
 {
   "common": {
     "siteName": "Powder Georgia",
-    "siteDescription": "Experience the wonders of Georgian mountains with Powder Georgia"
+    "siteDescription": "Experience the wonders of Georgian mountains with Powder Georgia",
+    "ready": "Ready to explore?",
+    "contactUs": "Get in touch with us to book your adventure"
   },
   "navigation": {
     "home": "Home",
@@ -17,7 +19,8 @@
     "title": "Powder Georgia",
     "subtitle": "Experience the wonders of Georgian mountains",
     "cta": "Explore Tours",
-    "featured": "Featured Tours"
+    "featured": "Featured Tours",
+    "noImage": "No image available"
   },
   "tours": {
     "title": "Tours",
@@ -28,8 +31,11 @@
     "verticalDrop": "Vertical Drop",
     "price": "Price",
     "details": "View Details",
+    "viewDetails": "View Details",
     "bookNow": "Book Now",
-    "requiredEquipment": "Required Equipment"
+    "viewAll": "View All Tours",
+    "requiredEquipment": "Required Equipment",
+    "noImage": "No image available"
   },
   "transfers": {
     "title": "Transfers",
@@ -37,7 +43,8 @@
     "vehicle": "Vehicle",
     "capacity": "Capacity",
     "route": "Route",
-    "bookNow": "Book Transfer"
+    "bookNow": "Book Transfer",
+    "inquire": "Inquire"
   },
   "instructors": {
     "title": "Instructors",
