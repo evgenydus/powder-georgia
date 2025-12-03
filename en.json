@@ -1,0 +1,95 @@
+{
+  "common": {
+    "siteName": "Powder Georgia",
+    "siteDescription": "Experience the wonders of Georgian mountains with Powder Georgia",
+    "ready": "Ready to explore?",
+    "contactUs": "Get in touch with us to book your adventure",
+    "inquire": "Inquire"
+  },
+  "navigation": {
+    "home": "Home",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "instructors": "Instructors",
+    "apartments": "Apartments",
+    "about": "About",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Powder Georgia",
+    "subtitle": "Experience the wonders of Georgian mountains",
+    "cta": "Explore Tours",
+    "featured": "Featured Tours",
+    "noImage": "No image available"
+  },
+  "tours": {
+    "title": "Tours",
+    "description": "Discover our amazing ski tours",
+    "difficulty": "Difficulty",
+    "duration": "Duration",
+    "groupSize": "Group Size",
+    "verticalDrop": "Vertical Drop",
+    "price": "Price",
+    "details": "View Details",
+    "viewDetails": "View Details",
+    "bookNow": "Book Now",
+    "viewAll": "View All Tours",
+    "requiredEquipment": "Required Equipment",
+    "noImage": "No image available"
+  },
+  "transfers": {
+    "title": "Transfers",
+    "description": "Comfortable transfers to the mountains",
+    "vehicle": "Vehicle",
+    "capacity": "Capacity",
+    "route": "Route",
+    "bookNow": "Book Transfer",
+    "inquire": "Inquire"
+  },
+  "instructors": {
+    "title": "Our Instructors",
+    "description": "Learn from the best ski and snowboard instructors in Georgia.",
+    "specialization": "Specialization",
+    "bio": "Biography",
+    "services": "Services",
+    "pricePerHour": "Price per hour",
+    "contact": "Contact",
+    "viewProfile": "View Profile"
+  },
+  "apartments": {
+    "title": "Apartment Rentals",
+    "description": "Comfortable and convenient apartments for your stay in the mountains.",
+    "capacity": "Capacity",
+    "amenities": "Amenities",
+    "pricePerNight": "Price per night",
+    "bookNow": "Book Now",
+    "noImage": "No Image Available",
+    "viewDetails": "View Details"
+  },
+  "about": {
+    "title": "About Us",
+    "description": "Learn about Powder Georgia"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "send": "Send",
+    "phone_number": "+995 123 456 789",
+    "email_address": "info@powder.ge"
+  },
+  "footer": {
+    "copyright": "© 2024 Powder Georgia. All rights reserved.",
+    "followUs": "Follow Us",
+    "quickLinks": "Quick Links"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "serverError": "Server error",
+    "tryAgain": "Try again"
+  }
+}
