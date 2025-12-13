@@ -1,7 +1,7 @@
-import { getTranslations } from 'next-intl/server';
-import { supabase } from '@/lib/supabase';
-import type { Tour } from '@/types';
-import Image from 'next/image';
+'''import { getLocale, getTranslations } from 'next-intl/server'
+import { supabase } from '@/lib/supabase'
+import type { Tour } from '@/types'
+import Image from 'next/image'
 
 async function getTourBySlug(slug: string): Promise<Tour | null> {
   try {
@@ -9,36 +9,40 @@ async function getTourBySlug(slug: string): Promise<Tour | null> {
       .from('tours')
       .select('*')
       .eq('slug', slug)
-      .single();
+      .single()
 
     if (error) {
-      console.error('Supabase error:', error);
-      return null;
+      console.error('Supabase error:', error)
+      return null
     }
 
-    return data || null;
+    return data || null
   } catch (error) {
-    console.error('Error fetching tour:', error);
-    return null;
+    console.error('Error fetching tour:', error)
+    return null
   }
 }
 
-export default async function TourPage({ params }: { params: { slug: string; locale: string } }) {
-  const { slug, locale } = params;
-  const t = await getTranslations();
-  const tour = await getTourBySlug(slug);
+export default async function TourPage({ params }: { params: { slug: string } }) {
+  const { slug } = params
+  const locale = await getLocale()
+  const t = await getTranslations()
+  const tour = await getTourBySlug(slug)
 
   if (!tour) {
     return (
-      <main className="min-h-screen bg-primary flex items-center justify-center">
+      <main className="flex min-h-screen items-center justify-center bg-primary">
         <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
       </main>
-    );
+    )
   }
 
-  const title = tour[`title_${locale as 'en' | 'ka' | 'ru'}`] || tour.title_en;
-  const description = tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en;
-  const requiredEquipment = tour[`required_equipment_${locale as 'en' | 'ka' | 'ru'}`] || tour.required_equipment_en;
+  const title = tour[`title_${locale as 'en' | 'ka' | 'ru'}`] || tour.title_en
+  const description =
+    tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en
+  const requiredEquipment =
+    tour[`required_equipment_${locale as 'en' | 'ka' | 'ru'}`] ||
+    tour.required_equipment_en
 
   return (
     <main className="min-h-screen bg-primary text-white">
@@ -49,13 +53,13 @@ export default async function TourPage({ params }: { params: { slug: string; loc
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto p-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className="mx-auto max-w-4xl p-8">
+        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="flex items-center gap-2">
             <span className="text-2xl">⛰️</span>
             <div>
@@ -74,7 +78,9 @@ export default async function TourPage({ params }: { params: { slug: string; loc
             <span className="text-2xl">👥</span>
             <div>
               <p className="font-bold">{t('tours.groupSize')}</p>
-              <p>{tour.group_size_min}-{tour.group_size_max}</p>
+              <p>
+                {tour.group_size_min}-{tour.group_size_max}
+              </p>
             </div>
           </div>
         </div>
@@ -85,7 +91,9 @@ export default async function TourPage({ params }: { params: { slug: string; loc
 
         {requiredEquipment && (
           <div className="mt-8">
-            <h2 className="text-2xl font-bold mb-4">{t('tours.requiredEquipment')}</h2>
+            <h2 className="mb-4 text-2xl font-bold">
+              {t('tours.requiredEquipment')}
+            </h2>
             <p>{requiredEquipment}</p>
           </div>
         )}
@@ -95,5 +103,6 @@ export default async function TourPage({ params }: { params: { slug: string; loc
         </div>
       </div>
     </main>
-  );
+  )
 }
+'''
