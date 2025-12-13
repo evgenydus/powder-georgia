@@ -1,7 +1,7 @@
-import { getTranslations } from 'next-intl/server';
-import { supabase } from '@/lib/supabase';
-import { ApartmentGrid } from '@/components/apartments';
-import type { Apartment } from '@/types';
+import { getLocale, getTranslations } from 'next-intl/server'
+import { supabase } from '@/lib/supabase'
+import { ApartmentGrid } from '@/components/apartments'
+import type { Apartment } from '@/types'
 
 async function getApartments(): Promise<Apartment[]> {
   try {
@@ -9,28 +9,24 @@ async function getApartments(): Promise<Apartment[]> {
       .from('apartments')
       .select('*')
       .eq('is_active', true)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
 
     if (error) {
-      console.error('Supabase error:', error);
-      return [];
+      console.error('Supabase error:', error)
+      return []
     }
 
-    return data || [];
+    return data || []
   } catch (error) {
-    console.error('Error fetching apartments:', error);
-    return [];
+    console.error('Error fetching apartments:', error)
+    return []
   }
 }
 
-export default async function ApartmentsPage({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const { locale } = params;
-  const t = await getTranslations();
-  const apartments = await getApartments();
+export default async function ApartmentsPage() {
+  const locale = await getLocale()
+  const t = await getTranslations()
+  const apartments = await getApartments()
 
   return (
     <main className="min-h-screen bg-primary">
@@ -45,9 +41,9 @@ export default async function ApartmentsPage({
 
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <ApartmentGrid apartments={apartments} locale={locale} />
+          <ApartmentGrid apartments={apartments} />
         </div>
       </section>
     </main>
-  );
+  )
 }

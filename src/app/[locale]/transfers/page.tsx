@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import { supabase } from '@/lib/supabase'
 import { TransferGrid } from '@/components/transfers'
 import type { Transfer } from '@/types'
@@ -23,18 +23,13 @@ async function getTransfers(): Promise<Transfer[]> {
   }
 }
 
-export default async function TransfersPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
+export default async function TransfersPage() {
+  const locale = await getLocale()
   const t = await getTranslations()
   const transfers = await getTransfers()
 
   return (
     <main className="min-h-screen bg-primary">
-      {/* Header */}
       <section className="bg-gradient-to-b from-gray-900 to-primary px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
           <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
@@ -46,10 +41,9 @@ export default async function TransfersPage({
         </div>
       </section>
 
-      {/* Transfers Grid */}
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <TransferGrid transfers={transfers} locale={locale} />
+          <TransferGrid transfers={transfers} />
         </div>
       </section>
     </main>

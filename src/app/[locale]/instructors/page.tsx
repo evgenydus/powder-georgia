@@ -1,7 +1,7 @@
-import { getTranslations } from 'next-intl/server';
-import { supabase } from '@/lib/supabase';
-import { InstructorGrid } from '@/components/instructors';
-import type { Instructor } from '@/types';
+import { getLocale, getTranslations } from 'next-intl/server'
+import { supabase } from '@/lib/supabase'
+import { InstructorGrid } from '@/components/instructors'
+import type { Instructor } from '@/types'
 
 async function getInstructors(): Promise<Instructor[]> {
   try {
@@ -9,28 +9,24 @@ async function getInstructors(): Promise<Instructor[]> {
       .from('instructors')
       .select('*')
       .eq('is_active', true)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
 
     if (error) {
-      console.error('Supabase error:', error);
-      return [];
+      console.error('Supabase error:', error)
+      return []
     }
 
-    return data || [];
+    return data || []
   } catch (error) {
-    console.error('Error fetching instructors:', error);
-    return [];
+    console.error('Error fetching instructors:', error)
+    return []
   }
 }
 
-export default async function InstructorsPage({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const { locale } = params;
-  const t = await getTranslations();
-  const instructors = await getInstructors();
+export default async function InstructorsPage() {
+  const locale = await getLocale()
+  const t = await getTranslations()
+  const instructors = await getInstructors()
 
   return (
     <main className="min-h-screen bg-primary">
@@ -45,9 +41,9 @@ export default async function InstructorsPage({
 
       <section className="px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <InstructorGrid instructors={instructors} locale={locale} />
+          <InstructorGrid instructors={instructors} />
         </div>
       </section>
     </main>
-  );
+  )
 }
