@@ -1,5 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 
+import { routes } from '@/constants'
+
 import { TourGrid } from '@/components/tours'
 
 import { Link } from '@/i18n/navigation'
@@ -41,7 +43,7 @@ const HomePage = async () => {
         <p className="mb-8 max-w-2xl text-xl text-gray-300">{t('home.subtitle')}</p>
         <Link
           className="bg-accent hover:bg-accent/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-          href="/tours"
+          href={routes.tours}
         >
           {t('home.cta')}
         </Link>
@@ -61,7 +63,7 @@ const HomePage = async () => {
             <div className="mt-12 text-center">
               <Link
                 className="bg-accent hover:bg-accent/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-                href="/tours"
+                href={routes.tours}
               >
                 {t('tours.viewAll')}
               </Link>
@@ -77,7 +79,7 @@ const HomePage = async () => {
           <p className="mb-8 text-gray-300">{t('common.contactUs')}</p>
           <Link
             className="bg-secondary hover:bg-secondary/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-            href="/contact"
+            href={routes.contact}
           >
             {t('navigation.contact')}
           </Link>

@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 
+import { routes } from '@/constants'
+
 import { Link } from '@/i18n/navigation'
 import type { Tour } from '@/types'
 
@@ -18,7 +20,7 @@ export const TourCard = ({ tour }: TourCardProps) => {
   const description = tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en
 
   return (
-    <Link href={`/tours/${tour.slug}`}>
+    <Link href={`${routes.tours}/${tour.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           {tour.images && tour.images.length > 0 ? (

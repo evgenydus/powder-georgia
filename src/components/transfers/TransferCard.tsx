@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 
+import { routes } from '@/constants'
+
 import { Link } from '@/i18n/navigation'
 import type { Transfer } from '@/types'
 
@@ -18,7 +20,7 @@ export const TransferCard = ({ transfer }: TransferCardProps) => {
   const route = transfer[`route_${locale as 'en' | 'ka' | 'ru'}`] || transfer.route_en
 
   return (
-    <Link href={`/transfers/${transfer.slug}`}>
+    <Link href={`${routes.transfers}/${transfer.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           <Image

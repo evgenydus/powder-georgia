@@ -2,16 +2,18 @@
 
 import { useTranslations } from 'next-intl'
 
+import { routes } from '@/constants'
+
 import { Link } from '@/i18n/navigation'
 
 export const Footer = () => {
   const t = useTranslations('footer')
 
   const quickLinks = [
-    { href: '/tours', label: 'Tours' },
-    { href: '/transfers', label: 'Transfers' },
-    { href: '/instructors', label: 'Instructors' },
-    { href: '/apartments', label: 'Apartments' },
+    { href: routes.tours, label: 'Tours' },
+    { href: routes.transfers, label: 'Transfers' },
+    { href: routes.instructors, label: 'Instructors' },
+    { href: routes.apartments, label: 'Apartments' },
   ]
 
   return (
