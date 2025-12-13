@@ -13,20 +13,20 @@ export const defaultLanguage = 'en' as const
 export const supportedLanguages = Object.keys(languages) as Array<keyof typeof languages>
 
 export const routes = {
-  home: '/',
-  tours: '/tours',
-  transfers: '/transfers',
-  instructors: '/instructors',
-  apartments: '/apartments',
   about: '/about',
-  contact: '/contact',
   admin: '/admin',
-  adminTours: '/admin/tours',
-  adminTransfers: '/admin/transfers',
-  adminInstructors: '/admin/instructors',
   adminApartments: '/admin/apartments',
   adminInquiries: '/admin/inquiries',
+  adminInstructors: '/admin/instructors',
   adminSettings: '/admin/settings',
+  adminTours: '/admin/tours',
+  adminTransfers: '/admin/transfers',
+  apartments: '/apartments',
+  contact: '/contact',
+  home: '/',
+  instructors: '/instructors',
+  tours: '/tours',
+  transfers: '/transfers',
 } as const
 
 export const difficultyLevels = {
@@ -38,8 +38,8 @@ export const difficultyLevels = {
 } as const
 
 export const vehicleTypes = {
-  van: 'Van',
-  suv: 'SUV',
   bus: 'Bus',
   car: 'Car',
+  suv: 'SUV',
+  van: 'Van',
 } as const

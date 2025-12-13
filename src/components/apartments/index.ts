@@ -1,2 +1,2 @@
-export * from './ApartmentCard';
-export * from './ApartmentGrid';
+export * from './ApartmentCard'
+export * from './ApartmentGrid'

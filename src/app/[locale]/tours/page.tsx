@@ -1,6 +1,8 @@
-import { getLocale, getTranslations } from 'next-intl/server'
-import { supabase } from '@/lib/supabase'
+import { getTranslations } from 'next-intl/server'
+
 import { TourGrid } from '@/components/tours'
+
+import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
 
 async function getTours(): Promise<Tour[]> {
@@ -13,31 +15,28 @@ async function getTours(): Promise<Tour[]> {
 
     if (error) {
       console.error('Supabase error:', error)
+
       return []
     }
 
     return data || []
   } catch (error) {
     console.error('Error fetching tours:', error)
+
     return []
   }
 }
 
-export default async function ToursPage() {
-  const locale = await getLocale()
+const ToursPage = async () => {
   const t = await getTranslations()
   const tours = await getTours()
 
   return (
-    <main className="min-h-screen bg-primary">
-      <section className="bg-gradient-to-b from-gray-900 to-primary px-4 py-16 sm:px-6 lg:px-8">
+    <main className="bg-primary min-h-screen">
+      <section className="to-primary bg-gradient-to-b from-gray-900 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-            {t('tours.title')}
-          </h1>
-          <p className="text-gray-300">
-            {t('tours.description')}
-          </p>
+          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{t('tours.title')}</h1>
+          <p className="text-gray-300">{t('tours.description')}</p>
         </div>
       </section>
 
@@ -49,3 +48,6 @@ export default async function ToursPage() {
     </main>
   )
 }
+
+export default ToursPage
+export default ToursPage

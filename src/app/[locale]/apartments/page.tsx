@@ -1,6 +1,8 @@
-import { getLocale, getTranslations } from 'next-intl/server'
-import { supabase } from '@/lib/supabase'
+import { getTranslations } from 'next-intl/server'
+
 import { ApartmentGrid } from '@/components/apartments'
+
+import { supabase } from '@/lib/supabase'
 import type { Apartment } from '@/types'
 
 async function getApartments(): Promise<Apartment[]> {
@@ -13,24 +15,25 @@ async function getApartments(): Promise<Apartment[]> {
 
     if (error) {
       console.error('Supabase error:', error)
+
       return []
     }
 
     return data || []
   } catch (error) {
     console.error('Error fetching apartments:', error)
+
     return []
   }
 }
 
-export default async function ApartmentsPage() {
-  const locale = await getLocale()
+const ApartmentsPage = async () => {
   const t = await getTranslations()
   const apartments = await getApartments()
 
   return (
-    <main className="min-h-screen bg-primary">
-      <section className="bg-gradient-to-b from-gray-900 to-primary px-4 py-16 sm:px-6 lg:px-8">
+    <main className="bg-primary min-h-screen">
+      <section className="to-primary bg-gradient-to-b from-gray-900 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
           <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             {t('apartments.title')}
@@ -47,3 +50,6 @@ export default async function ApartmentsPage() {
     </main>
   )
 }
+
+export default ApartmentsPage
+export default ApartmentsPage

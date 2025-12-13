@@ -1,30 +1,28 @@
-
+import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Transfer } from '@/types'
-import Image from 'next/image'
 
 async function getTransferBySlug(slug: string): Promise<Transfer | null> {
   try {
-    const { data, error } = await supabase
-      .from('transfers')
-      .select('*')
-      .eq('slug', slug)
-      .single()
+    const { data, error } = await supabase.from('transfers').select('*').eq('slug', slug).single()
 
     if (error) {
       console.error('Supabase error:', error)
+
       return null
     }
 
     return data || null
   } catch (error) {
     console.error('Error fetching transfer:', error)
+
     return null
   }
 }
 
-export default async function TransferPage({ params }: { params: { slug: string } }) {
+const TransferPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const locale = await getLocale()
   const t = await getTranslations()
@@ -32,7 +30,7 @@ export default async function TransferPage({ params }: { params: { slug: string 
 
   if (!transfer) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-primary">
+      <main className="bg-primary flex min-h-screen items-center justify-center">
         <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
       </main>
     )
@@ -41,18 +39,12 @@ export default async function TransferPage({ params }: { params: { slug: string 
   const title = transfer[`title_${locale as 'en' | 'ka' | 'ru'}`] || transfer.title_en
   const route = transfer[`route_${locale as 'en' | 'ka' | 'ru'}`] || transfer.route_en
   const description =
-    transfer[`description_${locale as 'en' | 'ka' | 'ru'}`] ||
-    transfer.description_en
+    transfer[`description_${locale as 'en' | 'ka' | 'ru'}`] || transfer.description_en
 
   return (
-    <main className="min-h-screen bg-primary text-white">
+    <main className="bg-primary min-h-screen text-white">
       <div className="relative h-96 w-full">
-        <Image
-          src={transfer.image_url}
-          alt={title}
-          fill
-          className="object-cover"
-        />
+        <Image alt={title} className="object-cover" fill src={transfer.image_url} />
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
@@ -89,3 +81,5 @@ export default async function TransferPage({ params }: { params: { slug: string 
     </main>
   )
 }
+
+export default TransferPage

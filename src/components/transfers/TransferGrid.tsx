@@ -1,7 +1,6 @@
+import { TransferCard } from './TransferCard'
 
 import type { Transfer } from '@/types'
-
-import { TransferCard } from './TransferCard'
 
 interface TransferGridProps {
   transfers: Transfer[]

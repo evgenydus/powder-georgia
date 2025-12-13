@@ -1,30 +1,28 @@
-
+import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Apartment } from '@/types'
-import Image from 'next/image'
 
 async function getApartmentBySlug(slug: string): Promise<Apartment | null> {
   try {
-    const { data, error } = await supabase
-      .from('apartments')
-      .select('*')
-      .eq('slug', slug)
-      .single()
+    const { data, error } = await supabase.from('apartments').select('*').eq('slug', slug).single()
 
     if (error) {
       console.error('Supabase error:', error)
+
       return null
     }
 
     return data || null
   } catch (error) {
     console.error('Error fetching apartment:', error)
+
     return null
   }
 }
 
-export default async function ApartmentPage({ params }: { params: { slug: string } }) {
+const ApartmentPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const locale = await getLocale()
   const t = await getTranslations()
@@ -32,7 +30,7 @@ export default async function ApartmentPage({ params }: { params: { slug: string
 
   if (!apartment) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-primary">
+      <main className="bg-primary flex min-h-screen items-center justify-center">
         <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
       </main>
     )
@@ -40,20 +38,13 @@ export default async function ApartmentPage({ params }: { params: { slug: string
 
   const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en
   const description =
-    apartment[`description_${locale as 'en' | 'ka' | 'ru'}`] ||
-    apartment.description_en
-  const amenities =
-    apartment[`amenities_${locale as 'en' | 'ka' | 'ru'}`] || apartment.amenities_en
+    apartment[`description_${locale as 'en' | 'ka' | 'ru'}`] || apartment.description_en
+  const amenities = apartment[`amenities_${locale as 'en' | 'ka' | 'ru'}`] || apartment.amenities_en
 
   return (
-    <main className="min-h-screen bg-primary text-white">
+    <main className="bg-primary min-h-screen text-white">
       <div className="relative h-96 w-full">
-        <Image
-          src={apartment.images[0]}
-          alt={title}
-          fill
-          className="object-cover"
-        />
+        <Image alt={title} className="object-cover" fill src={apartment.images[0]} />
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
@@ -90,3 +81,5 @@ export default async function ApartmentPage({ params }: { params: { slug: string
     </main>
   )
 }
+
+export default ApartmentPage

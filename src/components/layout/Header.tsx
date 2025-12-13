@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+
 import { LanguageSwitcher } from './LanguageSwitcher'
 
-export function Header() {
+export const Header = () => {
   const t = useTranslations('navigation')
 
   const navLinks = [
@@ -22,7 +23,7 @@ export function Header() {
         <Link href="/">
           <span className="text-2xl font-bold text-white">Powder Georgia</span>
         </Link>
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden items-center space-x-6 md:flex">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               <span className="transition-colors hover:text-orange-400">{link.label}</span>

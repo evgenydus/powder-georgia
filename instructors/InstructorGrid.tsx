@@ -1,18 +1,19 @@
-import { InstructorCard } from './InstructorCard';
-import type { Instructor } from '@/types';
+import { InstructorCard } from './InstructorCard'
+
+import type { Instructor } from '@/types'
 
 interface InstructorGridProps {
-  instructors: Instructor[];
-  locale: string;
+  instructors: Instructor[]
+  locale: string
 }
 
-export function InstructorGrid({ instructors, locale }: InstructorGridProps) {
+export const InstructorGrid = ({ instructors, locale }: InstructorGridProps) => {
   if (instructors.length === 0) {
     return (
       <div className="py-12 text-center">
         <p className="text-gray-400">No instructors available</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -21,5 +22,5 @@ export function InstructorGrid({ instructors, locale }: InstructorGridProps) {
         <InstructorCard key={instructor.id} instructor={instructor} locale={locale} />
       ))}
     </div>
-  );
+  )
 }

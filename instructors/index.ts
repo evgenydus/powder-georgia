@@ -1,2 +1,2 @@
-export * from './InstructorCard';
-export * from './InstructorGrid';
+export * from './InstructorCard'
+export * from './InstructorGrid'

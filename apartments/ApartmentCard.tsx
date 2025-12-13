@@ -1,17 +1,18 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import type { Apartment } from '@/types';
+import Image from 'next/image'
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+
+import type { Apartment } from '@/types'
 
 interface ApartmentCardProps {
-  apartment: Apartment;
-  locale: string;
+  apartment: Apartment
+  locale: string
 }
 
-export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
-  const t = useTranslations();
+export const ApartmentCard = ({ apartment, locale }: ApartmentCardProps) => {
+  const t = useTranslations()
 
-  const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en;
+  const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en
 
   return (
     <Link href={`/${locale}/apartments/${apartment.slug}`}>
@@ -19,10 +20,10 @@ export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           {apartment.images && apartment.images.length > 0 ? (
             <Image
-              src={apartment.images[0]}
               alt={title}
-              fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"
+              fill
+              src={apartment.images[0]}
             />
           ) : (
             <div className="flex h-full items-center justify-center text-gray-500">
@@ -34,7 +35,9 @@ export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
           <h3 className="mb-2 text-lg font-bold text-white">{title}</h3>
           <div className="mb-4 flex items-center gap-2 text-xs text-gray-400">
             <span>👥</span>
-            <span>{t('apartments.capacity')}: {apartment.capacity}</span>
+            <span>
+              {t('apartments.capacity')}: {apartment.capacity}
+            </span>
           </div>
           <div className="flex items-center justify-between border-t border-gray-700 pt-3">
             <span className="text-sm font-semibold text-orange-400">
@@ -47,5 +50,5 @@ export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
         </div>
       </div>
     </Link>
-  );
+  )
 }

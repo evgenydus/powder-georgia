@@ -1,6 +1,8 @@
-import { getLocale, getTranslations } from 'next-intl/server'
-import { supabase } from '@/lib/supabase'
+import { getTranslations } from 'next-intl/server'
+
 import { TransferGrid } from '@/components/transfers'
+
+import { supabase } from '@/lib/supabase'
 import type { Transfer } from '@/types'
 
 async function getTransfers(): Promise<Transfer[]> {
@@ -13,31 +15,28 @@ async function getTransfers(): Promise<Transfer[]> {
 
     if (error) {
       console.error('Supabase error:', error)
+
       return []
     }
 
     return data || []
   } catch (error) {
     console.error('Error fetching transfers:', error)
+
     return []
   }
 }
 
-export default async function TransfersPage() {
-  const locale = await getLocale()
+const TransfersPage = async () => {
   const t = await getTranslations()
   const transfers = await getTransfers()
 
   return (
-    <main className="min-h-screen bg-primary">
-      <section className="bg-gradient-to-b from-gray-900 to-primary px-4 py-16 sm:px-6 lg:px-8">
+    <main className="bg-primary min-h-screen">
+      <section className="to-primary bg-gradient-to-b from-gray-900 px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
-            {t('transfers.title')}
-          </h1>
-          <p className="text-gray-300">
-            {t('transfers.description')}
-          </p>
+          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{t('transfers.title')}</h1>
+          <p className="text-gray-300">{t('transfers.description')}</p>
         </div>
       </section>
 
@@ -49,3 +48,5 @@ export default async function TransfersPage() {
     </main>
   )
 }
+
+export default TransfersPage

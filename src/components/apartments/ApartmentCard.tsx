@@ -1,10 +1,10 @@
-'''
 'use client'
 
-import type { Apartment } from '@/types'
-import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
+
+import type { Apartment } from '@/types'
 
 interface ApartmentCardProps {
   apartment: Apartment
@@ -22,10 +22,10 @@ export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           {apartment.images && apartment.images.length > 0 ? (
             <Image
-              src={apartment.images[0]}
               alt={title}
-              fill
               className="object-cover transition-transform duration-300 group-hover:scale-110"
+              fill
+              src={apartment.images[0]}
             />
           ) : (
             <div className="flex h-full items-center justify-center text-gray-500">
@@ -38,7 +38,9 @@ export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
           <div className="mb-4 grid grid-cols-2 gap-2 text-xs text-gray-400">
             <div className="flex items-center gap-1">
               <span>👥</span>
-              <span>{t('apartments.capacity')}: {apartment.capacity}</span>
+              <span>
+                {t('apartments.capacity')}: {apartment.capacity}
+              </span>
             </div>
           </div>
           <div className="flex items-center justify-between border-t border-gray-700 pt-3">
@@ -54,4 +56,3 @@ export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
     </Link>
   )
 }
-'''

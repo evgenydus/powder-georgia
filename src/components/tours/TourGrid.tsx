@@ -1,7 +1,7 @@
-
 'use client'
 
 import { TourCard } from './TourCard'
+
 import type { Tour } from '@/types'
 
 interface TourGridProps {

@@ -1,29 +1,28 @@
-'''import { getLocale, getTranslations } from 'next-intl/server'
+import Image from 'next/image'
+import { getLocale, getTranslations } from 'next-intl/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
-import Image from 'next/image'
 
 async function getTourBySlug(slug: string): Promise<Tour | null> {
   try {
-    const { data, error } = await supabase
-      .from('tours')
-      .select('*')
-      .eq('slug', slug)
-      .single()
+    const { data, error } = await supabase.from('tours').select('*').eq('slug', slug).single()
 
     if (error) {
       console.error('Supabase error:', error)
+
       return null
     }
 
     return data || null
   } catch (error) {
     console.error('Error fetching tour:', error)
+
     return null
   }
 }
 
-export default async function TourPage({ params }: { params: { slug: string } }) {
+const TourPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params
   const locale = await getLocale()
   const t = await getTranslations()
@@ -31,28 +30,21 @@ export default async function TourPage({ params }: { params: { slug: string } })
 
   if (!tour) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-primary">
+      <main className="bg-primary flex min-h-screen items-center justify-center">
         <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
       </main>
     )
   }
 
   const title = tour[`title_${locale as 'en' | 'ka' | 'ru'}`] || tour.title_en
-  const description =
-    tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en
+  const description = tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en
   const requiredEquipment =
-    tour[`required_equipment_${locale as 'en' | 'ka' | 'ru'}`] ||
-    tour.required_equipment_en
+    tour[`required_equipment_${locale as 'en' | 'ka' | 'ru'}`] || tour.required_equipment_en
 
   return (
-    <main className="min-h-screen bg-primary text-white">
+    <main className="bg-primary min-h-screen text-white">
       <div className="relative h-96 w-full">
-        <Image
-          src={tour.images[0]}
-          alt={title}
-          fill
-          className="object-cover"
-        />
+        <Image alt={title} className="object-cover" fill src={tour.images[0]} />
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
@@ -91,9 +83,7 @@ export default async function TourPage({ params }: { params: { slug: string } })
 
         {requiredEquipment && (
           <div className="mt-8">
-            <h2 className="mb-4 text-2xl font-bold">
-              {t('tours.requiredEquipment')}
-            </h2>
+            <h2 className="mb-4 text-2xl font-bold">{t('tours.requiredEquipment')}</h2>
             <p>{requiredEquipment}</p>
           </div>
         )}
@@ -105,4 +95,5 @@ export default async function TourPage({ params }: { params: { slug: string } })
     </main>
   )
 }
-'''
+
+export default TourPage

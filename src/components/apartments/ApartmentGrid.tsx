@@ -1,6 +1,6 @@
-import type { Apartment } from '@/types'
-
 import { ApartmentCard } from './ApartmentCard'
+
+import type { Apartment } from '@/types'
 
 interface ApartmentGridProps {
   apartments: Apartment[]

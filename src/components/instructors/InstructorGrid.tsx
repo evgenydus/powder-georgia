@@ -1,6 +1,6 @@
-import type { Instructor } from '@/types'
-
 import { InstructorCard } from './InstructorCard'
+
+import type { Instructor } from '@/types'
 
 interface InstructorGridProps {
   instructors: Instructor[]

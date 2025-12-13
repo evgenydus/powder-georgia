@@ -1,9 +1,10 @@
 'use client'
 
-import type { Instructor } from '@/types'
-import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useLocale, useTranslations } from 'next-intl'
+
+import type { Instructor } from '@/types'
 
 interface InstructorCardProps {
   instructor: Instructor
@@ -14,18 +15,17 @@ export const InstructorCard = ({ instructor }: InstructorCardProps) => {
   const t = useTranslations()
 
   const specialization =
-    instructor[`specialization_${locale as 'en' | 'ka' | 'ru'}`] ||
-    instructor.specialization_en
+    instructor[`specialization_${locale as 'en' | 'ka' | 'ru'}`] || instructor.specialization_en
 
   return (
     <Link href={`/${locale}/instructors/${instructor.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-64 w-full overflow-hidden bg-gray-700">
           <Image
-            src={instructor.photo_url}
             alt={instructor.name}
-            fill
             className="object-cover transition-transform duration-300 group-hover:scale-110"
+            fill
+            src={instructor.photo_url}
           />
         </div>
         <div className="p-4">
