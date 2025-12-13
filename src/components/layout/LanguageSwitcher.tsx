@@ -1,25 +1,30 @@
-'use client';
+"use client"
 
-import { useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from "next-intl"
+import { usePathname, useRouter } from "next-intl/client"
+import { useTransition } from "react"
 
 export function LanguageSwitcher() {
-  const t = useTranslations('navigation');
-  const router = useRouter();
-  const pathname = usePathname();
+  const t = useTranslations("navigation")
+  const router = useRouter()
+  const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
+  const locale = useLocale()
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value;
-    const newPath = `/${newLocale}${pathname.substring(3)}`;
-    router.push(newPath);
-  };
+    const newLocale = e.target.value
+    startTransition(() => {
+      router.replace(pathname, { locale: newLocale })
+    })
+  }
 
   return (
     <div className="relative">
       <select
         onChange={handleChange}
-        defaultValue={pathname.substring(1, 3)}
+        defaultValue={locale}
         className="appearance-none rounded bg-gray-800 py-1 pl-2 pr-8 text-white focus:outline-none"
+        disabled={isPending}
       >
         <option value="en">EN</option>
         <option value="ka">KA</option>
@@ -31,5 +36,5 @@ export function LanguageSwitcher() {
         </svg>
       </div>
     </div>
-  );
+  )
 }

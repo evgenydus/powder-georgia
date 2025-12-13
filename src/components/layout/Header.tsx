@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { LanguageSwitcher } from './LanguageSwitcher';
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Header() {
-  const t = useTranslations('navigation');
+  const t = useTranslations('navigation')
 
   const navLinks = [
     { href: '/tours', label: t('tours') },
@@ -14,7 +14,7 @@ export function Header() {
     { href: '/apartments', label: t('apartments') },
     { href: '/about', label: t('about') },
     { href: '/contact', label: t('contact') },
-  ];
+  ]
 
   return (
     <header className="bg-gray-900 text-white shadow-md">
@@ -34,5 +34,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  );
+  )
 }

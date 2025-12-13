@@ -1,17 +1,17 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export function Footer() {
-  const t = useTranslations('footer');
+  const t = useTranslations('footer')
 
   const quickLinks = [
     { href: '/tours', label: 'Tours' },
     { href: '/transfers', label: 'Transfers' },
     { href: '/instructors', label: 'Instructors' },
     { href: '/apartments', label: 'Apartments' },
-  ];
+  ]
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -42,5 +42,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }
