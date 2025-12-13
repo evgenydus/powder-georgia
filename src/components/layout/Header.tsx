@@ -1,9 +1,10 @@
 'use client'
 
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 import { LanguageSwitcher } from './LanguageSwitcher'
+
+import { Link } from '@/i18n/navigation'
 
 export const Header = () => {
   const t = useTranslations('navigation')

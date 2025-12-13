@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
 import type { Apartment } from '@/types'
 
 interface ApartmentCardProps {
@@ -15,7 +15,7 @@ export const ApartmentCard = ({ apartment, locale }: ApartmentCardProps) => {
   const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en
 
   return (
-    <Link href={`/${locale}/apartments/${apartment.slug}`}>
+    <Link href={`/apartments/${apartment.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           {apartment.images && apartment.images.length > 0 ? (

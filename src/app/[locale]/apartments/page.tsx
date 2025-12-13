@@ -52,4 +52,3 @@ const ApartmentsPage = async () => {
 }
 
 export default ApartmentsPage
-export default ApartmentsPage

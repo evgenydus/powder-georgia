@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
 import type { Transfer } from '@/types'
 
 interface TransferCardProps {
@@ -18,7 +18,7 @@ export const TransferCard = ({ transfer }: TransferCardProps) => {
   const route = transfer[`route_${locale as 'en' | 'ka' | 'ru'}`] || transfer.route_en
 
   return (
-    <Link href={`/${locale}/transfers/${transfer.slug}`}>
+    <Link href={`/transfers/${transfer.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           <Image

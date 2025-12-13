@@ -1,8 +1,8 @@
-import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
 import { TourGrid } from '@/components/tours'
 
+import { Link } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
 
@@ -28,8 +28,7 @@ async function getTours(): Promise<Tour[]> {
   }
 }
 
-const HomePage = async ({ params }: { params: { locale: string } }) => {
-  const { locale } = params
+const HomePage = async () => {
   const t = await getTranslations()
   const tours = await getTours()
   const featuredTours = tours.slice(0, 3)
@@ -42,7 +41,7 @@ const HomePage = async ({ params }: { params: { locale: string } }) => {
         <p className="mb-8 max-w-2xl text-xl text-gray-300">{t('home.subtitle')}</p>
         <Link
           className="bg-accent hover:bg-accent/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-          href={`/${locale}/tours`}
+          href="/tours"
         >
           {t('home.cta')}
         </Link>
@@ -57,12 +56,12 @@ const HomePage = async ({ params }: { params: { locale: string } }) => {
               <p className="text-gray-400">{t('tours.description')}</p>
             </div>
 
-            <TourGrid locale={locale} tours={featuredTours} />
+            <TourGrid tours={featuredTours} />
 
             <div className="mt-12 text-center">
               <Link
                 className="bg-accent hover:bg-accent/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-                href={`/${locale}/tours`}
+                href="/tours"
               >
                 {t('tours.viewAll')}
               </Link>
@@ -78,7 +77,7 @@ const HomePage = async ({ params }: { params: { locale: string } }) => {
           <p className="mb-8 text-gray-300">{t('common.contactUs')}</p>
           <Link
             className="bg-secondary hover:bg-secondary/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
-            href={`/${locale}/contact`}
+            href="/contact"
           >
             {t('navigation.contact')}
           </Link>
@@ -88,5 +87,4 @@ const HomePage = async ({ params }: { params: { locale: string } }) => {
   )
 }
 
-export default HomePage
 export default HomePage

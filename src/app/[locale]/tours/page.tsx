@@ -50,4 +50,3 @@ const ToursPage = async () => {
 }
 
 export default ToursPage
-export default ToursPage

@@ -2,7 +2,8 @@
 
 import { useTransition } from 'react'
 import { useLocale } from 'next-intl'
-import { usePathname, useRouter } from 'next-intl/client'
+
+import { usePathname, useRouter } from '@/i18n/navigation'
 
 export const LanguageSwitcher = () => {
   const router = useRouter()

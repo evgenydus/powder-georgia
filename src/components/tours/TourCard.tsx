@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
 import { useLocale, useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
 import type { Tour } from '@/types'
 
 interface TourCardProps {
@@ -18,7 +18,7 @@ export const TourCard = ({ tour }: TourCardProps) => {
   const description = tour[`description_${locale as 'en' | 'ka' | 'ru'}`] || tour.description_en
 
   return (
-    <Link href={`/${locale}/tours/${tour.slug}`}>
+    <Link href={`/tours/${tour.slug}`}>
       <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
         <div className="relative h-48 w-full overflow-hidden bg-gray-700">
           {tour.images && tour.images.length > 0 ? (
