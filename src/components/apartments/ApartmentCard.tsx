@@ -1,17 +1,20 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import type { Apartment } from '@/types';
+'''
+'use client'
+
+import type { Apartment } from '@/types'
+import { useLocale, useTranslations } from 'next-intl'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface ApartmentCardProps {
-  apartment: Apartment;
-  locale: string;
+  apartment: Apartment
 }
 
-export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
-  const t = useTranslations();
+export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
+  const locale = useLocale()
+  const t = useTranslations()
 
-  const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en;
+  const title = apartment[`title_${locale as 'en' | 'ka' | 'ru'}`] || apartment.title_en
 
   return (
     <Link href={`/${locale}/apartments/${apartment.slug}`}>
@@ -32,9 +35,11 @@ export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
         </div>
         <div className="p-4">
           <h3 className="mb-2 text-lg font-bold text-white">{title}</h3>
-          <div className="mb-4 flex items-center gap-2 text-xs text-gray-400">
-            <span>👥</span>
-            <span>{t('apartments.capacity')}: {apartment.capacity}</span>
+          <div className="mb-4 grid grid-cols-2 gap-2 text-xs text-gray-400">
+            <div className="flex items-center gap-1">
+              <span>👥</span>
+              <span>{t('apartments.capacity')}: {apartment.capacity}</span>
+            </div>
           </div>
           <div className="flex items-center justify-between border-t border-gray-700 pt-3">
             <span className="text-sm font-semibold text-orange-400">
@@ -47,5 +52,6 @@ export function ApartmentCard({ apartment, locale }: ApartmentCardProps) {
         </div>
       </div>
     </Link>
-  );
+  )
 }
+'''

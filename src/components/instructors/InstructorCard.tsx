@@ -1,17 +1,21 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import type { Instructor } from '@/types';
+'use client'
+
+import type { Instructor } from '@/types'
+import { useLocale, useTranslations } from 'next-intl'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface InstructorCardProps {
-  instructor: Instructor;
-  locale: string;
+  instructor: Instructor
 }
 
-export function InstructorCard({ instructor, locale }: InstructorCardProps) {
-  const t = useTranslations();
+export const InstructorCard = ({ instructor }: InstructorCardProps) => {
+  const locale = useLocale()
+  const t = useTranslations()
 
-  const specialization = instructor[`specialization_${locale as 'en' | 'ka' | 'ru'}`] || instructor.specialization_en;
+  const specialization =
+    instructor[`specialization_${locale as 'en' | 'ka' | 'ru'}`] ||
+    instructor.specialization_en
 
   return (
     <Link href={`/${locale}/instructors/${instructor.slug}`}>
@@ -25,11 +29,13 @@ export function InstructorCard({ instructor, locale }: InstructorCardProps) {
           />
         </div>
         <div className="p-4">
-          <h3 className="mb-2 text-xl font-bold text-white">{instructor.name}</h3>
-          <p className="mb-4 text-sm text-gray-300">{specialization}</p>
+          <h3 className="mb-1 text-lg font-bold text-white">{instructor.name}</h3>
+          <p className="mb-4 text-sm text-gray-400">{specialization}</p>
           <div className="flex items-center justify-between border-t border-gray-700 pt-3">
             <span className="text-sm font-semibold text-orange-400">
-              {instructor.price_per_hour_usd ? `$${instructor.price_per_hour_usd}/hr` : t('common.inquire')}
+              {instructor.price_per_hour_usd
+                ? `$${instructor.price_per_hour_usd}/hr`
+                : t('common.inquire')}
             </span>
             <span className="text-xs font-medium text-orange-400">
               {t('instructors.viewProfile')} →
@@ -38,5 +44,5 @@ export function InstructorCard({ instructor, locale }: InstructorCardProps) {
         </div>
       </div>
     </Link>
-  );
+  )
 }

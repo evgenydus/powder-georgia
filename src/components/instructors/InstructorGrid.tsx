@@ -1,25 +1,25 @@
-import { InstructorCard } from './InstructorCard';
-import type { Instructor } from '@/types';
+import type { Instructor } from '@/types'
+
+import { InstructorCard } from './InstructorCard'
 
 interface InstructorGridProps {
-  instructors: Instructor[];
-  locale: string;
+  instructors: Instructor[]
 }
 
-export function InstructorGrid({ instructors, locale }: InstructorGridProps) {
+export const InstructorGrid = ({ instructors }: InstructorGridProps) => {
   if (instructors.length === 0) {
     return (
       <div className="py-12 text-center">
         <p className="text-gray-400">No instructors available</p>
       </div>
-    );
+    )
   }
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {instructors.map((instructor) => (
-        <InstructorCard key={instructor.id} instructor={instructor} locale={locale} />
+        <InstructorCard key={instructor.id} instructor={instructor} />
       ))}
     </div>
-  );
+  )
 }

@@ -1,3 +1,4 @@
+
 'use client'
 
 import { TourCard } from './TourCard'
@@ -5,10 +6,9 @@ import type { Tour } from '@/types'
 
 interface TourGridProps {
   tours: Tour[]
-  locale: string
 }
 
-export function TourGrid({ tours, locale }: TourGridProps) {
+export const TourGrid = ({ tours }: TourGridProps) => {
   if (tours.length === 0) {
     return (
       <div className="py-12 text-center">
@@ -20,7 +20,7 @@ export function TourGrid({ tours, locale }: TourGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {tours.map((tour) => (
-        <TourCard key={tour.id} tour={tour} locale={locale} />
+        <TourCard key={tour.id} tour={tour} />
       ))}
     </div>
   )
