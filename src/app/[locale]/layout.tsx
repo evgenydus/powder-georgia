@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
+import { Footer, Header } from '@/components/layout'
+
 import '../globals.css'
 
 const geistSans = Geist({
@@ -31,8 +33,12 @@ const RootLayout = async ({ children }: LayoutProps) => {
   return (
     <html>
       <NextIntlClientProvider messages={messages}>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          {children}
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} bg-primary text-white antialiased`}
+        >
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
         </body>
       </NextIntlClientProvider>
     </html>
