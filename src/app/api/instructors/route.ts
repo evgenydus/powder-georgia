@@ -1,9 +1,9 @@
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 import { supabase } from '@/lib/supabase'
 import type { Instructor } from '@/types'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const { data, error } = await supabase
       .from('instructors')

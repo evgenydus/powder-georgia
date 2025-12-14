@@ -23,7 +23,7 @@ async function getTourById(id: string): Promise<Tour | null> {
   }
 }
 
-export default async function EditTourPage({ params }: { params: { id: string } }) {
+const EditTourPage = async ({ params }: { params: { id: string } }) => {
   const t = await getTranslations('admin')
   const tour = await getTourById(params.id)
 
@@ -38,3 +38,5 @@ export default async function EditTourPage({ params }: { params: { id: string } 
     </div>
   )
 }
+
+export default EditTourPage

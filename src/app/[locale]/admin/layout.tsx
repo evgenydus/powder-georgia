@@ -2,7 +2,7 @@ import { Toaster } from 'react-hot-toast'
 
 import { AdminSidebar } from '@/components/admin/AdminSidebar'
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
       <AdminSidebar />
@@ -13,3 +13,5 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </div>
   )
 }
+
+export default AdminLayout

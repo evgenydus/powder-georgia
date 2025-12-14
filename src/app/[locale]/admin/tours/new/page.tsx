@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { TourForm } from '@/components/admin/TourForm'
 
-export default async function NewTourPage() {
+const NewTourPage = async () => {
   const t = await getTranslations('admin')
 
   return (
@@ -12,3 +12,5 @@ export default async function NewTourPage() {
     </div>
   )
 }
+
+export default NewTourPage

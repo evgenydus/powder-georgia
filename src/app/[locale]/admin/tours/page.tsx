@@ -13,6 +13,8 @@ async function getTours(): Promise<Tour[]> {
       .select('*')
       .order('created_at', { ascending: false })
 
+    console.log('data: ', { data, error })
+
     if (error) {
       console.error('Supabase error:', error)
 
@@ -27,9 +29,11 @@ async function getTours(): Promise<Tour[]> {
   }
 }
 
-export default async function AdminToursPage() {
+const AdminToursPage = async () => {
   const t = await getTranslations('admin')
   const tours = await getTours()
+
+  console.log('tours: ', tours)
 
   return (
     <div>
@@ -91,3 +95,5 @@ export default async function AdminToursPage() {
     </div>
   )
 }
+
+export default AdminToursPage
