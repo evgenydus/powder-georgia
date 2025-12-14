@@ -91,5 +91,15 @@
     "notFound": "Page not found",
     "serverError": "Server error",
     "tryAgain": "Try again"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "instructors": "Instructors",
+    "apartments": "Apartments",
+    "createNewTour": "Create New Tour",
+    "editTour": "Edit Tour",
+    "tourNotFound": "Tour not found"
   }
 }
