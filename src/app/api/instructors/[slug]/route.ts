@@ -1,11 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Instructor } from '@/types'
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
-) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   try {
     const { slug } = await params
 
@@ -23,6 +21,7 @@ export async function GET(
     return NextResponse.json(data as Instructor)
   } catch (error) {
     console.error('Error fetching instructor:', error)
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

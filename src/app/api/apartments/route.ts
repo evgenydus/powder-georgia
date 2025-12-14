@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Apartment } from '@/types'
 
@@ -17,6 +18,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(data as Apartment[])
   } catch (error) {
     console.error('Error fetching apartments:', error)
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
