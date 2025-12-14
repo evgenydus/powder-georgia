@@ -4,6 +4,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import toast from 'react-hot-toast';
 
 import { Button } from '@/components/ui/Button';
 import {
@@ -65,16 +66,21 @@ export function TourForm({ tour }: { tour?: z.infer<typeof formSchema> }) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { data, error } = tour
-      ? await supabase.from('tours').update(values).eq('id', tour.id)
-      : await supabase.from('tours').insert([values]);
+    const promise = tour
+      ? supabase.from('tours').update(values).eq('id', tour.id)
+      : supabase.from('tours').insert([values]);
 
-    if (error) {
-      console.error('Supabase error:', error);
-      // TODO: show error to user
-    } else {
-      router.push('/admin/tours');
-    }
+    toast.promise(promise, {
+      loading: tour ? 'Updating tour...' : 'Creating tour...',
+      success: () => {
+        router.push('/admin/tours');
+        return tour ? 'Tour updated successfully!' : 'Tour created successfully!';
+      },
+      error: (err) => {
+        console.error('Supabase error:', err);
+        return 'An error occurred.';
+      },
+    });
   }
 
   return (

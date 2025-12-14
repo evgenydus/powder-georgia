@@ -4,20 +4,26 @@
 import { Button } from '@/components/ui/Button';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export function DeleteTourButton({ tourId }: { tourId: string }) {
   const router = useRouter();
 
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this tour?')) {
-      const { error } = await supabase.from('tours').delete().eq('id', tourId);
+      const promise = supabase.from('tours').delete().eq('id', tourId);
 
-      if (error) {
-        console.error('Supabase error:', error);
-        // TODO: show error to user
-      } else {
-        router.refresh();
-      }
+      toast.promise(promise, {
+        loading: 'Deleting tour...',
+        success: () => {
+          router.refresh();
+          return 'Tour deleted successfully!';
+        },
+        error: (err) => {
+          console.error('Supabase error:', err);
+          return 'An error occurred while deleting the tour.';
+        },
+      });
     }
   };
 
