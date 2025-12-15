@@ -15,7 +15,8 @@ const FormField = <
   React.createElement(
     FormFieldContext.Provider,
     { value: { name: props.name } },
-    React.createElement(Controller, props),
+    // Use JSX to help TypeScript infer generic params correctly
+    <Controller {...props} />,
   )
 
 export { FormField }

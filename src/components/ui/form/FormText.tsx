@@ -7,7 +7,7 @@ import { useFormField } from './context'
 import { cn } from '@/lib/utils'
 
 type FormTextProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
   className?: string
 }
 
