@@ -4,7 +4,8 @@ import * as React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import toast from 'react-hot-toast'
+
+import useToast from '@/components/ui/hooks/useToast'
 
 import { CheckboxField, TextareaField, TextField } from '@/components/admin/TourFormFields'
 import {
@@ -24,29 +25,27 @@ import type { Tour } from '@/types'
 
 const TourForm = ({ tour }: { tour?: Tour }) => {
   const router = useRouter()
+  const { toastError, toastInfo, toastSuccess } = useToast()
   const form = useForm<TourFormValues>({
     defaultValues: getInitialValues(tour),
     resolver: zodResolver(formSchema),
   })
 
   const onSubmit = async (values: TourFormValues) => {
-    const promise = tour
-      ? supabase.from('tours').update(values).eq('id', tour.id)
-      : supabase.from('tours').insert([values])
+    toastInfo(tour ? 'Updating tour...' : 'Creating tour...')
 
-    await toast.promise(promise, {
-      error: (err) => {
-        console.error('Supabase error:', err)
+    const { error } = tour
+      ? await supabase.from('tours').update(values).eq('id', tour.id)
+      : await supabase.from('tours').insert([values])
 
-        return 'An error occurred.'
-      },
-      loading: tour ? 'Updating tour...' : 'Creating tour...',
-      success: () => {
-        router.push('/admin/tours')
+    if (error) {
+      toastError('TourForm', { error, message: 'An error occurred.' })
 
-        return tour ? 'Tour updated successfully!' : 'Tour created successfully!'
-      },
-    })
+      return
+    }
+
+    toastSuccess(tour ? 'Tour updated successfully!' : 'Tour created successfully!')
+    router.push('/admin/tours')
   }
 
   return React.createElement(

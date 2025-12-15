@@ -4,8 +4,11 @@
     "siteDescription": "Experience the wonders of Georgian mountains with Powder Georgia",
     "ready": "Ready to explore?",
     "contactUs": "Get in touch with us to book your adventure",
-    "inquire": "Inquire"
-  },
+    "inquire": "Inquire",
+    "messages": {
+      "success": "Success!",
+      "error": "Something went wrong. Please try again later."
+    }},
   "navigation": {
     "home": "Home",
     "tours": "Tours",

@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
 import { Footer, Header } from '@/components/layout'
+import { Toaster } from '@/components/ui'
 
 import '../globals.css'
 
@@ -39,6 +40,8 @@ const RootLayout = async ({ children }: LayoutProps) => {
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
+
+          <Toaster />
         </body>
       </NextIntlClientProvider>
     </html>
