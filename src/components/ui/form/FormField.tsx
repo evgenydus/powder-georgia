@@ -11,12 +11,11 @@ const FormField = <
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(
   props: ControllerProps<TFieldValues, TName>,
-) =>
-  React.createElement(
-    FormFieldContext.Provider,
-    { value: { name: props.name } },
-    // Use JSX to help TypeScript infer generic params correctly
-    <Controller {...props} />,
-  )
+) => (
+  <FormFieldContext.Provider value={{ name: props.name }}>
+    {/* JSX keeps generic inference intact for the Controller render */}
+    <Controller {...props} />
+  </FormFieldContext.Provider>
+)
 
 export { FormField }

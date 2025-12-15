@@ -1,9 +1,8 @@
 'use client'
 
-import * as React from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { useForm, type Resolver } from 'react-hook-form'
+import { type Resolver, useForm } from 'react-hook-form'
 
 import useToast from '@/components/ui/hooks/useToast'
 
@@ -32,6 +31,8 @@ const TourForm = ({ tour }: { tour?: Tour }) => {
     // cast to Resolver<TourFormValues> to align with RHF generics.
     resolver: zodResolver(formSchema) as unknown as Resolver<TourFormValues>,
   })
+
+  console.log('tour: ', tour)
 
   const onSubmit = async (values: TourFormValues) => {
     toastInfo(tour ? 'Updating tour...' : 'Creating tour...')

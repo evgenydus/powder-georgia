@@ -25,7 +25,8 @@ async function getTourById(id: string): Promise<Tour | null> {
 
 const EditTourPage = async ({ params }: { params: { id: string } }) => {
   const t = await getTranslations('admin')
-  const tour = await getTourById(params.id)
+  const paramsData = await params
+  const tour = await getTourById(paramsData.id)
 
   if (!tour) {
     return <div>{t('tourNotFound')}</div>
