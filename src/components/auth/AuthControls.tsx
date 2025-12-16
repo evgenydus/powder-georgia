@@ -2,27 +2,15 @@
 
 import { useTranslations } from 'next-intl'
 
-import { routes } from '@/constants'
-
 import { Button } from '@/components/ui'
 import { useAuth } from './AuthProvider'
-
-import { Link } from '@/i18n/navigation'
 
 export const AuthControls = () => {
   const { isLoading, signOut, user } = useAuth()
   const t = useTranslations('auth')
 
-  if (isLoading) {
+  if (isLoading || !user) {
     return null
-  }
-
-  if (!user) {
-    return (
-      <Button asChild size="sm" variant="secondary">
-        <Link href={routes.login}>{t('login')}</Link>
-      </Button>
-    )
   }
 
   const displayName = user.email || t('signedIn')

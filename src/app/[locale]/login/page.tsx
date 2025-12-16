@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 
 import { routes } from '@/constants'
 
-import { AuthControls, useAuth } from '@/components/auth'
+import { useAuth } from '@/components/auth'
 import { Button } from '@/components/ui'
 
 import { useRouter } from '@/i18n/navigation'
@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (!isAuthLoading && user) {
-      router.push(routes.home)
+      router.replace(routes.admin)
     }
   }, [isAuthLoading, router, user])
 
@@ -43,7 +43,7 @@ const LoginPage = () => {
       return
     }
 
-    router.push(routes.home)
+    router.replace(routes.admin)
   }
 
   return (
@@ -101,11 +101,6 @@ const LoginPage = () => {
             {isSubmitting ? t('loggingIn') : t('login')}
           </Button>
         </form>
-
-        <div className="flex items-center justify-between rounded-xl border border-gray-800 bg-gray-800/60 px-4 py-3 text-sm text-gray-300">
-          <span>{t('sessionHint')}</span>
-          <AuthControls />
-        </div>
       </div>
     </main>
   )
