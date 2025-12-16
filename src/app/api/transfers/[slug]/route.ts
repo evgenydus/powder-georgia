@@ -1,9 +1,12 @@
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 import { supabase } from '@/lib/supabase'
 import type { Transfer } from '@/types'
 
-export async function GET({ params }: { params: Promise<{ slug: string }> }) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> },
+) {
   try {
     const { slug } = await params
 
