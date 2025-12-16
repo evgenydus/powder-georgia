@@ -3,6 +3,18 @@
     "siteName": "Powder Georgia",
     "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia"
   },
+  "auth": {
+    "description": "Войдите с почтой и паролем из Supabase.",
+    "email": "Email",
+    "error": "Не удалось войти. Проверьте email и пароль.",
+    "login": "Войти",
+    "loggingIn": "Вход...",
+    "logout": "Выйти",
+    "password": "Пароль",
+    "sessionHint": "Хотите сменить аккаунт?",
+    "signedIn": "В системе",
+    "title": "Вход"
+  },
   "navigation": {
     "home": "Главная",
     "tours": "Туры",

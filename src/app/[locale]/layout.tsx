@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
+import { AuthProvider } from '@/components/auth'
 import { Footer, Header } from '@/components/layout'
 import { Toaster } from '@/components/ui'
 
@@ -37,11 +38,12 @@ const RootLayout = async ({ children }: LayoutProps) => {
         <body
           className={`${geistSans.variable} ${geistMono.variable} bg-primary text-white antialiased`}
         >
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-
-          <Toaster />
+          <AuthProvider>
+            <Header />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+            <Toaster />
+          </AuthProvider>
         </body>
       </NextIntlClientProvider>
     </html>

@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename)
 
 export default [
   {
-    ignores: ['scripts/**', '.next/**', 'node_modules/**'],
+    ignores: ['scripts/**', '.next/**', 'node_modules/**', 'next-env.d.ts'],
   },
   {
     files: ['**/*.{ts,tsx}'],

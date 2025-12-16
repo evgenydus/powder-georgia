@@ -3,6 +3,18 @@
     "siteName": "Powder Georgia",
     "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად"
   },
+  "auth": {
+    "description": "შედით Supabase-ში მითითებული ელფოსტით და პაროლით.",
+    "email": "ელფოსტა",
+    "error": "ავტორიზაცია ვერ მოხერხდა. შეამოწმეთ ელფოსტა და პაროლი.",
+    "login": "შესვლა",
+    "loggingIn": "შესვლა...",
+    "logout": "გასვლა",
+    "password": "პაროლი",
+    "sessionHint": "გსურთ ანგარიშის შეცვლა?",
+    "signedIn": "ავტორიზებული",
+    "title": "ავტორიზაცია"
+  },
   "navigation": {
     "home": "მთავარი",
     "tours": "ტური",

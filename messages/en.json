@@ -9,6 +9,18 @@
       "success": "Success!",
       "error": "Something went wrong. Please try again later."
     }},
+  "auth": {
+    "description": "Sign in with the email and password configured in Supabase.",
+    "email": "Email",
+    "error": "Unable to sign in. Check your email and password.",
+    "login": "Log in",
+    "loggingIn": "Signing in...",
+    "logout": "Log out",
+    "password": "Password",
+    "sessionHint": "Need to switch accounts?",
+    "signedIn": "Signed in",
+    "title": "Log in"
+  },
   "navigation": {
     "home": "Home",
     "tours": "Tours",
