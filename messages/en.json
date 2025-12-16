@@ -4,8 +4,11 @@
     "siteDescription": "Experience the wonders of Georgian mountains with Powder Georgia",
     "ready": "Ready to explore?",
     "contactUs": "Get in touch with us to book your adventure",
-    "inquire": "Inquire"
-  },
+    "inquire": "Inquire",
+    "messages": {
+      "success": "Success!",
+      "error": "Something went wrong. Please try again later."
+    }},
   "navigation": {
     "home": "Home",
     "tours": "Tours",
@@ -91,5 +94,15 @@
     "notFound": "Page not found",
     "serverError": "Server error",
     "tryAgain": "Try again"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "instructors": "Instructors",
+    "apartments": "Apartments",
+    "createNewTour": "Create New Tour",
+    "editTour": "Edit Tour",
+    "tourNotFound": "Tour not found"
   }
 }

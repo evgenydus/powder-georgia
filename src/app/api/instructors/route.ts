@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+
 import { supabase } from '@/lib/supabase'
 import type { Instructor } from '@/types'
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const { data, error } = await supabase
       .from('instructors')
@@ -17,6 +18,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(data as Instructor[])
   } catch (error) {
     console.error('Error fetching instructors:', error)
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
