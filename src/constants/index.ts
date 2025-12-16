@@ -25,6 +25,7 @@ export const routes = {
   contact: '/contact',
   home: '/',
   instructors: '/instructors',
+  login: '/login',
   tours: '/tours',
   transfers: '/transfers',
 } as const

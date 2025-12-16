@@ -52,6 +52,7 @@ const TourForm = ({ tour }: { tour?: Tour }) => {
   }
 
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <Form {...form}>
       <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
