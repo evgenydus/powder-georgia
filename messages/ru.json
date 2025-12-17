@@ -3,6 +3,73 @@
     "siteName": "Powder Georgia",
     "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia"
   },
+  "admin": {
+    "apartments": "Апартаменты",
+    "createNewTour": "Создать тур",
+    "editTour": "Редактировать тур",
+    "instructors": "Инструкторы",
+    "tourNotFound": "Тур не найден",
+    "tours": "Туры",
+    "transfers": "Трансферы",
+    "title": "Админ",
+    "tourForm": {
+      "active": {
+        "description": "Тур виден пользователям?",
+        "label": "Активен"
+      },
+      "descriptions": {
+        "heading": "Описания",
+        "labelEn": "Описание (EN)",
+        "labelKa": "Описание (KA)",
+        "labelRu": "Описание (RU)"
+      },
+      "equipment": {
+        "heading": "Необходимое снаряжение",
+        "labelEn": "Снаряжение (EN)",
+        "labelKa": "Снаряжение (KA)",
+        "labelRu": "Снаряжение (RU)"
+      },
+      "group": {
+        "heading": "Размер группы",
+        "max": "Макс. группа",
+        "min": "Мин. группа"
+      },
+      "metrics": {
+        "difficulty": "Сложность (1-5)",
+        "duration": "Длительность (часы)",
+        "heading": "Метрики",
+        "price": "Цена (USD)"
+      },
+      "slug": {
+        "label": "Слаг",
+        "placeholder": "unikalnyj-tur"
+      },
+      "submit": {
+        "create": "Создать тур",
+        "update": "Обновить тур"
+      },
+      "titles": {
+        "heading": "Заголовки",
+        "labelEn": "Заголовок (EN)",
+        "labelKa": "Заголовок (KA)",
+        "labelRu": "Заголовок (RU)"
+      },
+      "toast": {
+        "created": "Тур создан!",
+        "creating": "Создание тура...",
+        "errorMessage": "Не удалось сохранить тур",
+        "errorTitle": "Ошибка",
+        "updated": "Тур обновлен!",
+        "updating": "Обновление тура..."
+      },
+      "validation": {
+        "required": "Обязательно"
+      },
+      "verticalDrop": {
+        "label": "Перепад высоты (м)"
+      }
+    }
+  },
   "auth": {
     "description": "Войдите с почтой и паролем из Supabase.",
     "email": "Email",

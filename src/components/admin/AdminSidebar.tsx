@@ -2,18 +2,18 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 
 export const AdminSidebar = () => {
-  const t = useTranslations('admin')
+  const t = useTranslations()
 
   const navLinks = [
-    { href: '/admin/tours', label: t('tours') },
-    { href: '/admin/transfers', label: t('transfers') },
-    { href: '/admin/instructors', label: t('instructors') },
-    { href: '/admin/apartments', label: t('apartments') },
+    { href: '/admin/tours', label: t('navigation.tours') },
+    { href: '/admin/transfers', label: t('navigation.transfers') },
+    { href: '/admin/instructors', label: t('navigation.instructors') },
+    { href: '/admin/apartments', label: t('navigation.apartments') },
   ]
 
   return (
     <aside className="w-64 bg-gray-800 p-4">
-      <h2 className="mb-8 text-2xl font-bold">{t('title')}</h2>
+      <h2 className="mb-8 text-2xl font-bold">{t('admin.title')}</h2>
       <nav>
         <ul className="space-y-4">
           {navLinks.map((link) => (

@@ -12,7 +12,7 @@ import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase'
 
 const LoginPage = () => {
-  const t = useTranslations('auth')
+  const t = useTranslations()
   const router = useRouter()
   const { isLoading: isAuthLoading, user } = useAuth()
   const [email, setEmail] = useState('')
@@ -50,14 +50,14 @@ const LoginPage = () => {
     <main className="bg-primary min-h-screen px-4 py-16">
       <div className="mx-auto flex max-w-lg flex-col gap-8 rounded-2xl bg-gray-900/70 px-6 py-10 shadow-2xl backdrop-blur">
         <div className="space-y-3 text-center">
-          <h1 className="text-3xl font-bold text-white md:text-4xl">{t('title')}</h1>
-          <p className="text-gray-300">{t('description')}</p>
+          <h1 className="text-3xl font-bold text-white md:text-4xl">{t('auth.title')}</h1>
+          <p className="text-gray-300">{t('auth.description')}</p>
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-200" htmlFor="email">
-              {t('email')}
+              {t('auth.email')}
             </label>
             <input
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white ring-2 ring-transparent transition outline-none focus:border-orange-400 focus:ring-orange-400/40"
@@ -72,7 +72,7 @@ const LoginPage = () => {
 
           <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-200" htmlFor="password">
-              {t('password')}
+              {t('auth.password')}
             </label>
             <input
               className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white ring-2 ring-transparent transition outline-none focus:border-orange-400 focus:ring-orange-400/40"
@@ -87,7 +87,7 @@ const LoginPage = () => {
 
           {error ? (
             <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-100">
-              {t('error')}
+              {t('auth.error')}
               <span className="block text-red-200/80">{error}</span>
             </p>
           ) : null}
@@ -98,7 +98,7 @@ const LoginPage = () => {
             size="lg"
             type="submit"
           >
-            {isSubmitting ? t('loggingIn') : t('login')}
+            {isSubmitting ? t('auth.loggingIn') : t('auth.login')}
           </Button>
         </form>
       </div>

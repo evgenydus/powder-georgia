@@ -10,22 +10,22 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 import { Link } from '@/i18n/navigation'
 
 export const Header = () => {
-  const t = useTranslations('navigation')
+  const t = useTranslations()
 
   const navLinks = [
-    { href: routes.tours, label: t('tours') },
-    { href: routes.transfers, label: t('transfers') },
-    { href: routes.instructors, label: t('instructors') },
-    { href: routes.apartments, label: t('apartments') },
-    { href: routes.about, label: t('about') },
-    { href: routes.contact, label: t('contact') },
+    { href: routes.tours, label: t('navigation.tours') },
+    { href: routes.transfers, label: t('navigation.transfers') },
+    { href: routes.instructors, label: t('navigation.instructors') },
+    { href: routes.apartments, label: t('navigation.apartments') },
+    { href: routes.about, label: t('navigation.about') },
+    { href: routes.contact, label: t('navigation.contact') },
   ]
 
   return (
     <header className="bg-gray-900 text-white shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href={routes.home}>
-          <span className="text-2xl font-bold text-white">Powder Georgia</span>
+          <span className="text-2xl font-bold text-white">{t('common.siteName')}</span>
         </Link>
         <nav className="hidden items-center space-x-6 md:flex">
           {navLinks.map((link) => (
