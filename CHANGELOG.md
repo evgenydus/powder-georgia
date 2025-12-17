@@ -16,6 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - All components follow the 100-line limit rule
 - **Localized admin UI** — all admin form labels/toasts now use translation keys with full-path `useTranslations` lookups; added missing admin/auth keys across locales
 - **Auth UX tweaks** — login redirects to `/admin`, login buttons hidden from public views, logout only when authenticated
+- **Improved FormField component**
+  - Added `min` and `max` props for number inputs (HTML validation instead of schema validation)
+  - Added accessibility attributes (`aria-invalid`, `aria-describedby`) for error states
+- **Simplified getInitialValues** — uses object spread instead of verbose manual field mapping
+- **Fixed ActiveSection typing** — properly handles Radix UI `CheckedState` type (true/false/'indeterminate')
 
 ### Removed
 

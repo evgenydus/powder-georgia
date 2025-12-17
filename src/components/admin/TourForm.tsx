@@ -77,7 +77,7 @@ const TourForm = ({ tour }: TourFormProps) => {
       <EquipmentSection register={register} />
       <ActiveSection
         isActive={isActive}
-        onCheckedChange={(checked) => setValue('is_active', !!checked)}
+        onCheckedChange={(checked) => setValue('is_active', checked === true)}
       />
       <Button type="submit">
         {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}

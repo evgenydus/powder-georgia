@@ -14,12 +14,14 @@ const GroupSizeSection = ({ register }: RegisterOnlyProps) => {
         <FormField
           id="group_size_min"
           label={t('admin.tourForm.group.min')}
+          min={1}
           type="number"
           {...register('group_size_min')}
         />
         <FormField
           id="group_size_max"
           label={t('admin.tourForm.group.max')}
+          min={1}
           type="number"
           {...register('group_size_max')}
         />

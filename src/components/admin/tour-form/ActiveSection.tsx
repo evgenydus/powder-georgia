@@ -1,3 +1,4 @@
+import type { CheckedState } from '@radix-ui/react-checkbox'
 import { useTranslations } from 'next-intl'
 
 import { Checkbox } from '@/components/ui/Checkbox'
@@ -5,7 +6,7 @@ import { Label } from '@/components/ui/Label'
 
 type ActiveSectionProps = {
   isActive: boolean
-  onCheckedChange: (checked: boolean) => void
+  onCheckedChange: (checked: CheckedState) => void
 }
 
 const ActiveSection = ({ isActive, onCheckedChange }: ActiveSectionProps) => {

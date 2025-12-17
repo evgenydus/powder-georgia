@@ -12,6 +12,7 @@ const VerticalDropSection = ({ register }: RegisterOnlyProps) => {
       <FormField
         id="vertical_drop_m"
         label={t('admin.tourForm.verticalDrop.label')}
+        min={0}
         type="number"
         {...register('vertical_drop_m')}
       />

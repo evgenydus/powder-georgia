@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 // Simple schema: only types and required fields
+// Range constraints (difficulty 1-5, etc.) are enforced via HTML min/max attributes
 const tourSchema = z.object({
   description_en: z.string().min(1),
   description_ka: z.string().min(1),
@@ -43,28 +44,18 @@ const defaultValues: TourFormData = {
   vertical_drop_m: 1000,
 }
 
-const getInitialValues = (tour?: Partial<TourFormData>): TourFormData =>
-  tour
-    ? {
-        description_en: tour.description_en ?? defaultValues.description_en,
-        description_ka: tour.description_ka ?? defaultValues.description_ka,
-        description_ru: tour.description_ru ?? defaultValues.description_ru,
-        difficulty: tour.difficulty ?? defaultValues.difficulty,
-        duration_hours: tour.duration_hours ?? defaultValues.duration_hours,
-        group_size_max: tour.group_size_max ?? defaultValues.group_size_max,
-        group_size_min: tour.group_size_min ?? defaultValues.group_size_min,
-        is_active: tour.is_active ?? defaultValues.is_active,
-        price_usd: tour.price_usd ?? defaultValues.price_usd,
-        required_equipment_en: tour.required_equipment_en ?? defaultValues.required_equipment_en,
-        required_equipment_ka: tour.required_equipment_ka ?? defaultValues.required_equipment_ka,
-        required_equipment_ru: tour.required_equipment_ru ?? defaultValues.required_equipment_ru,
-        slug: tour.slug ?? defaultValues.slug,
-        title_en: tour.title_en ?? defaultValues.title_en,
-        title_ka: tour.title_ka ?? defaultValues.title_ka,
-        title_ru: tour.title_ru ?? defaultValues.title_ru,
-        vertical_drop_m: tour.vertical_drop_m ?? defaultValues.vertical_drop_m,
-      }
-    : defaultValues
+const getInitialValues = (tour?: Partial<TourFormData>): TourFormData => {
+  if (!tour) return defaultValues
+
+  return {
+    ...defaultValues,
+    ...tour,
+    // Ensure optional string fields default to empty string, not undefined
+    required_equipment_en: tour.required_equipment_en ?? '',
+    required_equipment_ka: tour.required_equipment_ka ?? '',
+    required_equipment_ru: tour.required_equipment_ru ?? '',
+  }
+}
 
 export { defaultValues, getInitialValues, tourSchema }
 export type { TourFormData }

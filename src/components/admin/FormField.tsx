@@ -9,6 +9,8 @@ type FieldProps = {
   errorText?: string
   id: string
   label: string
+  max?: number | string
+  min?: number | string
   name: string
   onBlur: ChangeHandler
   onChange: ChangeHandler
@@ -24,6 +26,8 @@ const FormField = ({
   errorText,
   id,
   label,
+  max,
+  min,
   name,
   onBlur,
   onChange,
@@ -32,35 +36,49 @@ const FormField = ({
   required,
   rows = 4,
   type = 'text',
-}: FieldProps) => (
-  <div>
-    <Label htmlFor={id}>
-      {label}
-      {required && ' *'}
-    </Label>
-    {type === 'textarea' ? (
-      <Textarea
-        ref={ref}
-        id={id}
-        name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        placeholder={placeholder}
-        rows={rows}
-      />
-    ) : (
-      <Input
-        ref={ref}
-        id={id}
-        name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        placeholder={placeholder}
-        type={type}
-      />
-    )}
-    {error && errorText ? <p className="text-sm text-red-500">{errorText}</p> : null}
-  </div>
-)
+}: FieldProps) => {
+  const errorId = error && errorText ? `${id}-error` : undefined
+
+  return (
+    <div>
+      <Label htmlFor={id}>
+        {label}
+        {required && ' *'}
+      </Label>
+      {type === 'textarea' ? (
+        <Textarea
+          ref={ref}
+          aria-describedby={errorId}
+          aria-invalid={error}
+          id={id}
+          name={name}
+          onBlur={onBlur}
+          onChange={onChange}
+          placeholder={placeholder}
+          rows={rows}
+        />
+      ) : (
+        <Input
+          ref={ref}
+          aria-describedby={errorId}
+          aria-invalid={error}
+          id={id}
+          max={max}
+          min={min}
+          name={name}
+          onBlur={onBlur}
+          onChange={onChange}
+          placeholder={placeholder}
+          type={type}
+        />
+      )}
+      {error && errorText ? (
+        <p className="text-sm text-red-500" id={errorId}>
+          {errorText}
+        </p>
+      ) : null}
+    </div>
+  )
+}
 
 export { FormField }
