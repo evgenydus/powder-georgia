@@ -3,6 +3,73 @@
     "siteName": "Powder Georgia",
     "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად"
   },
+  "admin": {
+    "apartments": "ბინები",
+    "createNewTour": "ახალი ტურის შექმნა",
+    "editTour": "ტურის რედაქტირება",
+    "instructors": "ინსტრუქტორები",
+    "tourNotFound": "ტური ვერ მოიძებნა",
+    "tours": "ტურები",
+    "transfers": "ტრანსფერები",
+    "title": "ადმინი",
+    "tourForm": {
+      "active": {
+        "description": "ტური ჩანს მომხმარებლებისთვის?",
+        "label": "აქტიური"
+      },
+      "descriptions": {
+        "heading": "აღწერები",
+        "labelEn": "აღწერა (EN)",
+        "labelKa": "აღწერა (KA)",
+        "labelRu": "აღწერა (RU)"
+      },
+      "equipment": {
+        "heading": "აუცილებელი ინვენტარი",
+        "labelEn": "ინვენტარი (EN)",
+        "labelKa": "ინვენტარი (KA)",
+        "labelRu": "ინვენტარი (RU)"
+      },
+      "group": {
+        "heading": "ჯგუფის ზომა",
+        "max": "მაქს. ჯგუფი",
+        "min": "მინ. ჯგუფი"
+      },
+      "metrics": {
+        "difficulty": "სირთულე (1-5)",
+        "duration": "ხანგრძლივობა (საათი)",
+        "heading": "მეტრიკა",
+        "price": "ფასი (USD)"
+      },
+      "slug": {
+        "label": "სლაგი",
+        "placeholder": "unikaluri-turi"
+      },
+      "submit": {
+        "create": "შექმენი ტური",
+        "update": "განაახლე ტური"
+      },
+      "titles": {
+        "heading": "სათაურები",
+        "labelEn": "სათაური (EN)",
+        "labelKa": "სათაური (KA)",
+        "labelRu": "სათაური (RU)"
+      },
+      "toast": {
+        "created": "ტური შეიქმნა!",
+        "creating": "ტური იქმნება...",
+        "errorMessage": "შენახვა ვერ მოხერხდა",
+        "errorTitle": "შეცდომა",
+        "updated": "ტური განახლდა!",
+        "updating": "ტური ახლდება..."
+      },
+      "validation": {
+        "required": "სავალდებულოა"
+      },
+      "verticalDrop": {
+        "label": "ვერტიკალური ვარდნა (მ)"
+      }
+    }
+  },
   "auth": {
     "description": "შედით Supabase-ში მითითებული ელფოსტით და პაროლით.",
     "email": "ელფოსტა",

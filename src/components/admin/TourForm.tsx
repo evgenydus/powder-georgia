@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
@@ -28,6 +29,7 @@ type TourFormProps = {
 }
 
 const TourForm = ({ tour }: TourFormProps) => {
+  const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
 
@@ -45,19 +47,22 @@ const TourForm = ({ tour }: TourFormProps) => {
   const isActive = watch('is_active')
 
   const onSubmit = async (data: TourFormData) => {
-    toastInfo(tour ? 'Updating tour...' : 'Creating tour...')
+    toastInfo(tour ? t('admin.tourForm.toast.updating') : t('admin.tourForm.toast.creating'))
 
     const { error } = tour
       ? await supabase.from('tours').update(data).eq('id', tour.id)
       : await supabase.from('tours').insert([data])
 
     if (error) {
-      toastError('Error', { error, message: 'Failed to save tour' })
+      toastError(t('admin.tourForm.toast.errorTitle'), {
+        error,
+        message: t('admin.tourForm.toast.errorMessage'),
+      })
 
       return
     }
 
-    toastSuccess(tour ? 'Tour updated!' : 'Tour created!')
+    toastSuccess(tour ? t('admin.tourForm.toast.updated') : t('admin.tourForm.toast.created'))
     router.push('/admin/tours')
   }
 
@@ -74,7 +79,9 @@ const TourForm = ({ tour }: TourFormProps) => {
         isActive={isActive}
         onCheckedChange={(checked) => setValue('is_active', !!checked)}
       />
-      <Button type="submit">{tour ? 'Update Tour' : 'Create Tour'}</Button>
+      <Button type="submit">
+        {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}
+      </Button>
     </form>
   )
 }

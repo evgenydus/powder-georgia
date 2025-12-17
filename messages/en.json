@@ -8,7 +8,75 @@
     "messages": {
       "success": "Success!",
       "error": "Something went wrong. Please try again later."
-    }},
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "apartments": "Apartments",
+    "createNewTour": "Create New Tour",
+    "editTour": "Edit Tour",
+    "instructors": "Instructors",
+    "tourNotFound": "Tour not found",
+    "tours": "Tours",
+    "transfers": "Transfers",
+    "tourForm": {
+      "active": {
+        "description": "Is this tour visible to users?",
+        "label": "Active"
+      },
+      "descriptions": {
+        "heading": "Descriptions",
+        "labelEn": "Description (EN)",
+        "labelKa": "Description (KA)",
+        "labelRu": "Description (RU)"
+      },
+      "equipment": {
+        "heading": "Required Equipment",
+        "labelEn": "Equipment (EN)",
+        "labelKa": "Equipment (KA)",
+        "labelRu": "Equipment (RU)"
+      },
+      "group": {
+        "heading": "Group Size",
+        "max": "Max Group Size",
+        "min": "Min Group Size"
+      },
+      "metrics": {
+        "difficulty": "Difficulty (1-5)",
+        "duration": "Duration (hours)",
+        "heading": "Metrics",
+        "price": "Price (USD)"
+      },
+      "slug": {
+        "label": "Slug",
+        "placeholder": "unique-tour-slug"
+      },
+      "submit": {
+        "create": "Create Tour",
+        "update": "Update Tour"
+      },
+      "titles": {
+        "heading": "Titles",
+        "labelEn": "Title (EN)",
+        "labelKa": "Title (KA)",
+        "labelRu": "Title (RU)"
+      },
+      "toast": {
+        "created": "Tour created!",
+        "creating": "Creating tour...",
+        "errorMessage": "Failed to save tour",
+        "errorTitle": "Error",
+        "updated": "Tour updated!",
+        "updating": "Updating tour..."
+      },
+      "validation": {
+        "required": "Required"
+      },
+      "verticalDrop": {
+        "label": "Vertical Drop (m)"
+      }
+    }
+  },
   "auth": {
     "description": "Sign in with the email and password configured in Supabase.",
     "email": "Email",
@@ -97,7 +165,7 @@
     "email_address": "info@powder.ge"
   },
   "footer": {
-    "copyright": "© 2024 Powder Georgia. All rights reserved.",
+    "copyright": "© 2025 Powder Georgia. All rights reserved.",
     "followUs": "Follow Us",
     "quickLinks": "Quick Links"
   },
@@ -105,15 +173,5 @@
     "notFound": "Page not found",
     "serverError": "Server error",
     "tryAgain": "Try again"
-  },
-  "admin": {
-    "title": "Admin Panel",
-    "tours": "Tours",
-    "transfers": "Transfers",
-    "instructors": "Instructors",
-    "apartments": "Apartments",
-    "createNewTour": "Create New Tour",
-    "editTour": "Edit Tour",
-    "tourNotFound": "Tour not found"
   }
 }

@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/Textarea'
 
 type FieldProps = {
   error?: boolean
+  errorText?: string
   id: string
   label: string
   name: string
@@ -20,6 +21,7 @@ type FieldProps = {
 
 const FormField = ({
   error,
+  errorText,
   id,
   label,
   name,
@@ -57,7 +59,7 @@ const FormField = ({
         type={type}
       />
     )}
-    {error && <p className="text-sm text-red-500">Required</p>}
+    {error && errorText ? <p className="text-sm text-red-500">{errorText}</p> : null}
   </div>
 )
 
