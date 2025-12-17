@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Removed complex form abstractions (FormField, FormControl, FormItem, FormLabel, FormMessage)
   - Simplified validation schema — only types and required fields
   - All components follow the 100-line limit rule
+- **Localized admin UI** — all admin form labels/toasts now use translation keys with full-path `useTranslations` lookups; added missing admin/auth keys across locales
+- **Auth UX tweaks** — login redirects to `/admin`, login buttons hidden from public views, logout only when authenticated
 
 ### Removed
 
@@ -37,3 +39,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `ActiveSection.tsx`
   - `types.ts` — shared TypeScript types
   - `index.ts` — barrel export
+- **Auth plumbing** — Supabase auth provider/controls, login page, admin guard redirecting unauthenticated users to `/login`, `.env.example` vars for Supabase
