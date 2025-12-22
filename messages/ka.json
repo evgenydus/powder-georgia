@@ -12,6 +12,21 @@
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
     "title": "ადმინი",
+    "media": {
+      "addSelected": "{count} არჩეულის დამატება",
+      "cancel": "გაუქმება",
+      "chooseFromLibrary": "ბიბლიოთეკიდან არჩევა",
+      "empty": "ბიბლიოთეკა ცარიელია. ჯერ ატვირთეთ სურათები.",
+      "selectImages": "სურათების არჩევა",
+      "tabs": {
+        "all": "ყველა",
+        "apartment": "ბინები",
+        "instructor": "ინსტრუქტორები",
+        "tour": "ტურები",
+        "transfer": "ტრანსფერები"
+      },
+      "upload": "ატვირთვა"
+    },
     "tourForm": {
       "active": {
         "description": "ტური ჩანს მომხმარებლებისთვის?",
@@ -67,6 +82,18 @@
       },
       "verticalDrop": {
         "label": "ვერტიკალური ვარდნა (მ)"
+      },
+      "images": {
+        "addImages": "სურათების დამატება",
+        "cover": "გარეკანი",
+        "deleted": "სურათი წაიშალა",
+        "deleteError": "სურათის წაშლა ვერ მოხერხდა",
+        "heading": "სურათები",
+        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 5MB)",
+        "noImages": "სურათები არ არის ატვირთული",
+        "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
+        "uploading": "იტვირთება...",
+        "uploadSuccess": "სურათები წარმატებით აიტვირთა"
       }
     }
   },

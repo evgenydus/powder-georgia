@@ -14,6 +14,7 @@ import {
   DescriptionsSection,
   EquipmentSection,
   GroupSizeSection,
+  ImagesSection,
   MetricsSection,
   SlugSection,
   TitlesSection,
@@ -44,6 +45,7 @@ const TourForm = ({ tour }: TourFormProps) => {
     resolver: zodResolver(tourSchema) as Resolver<TourFormData>,
   })
 
+  const images = watch('images')
   const isActive = watch('is_active')
 
   const onSubmit = async (data: TourFormData) => {
@@ -75,6 +77,11 @@ const TourForm = ({ tour }: TourFormProps) => {
       <GroupSizeSection register={register} />
       <VerticalDropSection register={register} />
       <EquipmentSection register={register} />
+      <ImagesSection
+        entityType="tour"
+        images={images}
+        onImagesChange={(imgs) => setValue('images', imgs)}
+      />
       <ActiveSection
         isActive={isActive}
         onCheckedChange={(checked) => setValue('is_active', checked === true)}

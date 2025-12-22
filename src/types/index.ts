@@ -1,4 +1,15 @@
-// Tour types
+export type MediaEntityType = 'tour' | 'apartment' | 'transfer' | 'instructor'
+
+export interface Media {
+  id: string
+  url: string
+  filename: string
+  mime_type?: string
+  size_bytes?: number
+  entity_type: MediaEntityType
+  created_at: string
+}
+
 export interface Tour {
   id: string
   slug: string
@@ -17,13 +28,12 @@ export interface Tour {
   required_equipment_en?: string
   required_equipment_ka?: string
   required_equipment_ru?: string
-  images: string[] // Array of image URLs
+  images: string[]
   is_active: boolean
   created_at: string
   updated_at: string
 }
 
-// Transfer types
 export interface Transfer {
   id: string
   slug: string
@@ -45,7 +55,6 @@ export interface Transfer {
   updated_at: string
 }
 
-// Instructor types
 export interface Instructor {
   id: string
   slug: string
@@ -68,7 +77,6 @@ export interface Instructor {
   updated_at: string
 }
 
-// Apartment types
 export interface Apartment {
   id: string
   slug: string
@@ -89,7 +97,6 @@ export interface Apartment {
   updated_at: string
 }
 
-// Inquiry types
 export interface Inquiry {
   id: string
   inquiry_type: 'tour' | 'transfer' | 'instructor' | 'apartment' | 'general'
@@ -107,7 +114,6 @@ export interface Inquiry {
   updated_at: string
 }
 
-// API Response types
 export interface ApiResponse<T> {
   data: T
   error: null

@@ -19,6 +19,21 @@
     "tourNotFound": "Tour not found",
     "tours": "Tours",
     "transfers": "Transfers",
+    "media": {
+      "addSelected": "Add {count} selected",
+      "cancel": "Cancel",
+      "chooseFromLibrary": "Choose from Library",
+      "empty": "No images in library. Upload some first.",
+      "selectImages": "Select Images",
+      "tabs": {
+        "all": "All",
+        "apartment": "Apartments",
+        "instructor": "Instructors",
+        "tour": "Tours",
+        "transfer": "Transfers"
+      },
+      "upload": "Upload"
+    },
     "tourForm": {
       "active": {
         "description": "Is this tour visible to users?",
@@ -74,6 +89,18 @@
       },
       "verticalDrop": {
         "label": "Vertical Drop (m)"
+      },
+      "images": {
+        "addImages": "Add Images",
+        "cover": "Cover",
+        "deleted": "Image deleted",
+        "deleteError": "Failed to delete image",
+        "heading": "Images",
+        "hint": "JPEG, PNG, WebP or GIF (max 5MB)",
+        "noImages": "No images uploaded yet",
+        "uploadError": "Failed to upload image",
+        "uploading": "Uploading...",
+        "uploadSuccess": "Images uploaded successfully"
       }
     }
   },
