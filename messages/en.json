@@ -63,6 +63,7 @@
         "price": "Price (USD)"
       },
       "slug": {
+        "exists": "This slug is already taken",
         "label": "Slug",
         "placeholder": "unique-tour-slug"
       },

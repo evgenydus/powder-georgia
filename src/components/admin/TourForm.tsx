@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
+import slugify from 'slugify'
 
 import useToast from '@/components/ui/hooks/useToast'
 
@@ -37,6 +38,8 @@ const TourForm = ({ tour }: TourFormProps) => {
     formState: { errors },
     handleSubmit,
     register,
+    setError,
+    setFocus,
     setValue,
     watch,
   } = useForm<TourFormData>({
@@ -45,8 +48,37 @@ const TourForm = ({ tour }: TourFormProps) => {
   })
 
   const images = watch('images')
+  const currentSlug = watch('slug')
+
+  const handleTitleEnBlur = (title: string) => {
+    if (tour) return
+    if (currentSlug) return
+
+    setValue('slug', slugify(title, { lower: true, strict: true }))
+  }
+
+  const checkSlugExists = async (slug: string): Promise<boolean> => {
+    let query = supabase.from('tours').select('id').eq('slug', slug)
+
+    if (tour?.id) {
+      query = query.neq('id', tour.id)
+    }
+
+    const { data } = await query.maybeSingle()
+
+    return !!data
+  }
 
   const onSubmit = async (data: TourFormData) => {
+    const slugExists = await checkSlugExists(data.slug)
+
+    if (slugExists) {
+      setError('slug', { message: t('admin.tourForm.slug.exists'), type: 'manual' })
+      setFocus('slug')
+
+      return
+    }
+
     toastInfo(tour ? t('admin.tourForm.toast.updating') : t('admin.tourForm.toast.creating'))
 
     const { error } = tour
@@ -68,8 +100,8 @@ const TourForm = ({ tour }: TourFormProps) => {
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
-      <TitlesSection errors={errors} register={register} />
-      <SlugSection errors={errors} register={register} />
+      <TitlesSection errors={errors} onTitleEnBlur={handleTitleEnBlur} register={register} />
+      <SlugSection currentTourId={tour?.id} errors={errors} register={register} />
       <DescriptionsSection errors={errors} register={register} />
       <MetricsSection register={register} />
       <GroupSizeSection register={register} />

@@ -56,6 +56,7 @@
         "price": "Цена (USD)"
       },
       "slug": {
+        "exists": "Этот слаг уже занят",
         "label": "Слаг",
         "placeholder": "unikalnyj-tur"
       },

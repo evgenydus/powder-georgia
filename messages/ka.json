@@ -56,6 +56,7 @@
         "price": "ფასი (USD)"
       },
       "slug": {
+        "exists": "ეს სლაგი უკვე დაკავებულია",
         "label": "სლაგი",
         "placeholder": "unikaluri-turi"
       },
