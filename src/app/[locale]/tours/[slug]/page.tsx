@@ -22,8 +22,8 @@ async function getTourBySlug(slug: string): Promise<Tour | null> {
   }
 }
 
-const TourPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params
+const TourPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params
   const locale = await getLocale()
   const t = await getTranslations()
   const tour = await getTourBySlug(slug)

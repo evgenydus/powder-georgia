@@ -10,7 +10,6 @@ import useToast from '@/components/ui/hooks/useToast'
 
 import { Button } from '@/components/ui/Button'
 import {
-  ActiveSection,
   DescriptionsSection,
   EquipmentSection,
   GroupSizeSection,
@@ -46,7 +45,6 @@ const TourForm = ({ tour }: TourFormProps) => {
   })
 
   const images = watch('images')
-  const isActive = watch('is_active')
 
   const onSubmit = async (data: TourFormData) => {
     toastInfo(tour ? t('admin.tourForm.toast.updating') : t('admin.tourForm.toast.creating'))
@@ -81,10 +79,6 @@ const TourForm = ({ tour }: TourFormProps) => {
         entityType="tour"
         images={images}
         onImagesChange={(imgs) => setValue('images', imgs)}
-      />
-      <ActiveSection
-        isActive={isActive}
-        onCheckedChange={(checked) => setValue('is_active', checked === true)}
       />
       <Button type="submit">
         {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}

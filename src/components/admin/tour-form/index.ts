@@ -1,4 +1,3 @@
-export { ActiveSection } from './ActiveSection'
 export { DescriptionsSection } from './DescriptionsSection'
 export { EquipmentSection } from './EquipmentSection'
 export { GroupSizeSection } from './GroupSizeSection'

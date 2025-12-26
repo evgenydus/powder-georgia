@@ -29,7 +29,7 @@ export interface Tour {
   required_equipment_ka?: string
   required_equipment_ru?: string
   images: string[]
-  is_active: boolean
+  is_published: boolean
   created_at: string
   updated_at: string
 }
