@@ -4,8 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --animate-spin-slow: spin 35s linear infinite;
   --color-background: var(--background);
+  --color-dark: #2a2a2a;
   --color-foreground: var(--foreground);
+  --color-light: #f5f1ed;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);

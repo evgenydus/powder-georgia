@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { routes } from '@/constants'
 
 import { AuthControls } from '@/components/auth'
+import { LogoAnimated } from '@/components/ui/LogoAnimated'
 import { LanguageSwitcher } from './LanguageSwitcher'
 
 import { Link } from '@/i18n/navigation'
@@ -25,8 +26,11 @@ export const Header = () => {
     <header className="bg-gray-900 text-white shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href={routes.home}>
-          <span className="text-2xl font-bold text-white">{t('common.siteName')}</span>
+          <LogoAnimated />
         </Link>
+        {/*<Link href={routes.home}>*/}
+        {/*  <span className="text-2xl font-bold text-white">{t('common.siteName')}</span>*/}
+        {/*</Link>*/}
         <nav className="hidden items-center space-x-6 md:flex">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
