@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
 import { DeleteTourButton } from '@/components/admin/DeleteTourButton'
+import { EditButton } from '@/components/admin/EditButton'
 import { PublishTourButton } from '@/components/admin/PublishTourButton'
 
 import { supabase } from '@/lib/supabase'
@@ -57,10 +58,7 @@ const AdminToursPage = async () => {
                 Status
               </th>
               <th className="relative px-6 py-3">
-                <span className="sr-only">Edit</span>
-              </th>
-              <th className="relative px-6 py-3">
-                <span className="sr-only">Delete</span>
+                <span className="sr-only">Actions</span>
               </th>
             </tr>
           </thead>
@@ -76,13 +74,11 @@ const AdminToursPage = async () => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <PublishTourButton isPublished={tour.is_published} tourId={tour.id} />
                 </td>
-                <td className="px-6 py-4 text-right text-sm font-medium whitespace-nowrap">
-                  <Link href={`/admin/tours/${tour.id}/edit`}>
-                    <span className="text-orange-500 hover:text-orange-600">Edit</span>
-                  </Link>
-                </td>
-                <td className="px-6 py-4 text-right text-sm font-medium whitespace-nowrap">
-                  <DeleteTourButton tourId={tour.id} />
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex justify-end gap-1">
+                    <EditButton href={`/admin/tours/${tour.id}/edit`} />
+                    <DeleteTourButton tourId={tour.id} />
+                  </div>
                 </td>
               </tr>
             ))}

@@ -8,6 +8,13 @@
     "messages": {
       "success": "Success!",
       "error": "Something went wrong. Please try again later."
+    },
+    "confirmDialog": {
+      "title": "Are you sure?",
+      "description": "This action cannot be undone.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "loading": "Please wait..."
     }
   },
   "admin": {
@@ -19,6 +26,12 @@
     "tourNotFound": "Tour not found",
     "tours": "Tours",
     "transfers": "Transfers",
+    "actions": {
+      "deleting": "Deleting...",
+      "deleted": "Deleted successfully",
+      "deleteError": "Delete failed",
+      "deleteErrorMessage": "An error occurred while deleting"
+    },
     "media": {
       "addSelected": "Add {count} selected",
       "cancel": "Cancel",

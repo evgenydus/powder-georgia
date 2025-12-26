@@ -1,7 +1,14 @@
 {
   "common": {
     "siteName": "Powder Georgia",
-    "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად"
+    "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად",
+    "confirmDialog": {
+      "title": "დარწმუნებული ხართ?",
+      "description": "ეს მოქმედება შეუქცევადია.",
+      "confirm": "დადასტურება",
+      "cancel": "გაუქმება",
+      "loading": "გთხოვთ დაელოდოთ..."
+    }
   },
   "admin": {
     "apartments": "ბინები",
@@ -12,6 +19,12 @@
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
     "title": "ადმინი",
+    "actions": {
+      "deleting": "იშლება...",
+      "deleted": "წარმატებით წაიშალა",
+      "deleteError": "წაშლა ვერ მოხერხდა",
+      "deleteErrorMessage": "შეცდომა წაშლისას"
+    },
     "media": {
       "addSelected": "{count} არჩეულის დამატება",
       "cancel": "გაუქმება",

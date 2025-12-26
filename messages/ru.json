@@ -1,7 +1,14 @@
 {
   "common": {
     "siteName": "Powder Georgia",
-    "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia"
+    "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia",
+    "confirmDialog": {
+      "title": "Вы уверены?",
+      "description": "Это действие нельзя отменить.",
+      "confirm": "Подтвердить",
+      "cancel": "Отмена",
+      "loading": "Подождите..."
+    }
   },
   "admin": {
     "apartments": "Апартаменты",
@@ -12,6 +19,12 @@
     "tours": "Туры",
     "transfers": "Трансферы",
     "title": "Админ",
+    "actions": {
+      "deleting": "Удаление...",
+      "deleted": "Успешно удалено",
+      "deleteError": "Ошибка удаления",
+      "deleteErrorMessage": "Произошла ошибка при удалении"
+    },
     "media": {
       "addSelected": "Добавить {count} выбранных",
       "cancel": "Отмена",
