@@ -22,7 +22,13 @@ const fetchMediaFromDb = async (entityTypeFilter: MediaEntityType | null | undef
     query = query.eq('entity_type', entityTypeFilter)
   }
 
-  const { data } = await query.order('created_at', { ascending: false })
+  const { data, error } = await query.order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Failed to fetch media:', error.message)
+
+    return []
+  }
 
   return (data as Media[]) ?? []
 }

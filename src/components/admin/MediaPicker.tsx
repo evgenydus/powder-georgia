@@ -52,7 +52,7 @@ const MediaPicker = ({
     if (open) {
       refresh()
     }
-  }, [open, currentEntityType, refresh])
+  }, [open, refresh])
 
   const toggleSelect = (url: string) => {
     if (alreadySelected.includes(url)) return

@@ -5,6 +5,9 @@ import { useCallback, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import type { Media, MediaEntityType } from '@/types'
 
+const maxFileSize = 10 * 1024 * 1024 // 10MB
+const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+
 type UseMediaUploadOptions = {
   entityType?: MediaEntityType | null
   onError?: (message: string) => void
@@ -23,7 +26,18 @@ const useMediaUpload = ({ entityType = null, onError, onSuccess }: UseMediaUploa
       const uploaded: Media[] = []
 
       for (const file of Array.from(files)) {
-        const fileExt = file.name.split('.').pop()
+        if (file.size > maxFileSize) {
+          onError?.(`File "${file.name}" exceeds maximum size of 10MB`)
+          continue
+        }
+
+        if (!allowedMimeTypes.includes(file.type)) {
+          onError?.(`File "${file.name}" has unsupported type: ${file.type}`)
+          continue
+        }
+
+        const dotIndex = file.name.lastIndexOf('.')
+        const fileExt = dotIndex > 0 ? file.name.slice(dotIndex + 1) : 'bin'
         const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
 
         const { error: uploadError } = await supabase.storage.from('media').upload(fileName, file)
@@ -48,6 +62,7 @@ const useMediaUpload = ({ entityType = null, onError, onSuccess }: UseMediaUploa
           .single()
 
         if (dbError) {
+          await supabase.storage.from('media').remove([fileName])
           onError?.(dbError.message)
           continue
         }
