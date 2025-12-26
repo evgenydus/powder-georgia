@@ -8,7 +8,12 @@ import type { Tour } from '@/types'
 
 async function getTourBySlug(slug: string): Promise<Tour | null> {
   try {
-    const { data, error } = await supabase.from('tours').select('*').eq('slug', slug).single()
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*')
+      .eq('slug', slug)
+      .eq('is_published', true)
+      .single()
 
     if (error) {
       console.error('Supabase error:', error)
