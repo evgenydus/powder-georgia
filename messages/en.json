@@ -97,6 +97,7 @@
         "deleteError": "Failed to delete image",
         "heading": "Images",
         "hint": "JPEG, PNG, WebP or GIF (max 5MB)",
+        "maxReached": "Maximum 10 images reached",
         "noImages": "No images uploaded yet",
         "uploadError": "Failed to upload image",
         "uploading": "Uploading...",
@@ -145,6 +146,7 @@
     "bookNow": "Book Now",
     "viewAll": "View All Tours",
     "requiredEquipment": "Required Equipment",
+    "gallery": "Gallery",
     "noImage": "No image available"
   },
   "transfers": {

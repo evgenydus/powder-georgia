@@ -11,12 +11,21 @@ import type { MediaEntityType } from '@/types'
 type UseImagesManagerOptions = {
   entityType: MediaEntityType
   images: string[]
+  maxImages?: number
   onImagesChange: (images: string[]) => void
 }
 
-const useImagesManager = ({ entityType, images, onImagesChange }: UseImagesManagerOptions) => {
+const useImagesManager = ({
+  entityType,
+  images,
+  maxImages = 10,
+  onImagesChange,
+}: UseImagesManagerOptions) => {
   const t = useTranslations()
   const { toastError, toastInfo, toastSuccess } = useToast()
+
+  const remaining = maxImages - images.length
+  const isAtLimit = remaining <= 0
 
   const { fileInputRef, isUploading, openFilePicker, upload } = useMediaUpload({
     entityType,
@@ -26,21 +35,31 @@ const useImagesManager = ({ entityType, images, onImagesChange }: UseImagesManag
 
   const handleUpload = useCallback(
     async (files: FileList | null) => {
+      if (!files || isAtLimit) return
+
+      const filesToUpload = Array.from(files).slice(0, remaining)
+
       toastInfo(t('admin.tourForm.images.uploading'))
-      const uploaded = await upload(files)
+      const uploaded = await upload(
+        Object.assign(filesToUpload, {
+          item: (i: number) => filesToUpload[i],
+        }) as unknown as FileList,
+      )
 
       if (uploaded.length > 0) {
         onImagesChange([...images, ...uploaded.map((m) => m.url)])
       }
     },
-    [images, onImagesChange, t, toastInfo, upload],
+    [images, isAtLimit, onImagesChange, remaining, t, toastInfo, upload],
   )
 
   const handleSelectFromLibrary = useCallback(
     (urls: string[]) => {
-      onImagesChange([...images, ...urls])
+      const urlsToAdd = urls.slice(0, remaining)
+
+      onImagesChange([...images, ...urlsToAdd])
     },
-    [images, onImagesChange],
+    [images, onImagesChange, remaining],
   )
 
   const handleRemove = useCallback(
@@ -67,6 +86,7 @@ const useImagesManager = ({ entityType, images, onImagesChange }: UseImagesManag
     handleRemove,
     handleSelectFromLibrary,
     handleUpload,
+    isAtLimit,
     isUploading,
     openFilePicker,
   }

@@ -90,6 +90,7 @@
         "deleteError": "სურათის წაშლა ვერ მოხერხდა",
         "heading": "სურათები",
         "hint": "JPEG, PNG, WebP ან GIF (მაქს. 5MB)",
+        "maxReached": "მიღწეულია მაქსიმუმ 10 სურათი",
         "noImages": "სურათები არ არის ატვირთული",
         "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
         "uploading": "იტვირთება...",
@@ -134,7 +135,8 @@
     "price": "ფასი",
     "details": "დეტალები",
     "bookNow": "დაჯავშნე",
-    "requiredEquipment": "საჭირო აღჭურვილობა"
+    "requiredEquipment": "საჭირო აღჭურვილობა",
+    "gallery": "გალერეა"
   },
   "transfers": {
     "title": "ტრანსფერი",

@@ -27,6 +27,7 @@ const ImagesSection = ({ entityType, images, onImagesChange }: ImagesSectionProp
     handleRemove,
     handleSelectFromLibrary,
     handleUpload,
+    isAtLimit,
     isUploading,
     openFilePicker,
   } = useImagesManager({ entityType, images, onImagesChange })
@@ -34,7 +35,7 @@ const ImagesSection = ({ entityType, images, onImagesChange }: ImagesSectionProp
   return (
     <section className="space-y-4">
       <h3 className="text-lg font-semibold">{t('admin.tourForm.images.heading')}</h3>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <input
           ref={fileInputRef}
           accept="image/jpeg,image/png,image/webp,image/gif"
@@ -44,7 +45,7 @@ const ImagesSection = ({ entityType, images, onImagesChange }: ImagesSectionProp
           type="file"
         />
         <Button
-          disabled={isUploading}
+          disabled={isUploading || isAtLimit}
           onClick={() => setPickerOpen(true)}
           type="button"
           variant="outline"
@@ -52,10 +53,20 @@ const ImagesSection = ({ entityType, images, onImagesChange }: ImagesSectionProp
           <ImagePlus className="size-4" />
           {t('admin.media.chooseFromLibrary')}
         </Button>
-        <Button disabled={isUploading} onClick={openFilePicker} type="button" variant="outline">
+        <Button
+          disabled={isUploading || isAtLimit}
+          onClick={openFilePicker}
+          type="button"
+          variant="outline"
+        >
           <Upload className="size-4" />
           {isUploading ? t('admin.tourForm.images.uploading') : t('admin.media.upload')}
         </Button>
+        {isAtLimit && (
+          <span className="text-muted-foreground text-sm">
+            {t('admin.tourForm.images.maxReached')}
+          </span>
+        )}
       </div>
       {images.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">

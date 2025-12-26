@@ -10,7 +10,7 @@ const tourSchema = z.object({
   duration_hours: z.coerce.number(),
   group_size_max: z.coerce.number(),
   group_size_min: z.coerce.number(),
-  images: z.array(z.string().url()).default([]),
+  images: z.array(z.url()).max(10).default([]),
   is_published: z.boolean(),
   price_usd: z.coerce.number(),
   required_equipment_en: z.string().optional(),

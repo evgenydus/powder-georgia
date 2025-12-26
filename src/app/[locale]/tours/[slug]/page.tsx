@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 
+import { ImageGallery } from '@/components/ui'
+
 import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
 
@@ -85,6 +87,13 @@ const TourPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           <div className="mt-8">
             <h2 className="mb-4 text-2xl font-bold">{t('tours.requiredEquipment')}</h2>
             <p>{requiredEquipment}</p>
+          </div>
+        )}
+
+        {tour.images.length > 1 && (
+          <div className="mt-8">
+            <h2 className="mb-4 text-2xl font-bold">{t('tours.gallery')}</h2>
+            <ImageGallery alt={title} images={tour.images} />
           </div>
         )}
 
