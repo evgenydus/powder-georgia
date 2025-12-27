@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabase'
 import type { Media, MediaEntityType } from '@/types'
 
 const maxFileSize = 10 * 1024 * 1024 // 10MB
-const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 
 type UseMediaUploadOptions = {
   entityType?: MediaEntityType | null
@@ -38,7 +38,7 @@ const useMediaUpload = ({ entityType = null, onError, onSuccess }: UseMediaUploa
 
         const dotIndex = file.name.lastIndexOf('.')
         const fileExt = dotIndex > 0 ? file.name.slice(dotIndex + 1) : 'bin'
-        const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
+        const fileName = `${crypto.randomUUID()}.${fileExt}`
 
         const { error: uploadError } = await supabase.storage.from('media').upload(fileName, file)
 

@@ -30,7 +30,15 @@
       "deleting": "Deleting...",
       "deleted": "Deleted successfully",
       "deleteError": "Delete failed",
-      "deleteErrorMessage": "An error occurred while deleting"
+      "deleteErrorMessage": "An error occurred while deleting",
+      "publishing": "Publishing...",
+      "published": "Published successfully",
+      "unpublishing": "Unpublishing...",
+      "unpublished": "Unpublished successfully",
+      "publishError": "Publish failed",
+      "publishErrorMessage": "An error occurred while updating status",
+      "publish": "Publish",
+      "unpublish": "Unpublish"
     },
     "media": {
       "addSelected": "Add {count} selected",
@@ -110,7 +118,7 @@
         "deleted": "Image deleted",
         "deleteError": "Failed to delete image",
         "heading": "Images",
-        "hint": "JPEG, PNG, WebP or GIF (max 5MB)",
+        "hint": "JPEG, PNG, WebP or GIF (max 10MB)",
         "maxReached": "Maximum 10 images reached",
         "noImages": "No images uploaded yet",
         "uploadError": "Failed to upload image",

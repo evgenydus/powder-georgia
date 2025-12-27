@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 import useToast from '@/components/ui/hooks/useToast'
 
@@ -15,12 +16,11 @@ type PublishTourButtonProps = {
 
 export const PublishTourButton = ({ isPublished, tourId }: PublishTourButtonProps) => {
   const router = useRouter()
+  const t = useTranslations()
   const { toastError, toastInfo, toastSuccess } = useToast()
 
   const handleToggle = async () => {
-    const action = isPublished ? 'Unpublishing' : 'Publishing'
-
-    toastInfo(`${action} tour...`)
+    toastInfo(isPublished ? t('admin.actions.unpublishing') : t('admin.actions.publishing'))
 
     const { error } = await supabase
       .from('tours')
@@ -28,21 +28,21 @@ export const PublishTourButton = ({ isPublished, tourId }: PublishTourButtonProp
       .eq('id', tourId)
 
     if (error) {
-      toastError('PublishTourButton', {
+      toastError(t('admin.actions.publishError'), {
         error,
-        message: `Failed to ${isPublished ? 'unpublish' : 'publish'} tour.`,
+        message: t('admin.actions.publishErrorMessage'),
       })
 
       return
     }
 
-    toastSuccess(`Tour ${isPublished ? 'unpublished' : 'published'} successfully!`)
+    toastSuccess(isPublished ? t('admin.actions.unpublished') : t('admin.actions.published'))
     router.refresh()
   }
 
   return (
     <Button onClick={handleToggle} size="sm" variant={isPublished ? 'outline' : 'default'}>
-      {isPublished ? 'Unpublish' : 'Publish'}
+      {isPublished ? t('admin.actions.unpublish') : t('admin.actions.publish')}
     </Button>
   )
 }

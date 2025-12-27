@@ -23,7 +23,15 @@
       "deleting": "იშლება...",
       "deleted": "წარმატებით წაიშალა",
       "deleteError": "წაშლა ვერ მოხერხდა",
-      "deleteErrorMessage": "შეცდომა წაშლისას"
+      "deleteErrorMessage": "შეცდომა წაშლისას",
+      "publishing": "ქვეყნდება...",
+      "published": "წარმატებით გამოქვეყნდა",
+      "unpublishing": "იმალება...",
+      "unpublished": "წარმატებით დაიმალა",
+      "publishError": "გამოქვეყნება ვერ მოხერხდა",
+      "publishErrorMessage": "შეცდომა სტატუსის შეცვლისას",
+      "publish": "გამოქვეყნება",
+      "unpublish": "დამალვა"
     },
     "media": {
       "addSelected": "{count} არჩეულის დამატება",
@@ -103,7 +111,7 @@
         "deleted": "სურათი წაიშალა",
         "deleteError": "სურათის წაშლა ვერ მოხერხდა",
         "heading": "სურათები",
-        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 5MB)",
+        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 10MB)",
         "maxReached": "მიღწეულია მაქსიმუმ 10 სურათი",
         "noImages": "სურათები არ არის ატვირთული",
         "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",

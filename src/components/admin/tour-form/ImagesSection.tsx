@@ -62,10 +62,12 @@ const ImagesSection = ({ entityType, images, onImagesChange }: ImagesSectionProp
           <Upload className="size-4" />
           {isUploading ? t('admin.tourForm.images.uploading') : t('admin.media.upload')}
         </Button>
-        {isAtLimit && (
+        {isAtLimit ? (
           <span className="text-muted-foreground text-sm">
             {t('admin.tourForm.images.maxReached')}
           </span>
+        ) : (
+          <span className="text-muted-foreground text-sm">{t('admin.tourForm.images.hint')}</span>
         )}
       </div>
       {images.length > 0 ? (

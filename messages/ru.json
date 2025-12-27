@@ -23,7 +23,15 @@
       "deleting": "Удаление...",
       "deleted": "Успешно удалено",
       "deleteError": "Ошибка удаления",
-      "deleteErrorMessage": "Произошла ошибка при удалении"
+      "deleteErrorMessage": "Произошла ошибка при удалении",
+      "publishing": "Публикация...",
+      "published": "Успешно опубликовано",
+      "unpublishing": "Снятие с публикации...",
+      "unpublished": "Успешно снято с публикации",
+      "publishError": "Ошибка публикации",
+      "publishErrorMessage": "Произошла ошибка при изменении статуса",
+      "publish": "Опубликовать",
+      "unpublish": "Снять"
     },
     "media": {
       "addSelected": "Добавить {count} выбранных",
@@ -103,7 +111,7 @@
         "deleted": "Изображение удалено",
         "deleteError": "Не удалось удалить изображение",
         "heading": "Изображения",
-        "hint": "JPEG, PNG, WebP или GIF (макс. 5MB)",
+        "hint": "JPEG, PNG, WebP или GIF (макс. 10MB)",
         "maxReached": "Достигнут лимит в 10 изображений",
         "noImages": "Изображения не загружены",
         "uploadError": "Не удалось загрузить изображение",
