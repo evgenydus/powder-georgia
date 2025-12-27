@@ -2,6 +2,7 @@ import { Home } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { routes } from '@/constants'
+
 import { Link } from '@/i18n/navigation'
 
 export const AdminSidebar = () => {

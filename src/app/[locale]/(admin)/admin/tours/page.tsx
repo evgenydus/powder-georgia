@@ -1,11 +1,12 @@
 import { getTranslations } from 'next-intl/server'
 
-import { DeleteEntityButton } from '@/components/admin/DeleteEntityButton'
 import { routes } from '@/constants'
-import { Link } from '@/i18n/navigation'
+
+import { DeleteEntityButton } from '@/components/admin/DeleteEntityButton'
 import { EditButton } from '@/components/admin/EditButton'
 import { PublishEntityButton } from '@/components/admin/PublishEntityButton'
 
+import { Link } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
 
