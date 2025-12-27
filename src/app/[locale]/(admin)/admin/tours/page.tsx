@@ -38,23 +38,23 @@ const AdminToursPage = async () => {
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">{t('tours')}</h1>
         <Link href="/admin/tours/new">
-          <span className="rounded-lg bg-orange-500 px-4 py-2 text-white transition-colors hover:bg-orange-600">
+          <span className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg px-4 py-2 transition-colors">
             Create New
           </span>
         </Link>
       </div>
 
-      <div className="overflow-x-auto rounded-lg bg-gray-800">
-        <table className="min-w-full divide-y divide-gray-700">
-          <thead className="bg-gray-700">
+      <div className="bg-card overflow-x-auto rounded-lg">
+        <table className="divide-border min-w-full divide-y">
+          <thead className="bg-muted">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-300 uppercase">
+              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
                 Title
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-300 uppercase">
+              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
                 Price
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium tracking-wider text-gray-300 uppercase">
+              <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
                 Status
               </th>
               <th className="relative px-6 py-3">
@@ -62,13 +62,13 @@ const AdminToursPage = async () => {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-700">
+          <tbody className="divide-border divide-y">
             {tours.map((tour) => (
               <tr key={tour.id}>
-                <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-white">
+                <td className="text-foreground px-6 py-4 text-sm font-medium whitespace-nowrap">
                   {tour.title_en}
                 </td>
-                <td className="px-6 py-4 text-sm whitespace-nowrap text-gray-300">
+                <td className="text-foreground/80 px-6 py-4 text-sm whitespace-nowrap">
                   ${tour.price_usd}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">

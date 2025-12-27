@@ -10,7 +10,7 @@ export const ApartmentGrid = ({ apartments }: ApartmentGridProps) => {
   if (apartments.length === 0) {
     return (
       <div className="py-12 text-center">
-        <p className="text-gray-400">No apartments available</p>
+        <p className="text-muted-foreground">No apartments available</p>
       </div>
     )
   }

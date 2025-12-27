@@ -20,15 +20,15 @@ export const FeaturedToursSection = async ({ tours }: FeaturedToursSectionProps)
     <section className="relative z-10 px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white">{t('home.featured')}</h2>
-          <p className="text-gray-400">{t('tours.description')}</p>
+          <h2 className="text-foreground mb-4 text-4xl font-bold">{t('home.featured')}</h2>
+          <p className="text-muted-foreground">{t('tours.description')}</p>
         </div>
 
         <TourGrid tours={tours} />
 
         <div className="mt-12 text-center">
           <Link
-            className="bg-accent hover:bg-accent/90 inline-block rounded-lg px-8 py-3 font-semibold text-white transition-colors"
+            className="bg-accent hover:bg-accent/90 text-accent-foreground inline-block rounded-lg px-8 py-3 font-semibold transition-colors"
             href={routes.tours}
           >
             {t('tours.viewAll')}

@@ -21,8 +21,8 @@ export const InstructorCard = ({ instructor }: InstructorCardProps) => {
 
   return (
     <Link href={`${routes.instructors}/${instructor.slug}`}>
-      <div className="group cursor-pointer overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
-        <div className="relative h-64 w-full overflow-hidden bg-gray-700">
+      <div className="group bg-card cursor-pointer overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
+        <div className="bg-muted relative h-64 w-full overflow-hidden">
           <Image
             alt={instructor.name}
             className="object-cover transition-transform duration-300 group-hover:scale-110"
@@ -31,15 +31,15 @@ export const InstructorCard = ({ instructor }: InstructorCardProps) => {
           />
         </div>
         <div className="p-4">
-          <h3 className="mb-1 text-lg font-bold text-white">{instructor.name}</h3>
-          <p className="mb-4 text-sm text-gray-400">{specialization}</p>
-          <div className="flex items-center justify-between border-t border-gray-700 pt-3">
-            <span className="text-sm font-semibold text-orange-400">
+          <h3 className="text-foreground mb-1 text-lg font-bold">{instructor.name}</h3>
+          <p className="text-muted-foreground mb-4 text-sm">{specialization}</p>
+          <div className="border-border flex items-center justify-between border-t pt-3">
+            <span className="text-accent text-sm font-semibold">
               {instructor.price_per_hour_usd
                 ? `$${instructor.price_per_hour_usd}/hr`
                 : t('common.inquire')}
             </span>
-            <span className="text-xs font-medium text-orange-400">
+            <span className="text-accent text-xs font-medium">
               {t('instructors.viewProfile')} →
             </span>
           </div>

@@ -1,8 +1,8 @@
 'use client'
 
 import { useCallback, useState } from 'react'
-import type { ChangeHandler } from 'react-hook-form'
 import { useTranslations } from 'next-intl'
+import type { ChangeHandler } from 'react-hook-form'
 
 import type { SectionProps } from './types'
 import { FormField } from '../FormField'

@@ -30,8 +30,8 @@ const InstructorPage = async ({ params }: { params: { slug: string } }) => {
 
   if (!instructor) {
     return (
-      <main className="bg-primary flex min-h-screen items-center justify-center">
-        <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
+      <main className="bg-background flex min-h-screen items-center justify-center">
+        <h1 className="text-foreground text-2xl">{t('errors.notFound')}</h1>
       </main>
     )
   }
@@ -42,7 +42,7 @@ const InstructorPage = async ({ params }: { params: { slug: string } }) => {
   const services = instructor[`services_${locale as 'en' | 'ka' | 'ru'}`] || instructor.services_en
 
   return (
-    <main className="bg-primary min-h-screen text-white">
+    <main className="bg-background text-foreground min-h-screen">
       <div className="mx-auto max-w-4xl p-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="md:col-span-1">
@@ -57,7 +57,7 @@ const InstructorPage = async ({ params }: { params: { slug: string } }) => {
           </div>
           <div className="md:col-span-2">
             <h1 className="mb-2 text-4xl font-bold">{instructor.name}</h1>
-            <p className="mb-4 text-xl text-gray-400">{specialization}</p>
+            <p className="text-muted-foreground mb-4 text-xl">{specialization}</p>
             <div className="prose prose-invert mb-8 max-w-none">
               <p>{bio}</p>
             </div>
@@ -68,7 +68,7 @@ const InstructorPage = async ({ params }: { params: { slug: string } }) => {
               </div>
             )}
             <div className="text-right">
-              <p className="text-3xl font-bold text-orange-400">
+              <p className="text-accent text-3xl font-bold">
                 {instructor.price_per_hour_usd
                   ? `$${instructor.price_per_hour_usd}/hr`
                   : t('common.inquire')}

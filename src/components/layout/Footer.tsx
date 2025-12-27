@@ -17,12 +17,12 @@ export const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-background text-foreground">
       <div className="container mx-auto p-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div>
             <h3 className="mb-4 text-lg font-bold">{t('common.siteName')}</h3>
-            <p className="text-gray-400">{t('footer.copyright')}</p>
+            <p className="text-muted-foreground">{t('footer.copyright')}</p>
           </div>
           <div>
             <h3 className="mb-4 text-lg font-bold">{t('footer.quickLinks')}</h3>
@@ -30,7 +30,7 @@ export const Footer = () => {
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className="transition-colors hover:text-orange-400">{link.label}</span>
+                    <span className="hover:text-accent transition-colors">{link.label}</span>
                   </Link>
                 </li>
               ))}

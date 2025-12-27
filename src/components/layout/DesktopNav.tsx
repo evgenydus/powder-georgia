@@ -27,12 +27,7 @@ export const DesktopNav = () => {
 
         return (
           <Link key={link.href} href={link.href}>
-            <span
-              className={cn(
-                'transition-colors hover:text-orange-400',
-                isActive && 'text-orange-400'
-              )}
-            >
+            <span className={cn('hover:text-accent transition-colors', isActive && 'text-accent')}>
               {link.label}
             </span>
           </Link>

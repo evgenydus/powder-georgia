@@ -12,7 +12,7 @@ export const TourGrid = ({ tours }: TourGridProps) => {
   if (tours.length === 0) {
     return (
       <div className="py-12 text-center">
-        <p className="text-gray-400">No tours available</p>
+        <p className="text-muted-foreground">No tours available</p>
       </div>
     )
   }

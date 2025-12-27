@@ -21,8 +21,8 @@ export const TourCard = ({ tour }: TourCardProps) => {
 
   return (
     <Link className="block h-full" href={`${routes.tours}/${tour.slug}`}>
-      <div className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-lg bg-gray-800 transition-transform duration-300 hover:scale-105">
-        <div className="relative h-48 w-full shrink-0 overflow-hidden bg-gray-700">
+      <div className="group bg-card flex h-full cursor-pointer flex-col overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
+        <div className="bg-muted relative h-48 w-full shrink-0 overflow-hidden">
           {tour.images && tour.images.length > 0 ? (
             <Image
               alt={title}
@@ -31,15 +31,15 @@ export const TourCard = ({ tour }: TourCardProps) => {
               src={tour.images[0]}
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-gray-500">
+            <div className="text-muted-foreground flex h-full items-center justify-center">
               {t('tours.noImage')}
             </div>
           )}
         </div>
         <div className="flex flex-1 flex-col p-4">
-          <h3 className="mb-2 line-clamp-1 text-lg font-bold text-white">{title}</h3>
-          <p className="mb-4 line-clamp-2 text-sm text-gray-300">{description}</p>
-          <div className="mb-4 grid grid-cols-2 gap-2 text-xs text-gray-400">
+          <h3 className="text-foreground mb-2 line-clamp-1 text-lg font-bold">{title}</h3>
+          <p className="text-foreground/80 mb-4 line-clamp-2 text-sm">{description}</p>
+          <div className="text-muted-foreground mb-4 grid grid-cols-2 gap-2 text-xs">
             <div className="flex items-center gap-1">
               <span>⛰️</span>
               <span>
@@ -61,9 +61,9 @@ export const TourCard = ({ tour }: TourCardProps) => {
               <span>{tour.vertical_drop_m}m</span>
             </div>
           </div>
-          <div className="mt-auto flex items-center justify-between border-t border-gray-700 pt-3">
-            <span className="text-sm font-semibold text-orange-400">${tour.price_usd}</span>
-            <span className="text-xs font-medium text-orange-400">{t('tours.viewDetails')} →</span>
+          <div className="border-border mt-auto flex items-center justify-between border-t pt-3">
+            <span className="text-accent text-sm font-semibold">${tour.price_usd}</span>
+            <span className="text-accent text-xs font-medium">{t('tours.viewDetails')} →</span>
           </div>
         </div>
       </div>

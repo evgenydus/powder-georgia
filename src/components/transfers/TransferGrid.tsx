@@ -10,7 +10,7 @@ export const TransferGrid = ({ transfers }: TransferGridProps) => {
   if (transfers.length === 0) {
     return (
       <div className="py-12 text-center">
-        <p className="text-gray-400">No transfers available</p>
+        <p className="text-muted-foreground">No transfers available</p>
       </div>
     )
   }

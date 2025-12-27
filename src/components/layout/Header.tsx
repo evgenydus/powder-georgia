@@ -11,7 +11,7 @@ import { MobileNav } from './MobileNav'
 import { Link } from '@/i18n/navigation'
 
 export const Header = () => (
-  <header className="sticky top-0 z-50 bg-gray-900 text-white">
+  <header className="bg-background text-foreground sticky top-0 z-50">
     <div className="container mx-auto flex items-center justify-between p-4">
       <Link href={routes.home}>
         <LogoAnimated />
@@ -26,6 +26,6 @@ export const Header = () => (
       </div>
     </div>
 
-    <div className="absolute -bottom-6 h-6 w-full bg-linear-to-b from-gray-900 to-transparent" />
+    <div className="from-background absolute -bottom-6 h-6 w-full bg-linear-to-b to-transparent" />
   </header>
 )

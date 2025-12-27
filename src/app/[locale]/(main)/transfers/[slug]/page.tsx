@@ -30,8 +30,8 @@ const TransferPage = async ({ params }: { params: { slug: string } }) => {
 
   if (!transfer) {
     return (
-      <main className="bg-primary flex min-h-screen items-center justify-center">
-        <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
+      <main className="bg-background flex min-h-screen items-center justify-center">
+        <h1 className="text-foreground text-2xl">{t('errors.notFound')}</h1>
       </main>
     )
   }
@@ -42,7 +42,7 @@ const TransferPage = async ({ params }: { params: { slug: string } }) => {
     transfer[`description_${locale as 'en' | 'ka' | 'ru'}`] || transfer.description_en
 
   return (
-    <main className="bg-primary min-h-screen text-white">
+    <main className="bg-background text-foreground min-h-screen">
       <div className="relative h-96 w-full">
         <Image alt={title} className="object-cover" fill src={transfer.image_url} />
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
@@ -75,7 +75,7 @@ const TransferPage = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         <div className="mt-8 text-right">
-          <p className="text-3xl font-bold text-orange-400">${transfer.price_usd}</p>
+          <p className="text-accent text-3xl font-bold">${transfer.price_usd}</p>
         </div>
       </div>
     </main>

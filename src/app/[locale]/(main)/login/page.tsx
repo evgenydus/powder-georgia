@@ -47,20 +47,20 @@ const LoginPage = () => {
   }
 
   return (
-    <main className="bg-primary min-h-screen px-4 py-16">
-      <div className="mx-auto flex max-w-lg flex-col gap-8 rounded-2xl bg-gray-900/70 px-6 py-10 shadow-2xl backdrop-blur">
+    <main className="bg-background min-h-screen px-4 py-16">
+      <div className="bg-card/70 mx-auto flex max-w-lg flex-col gap-8 rounded-2xl px-6 py-10 shadow-2xl backdrop-blur">
         <div className="space-y-3 text-center">
-          <h1 className="text-3xl font-bold text-white md:text-4xl">{t('auth.title')}</h1>
-          <p className="text-gray-300">{t('auth.description')}</p>
+          <h1 className="text-foreground text-3xl font-bold md:text-4xl">{t('auth.title')}</h1>
+          <p className="text-foreground/80">{t('auth.description')}</p>
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-200" htmlFor="email">
+            <label className="text-foreground/90 block text-sm font-medium" htmlFor="email">
               {t('auth.email')}
             </label>
             <input
-              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white ring-2 ring-transparent transition outline-none focus:border-orange-400 focus:ring-orange-400/40"
+              className="border-border bg-muted text-foreground focus:border-accent focus:ring-accent/40 w-full rounded-lg border px-4 py-3 ring-2 ring-transparent transition outline-none"
               id="email"
               name="email"
               onChange={(event) => setEmail(event.target.value)}
@@ -71,11 +71,11 @@ const LoginPage = () => {
           </div>
 
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-gray-200" htmlFor="password">
+            <label className="text-foreground/90 block text-sm font-medium" htmlFor="password">
               {t('auth.password')}
             </label>
             <input
-              className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white ring-2 ring-transparent transition outline-none focus:border-orange-400 focus:ring-orange-400/40"
+              className="border-border bg-muted text-foreground focus:border-accent focus:ring-accent/40 w-full rounded-lg border px-4 py-3 ring-2 ring-transparent transition outline-none"
               id="password"
               name="password"
               onChange={(event) => setPassword(event.target.value)}

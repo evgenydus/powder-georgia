@@ -36,18 +36,18 @@ export const MobileNav = () => {
       <DrawerTrigger aria-label={t('navigation.menu')} className="p-2 md:hidden">
         <Menu className="size-6" />
       </DrawerTrigger>
-      <DrawerContent className="bg-gray-900 text-white">
+      <DrawerContent className="bg-background text-foreground">
         <DrawerTitle className="sr-only">{t('navigation.menu')}</DrawerTitle>
-        <nav className="flex flex-col gap-2 px-4 pb-4 pt-4">
+        <nav className="flex flex-col gap-2 px-4 pt-4 pb-4">
           {navLinks.map((link) => {
             const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`)
 
             return (
-              <DrawerClose asChild key={link.href}>
+              <DrawerClose key={link.href} asChild>
                 <Link
                   className={cn(
                     'rounded-lg px-4 py-3 text-center text-lg transition-colors',
-                    isActive && 'bg-gray-800 text-orange-400',
+                    isActive && 'bg-card text-accent',
                   )}
                   href={link.href}
                   onClick={() => setOpen(false)}
@@ -58,7 +58,7 @@ export const MobileNav = () => {
             )
           })}
         </nav>
-        <DrawerClose className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-gray-600" />
+        <DrawerClose className="bg-muted mx-auto mb-4 h-1.5 w-12 rounded-full" />
       </DrawerContent>
     </Drawer>
   )
