@@ -1,13 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
 
 import useToast from '@/components/ui/hooks/useToast'
+import { routes } from '@/constants'
+import { useRouter } from '@/i18n/navigation'
 
 import { Button } from '@/components/ui/Button'
 import {
@@ -95,13 +96,13 @@ const TourForm = ({ tour }: TourFormProps) => {
     }
 
     toastSuccess(tour ? t('admin.tourForm.toast.updated') : t('admin.tourForm.toast.created'))
-    router.push('/admin/tours')
+    router.push(routes.adminTours)
   }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <TitlesSection errors={errors} onTitleEnBlur={handleTitleEnBlur} register={register} />
-      <SlugSection currentTourId={tour?.id} errors={errors} register={register} />
+      <SlugSection currentEntityId={tour?.id} errors={errors} register={register} />
       <DescriptionsSection errors={errors} register={register} />
       <MetricsSection register={register} />
       <GroupSizeSection register={register} />

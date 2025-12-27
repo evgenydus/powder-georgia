@@ -9,12 +9,19 @@ import { Button } from '@/components/ui/Button'
 
 import { supabase } from '@/lib/supabase'
 
-type PublishTourButtonProps = {
+type PublishEntityButtonProps = {
+  entityId: string
+  fieldName?: string
   isPublished: boolean
-  tourId: string
+  tableName: string
 }
 
-export const PublishTourButton = ({ isPublished, tourId }: PublishTourButtonProps) => {
+export const PublishEntityButton = ({
+  entityId,
+  fieldName = 'is_published',
+  isPublished,
+  tableName,
+}: PublishEntityButtonProps) => {
   const router = useRouter()
   const t = useTranslations()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -23,9 +30,9 @@ export const PublishTourButton = ({ isPublished, tourId }: PublishTourButtonProp
     toastInfo(isPublished ? t('admin.actions.unpublishing') : t('admin.actions.publishing'))
 
     const { error } = await supabase
-      .from('tours')
-      .update({ is_published: !isPublished })
-      .eq('id', tourId)
+      .from(tableName)
+      .update({ [fieldName]: !isPublished })
+      .eq('id', entityId)
 
     if (error) {
       toastError(t('admin.actions.publishError'), {

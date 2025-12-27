@@ -29,6 +29,9 @@
     "tourNotFound": "Tour not found",
     "tours": "Tours",
     "transfers": "Transfers",
+    "createNewApartment": "Create New Apartment",
+    "editApartment": "Edit Apartment",
+    "apartmentNotFound": "Apartment not found",
     "actions": {
       "deleting": "Deleting...",
       "deleted": "Deleted successfully",
@@ -127,6 +130,54 @@
         "uploadError": "Failed to upload image",
         "uploading": "Uploading...",
         "uploadSuccess": "Images uploaded successfully"
+      }
+    },
+    "apartmentForm": {
+      "amenities": {
+        "heading": "Amenities",
+        "labelEn": "Amenities (EN)",
+        "labelKa": "Amenities (KA)",
+        "labelRu": "Amenities (RU)"
+      },
+      "capacity": {
+        "label": "Capacity (guests)"
+      },
+      "descriptions": {
+        "heading": "Descriptions",
+        "labelEn": "Description (EN)",
+        "labelKa": "Description (KA)",
+        "labelRu": "Description (RU)"
+      },
+      "metrics": {
+        "heading": "Details"
+      },
+      "price": {
+        "label": "Price per Night (USD)"
+      },
+      "slug": {
+        "exists": "This slug is already taken",
+        "label": "Slug"
+      },
+      "submit": {
+        "create": "Create Apartment",
+        "update": "Update Apartment"
+      },
+      "titles": {
+        "heading": "Titles",
+        "labelEn": "Title (EN)",
+        "labelKa": "Title (KA)",
+        "labelRu": "Title (RU)"
+      },
+      "toast": {
+        "created": "Apartment created!",
+        "creating": "Creating apartment...",
+        "errorMessage": "Failed to save apartment",
+        "errorTitle": "Error",
+        "updated": "Apartment updated!",
+        "updating": "Updating apartment..."
+      },
+      "validation": {
+        "required": "Required"
       }
     }
   },

@@ -11,15 +11,9 @@ import { supabase } from '@/lib/supabase'
 
 type SlugSectionProps = SectionProps & {
   currentEntityId?: string
-  tableName?: string
 }
 
-const SlugSection = ({
-  currentEntityId,
-  errors,
-  register,
-  tableName = 'tours',
-}: SlugSectionProps) => {
+const SlugSection = ({ currentEntityId, errors, register }: SlugSectionProps) => {
   const t = useTranslations()
   const [slugExists, setSlugExists] = useState(false)
   const [isChecking, setIsChecking] = useState(false)
@@ -30,7 +24,7 @@ const SlugSection = ({
 
       setIsChecking(true)
 
-      let query = supabase.from(tableName).select('id').eq('slug', slug)
+      let query = supabase.from('apartments').select('id').eq('slug', slug)
 
       if (currentEntityId) {
         query = query.neq('id', currentEntityId)
@@ -41,7 +35,7 @@ const SlugSection = ({
       setSlugExists(!!data)
       setIsChecking(false)
     },
-    [currentEntityId, tableName],
+    [currentEntityId],
   )
 
   const { onBlur, ...rest } = register('slug')
@@ -60,9 +54,9 @@ const SlugSection = ({
 
   const getErrorText = () => {
     if (errors.slug?.message) return errors.slug.message
-    if (slugExists) return t('admin.tourForm.slug.exists')
+    if (slugExists) return t('admin.apartmentForm.slug.exists')
 
-    return t('admin.tourForm.validation.required')
+    return t('admin.apartmentForm.validation.required')
   }
 
   return (
@@ -71,9 +65,9 @@ const SlugSection = ({
         error={hasError}
         errorText={hasError ? getErrorText() : undefined}
         id="slug"
-        label={`${t('admin.tourForm.slug.label')}${isChecking ? ' ...' : ''}`}
+        label={`${t('admin.apartmentForm.slug.label')}${isChecking ? ' ...' : ''}`}
         onBlur={handleBlur}
-        placeholder="unique-tour-slug"
+        placeholder="unique-apartment-slug"
         required
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}

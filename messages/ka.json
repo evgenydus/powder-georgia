@@ -22,6 +22,9 @@
     "tourNotFound": "ტური ვერ მოიძებნა",
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
+    "createNewApartment": "ახალი ბინის შექმნა",
+    "editApartment": "ბინის რედაქტირება",
+    "apartmentNotFound": "ბინა ვერ მოიძებნა",
     "actions": {
       "deleting": "იშლება...",
       "deleted": "წარმატებით წაიშალა",
@@ -120,6 +123,54 @@
         "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
         "uploading": "იტვირთება...",
         "uploadSuccess": "სურათები წარმატებით აიტვირთა"
+      }
+    },
+    "apartmentForm": {
+      "amenities": {
+        "heading": "კომფორტი",
+        "labelEn": "კომფორტი (EN)",
+        "labelKa": "კომფორტი (KA)",
+        "labelRu": "კომფორტი (RU)"
+      },
+      "capacity": {
+        "label": "ტევადობა (სტუმარი)"
+      },
+      "descriptions": {
+        "heading": "აღწერები",
+        "labelEn": "აღწერა (EN)",
+        "labelKa": "აღწერა (KA)",
+        "labelRu": "აღწერა (RU)"
+      },
+      "metrics": {
+        "heading": "დეტალები"
+      },
+      "price": {
+        "label": "ფასი ღამეში (USD)"
+      },
+      "slug": {
+        "exists": "ეს სლაგი უკვე დაკავებულია",
+        "label": "სლაგი"
+      },
+      "submit": {
+        "create": "შექმენი ბინა",
+        "update": "განაახლე ბინა"
+      },
+      "titles": {
+        "heading": "სათაურები",
+        "labelEn": "სათაური (EN)",
+        "labelKa": "სათაური (KA)",
+        "labelRu": "სათაური (RU)"
+      },
+      "toast": {
+        "created": "ბინა შეიქმნა!",
+        "creating": "ბინა იქმნება...",
+        "errorMessage": "შენახვა ვერ მოხერხდა",
+        "errorTitle": "შეცდომა",
+        "updated": "ბინა განახლდა!",
+        "updating": "ბინა ახლდება..."
+      },
+      "validation": {
+        "required": "სავალდებულოა"
       }
     }
   },

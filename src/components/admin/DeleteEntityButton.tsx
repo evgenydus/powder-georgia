@@ -12,11 +12,12 @@ import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
 import { supabase } from '@/lib/supabase'
 
-type DeleteTourButtonProps = {
-  tourId: string
+type DeleteEntityButtonProps = {
+  entityId: string
+  tableName: string
 }
 
-const DeleteTourButton = ({ tourId }: DeleteTourButtonProps) => {
+const DeleteEntityButton = ({ entityId, tableName }: DeleteEntityButtonProps) => {
   const router = useRouter()
   const t = useTranslations()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -27,7 +28,7 @@ const DeleteTourButton = ({ tourId }: DeleteTourButtonProps) => {
     setIsLoading(true)
     toastInfo(t('admin.actions.deleting'))
 
-    const { error } = await supabase.from('tours').delete().eq('id', tourId)
+    const { error } = await supabase.from(tableName).delete().eq('id', entityId)
 
     if (error) {
       toastError(t('admin.actions.deleteError'), {
@@ -59,4 +60,4 @@ const DeleteTourButton = ({ tourId }: DeleteTourButtonProps) => {
   )
 }
 
-export { DeleteTourButton }
+export { DeleteEntityButton }
