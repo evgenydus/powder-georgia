@@ -4,7 +4,6 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 
 import { AuthProvider } from '@/components/auth'
-import { Footer, Header } from '@/components/layout'
 import { Toaster } from '@/components/ui'
 
 import '../globals.css'
@@ -39,9 +38,7 @@ const RootLayout = async ({ children }: LayoutProps) => {
           className={`${geistSans.variable} ${geistMono.variable} bg-primary text-white antialiased`}
         >
           <AuthProvider>
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            {children}
             <Toaster />
           </AuthProvider>
         </body>
