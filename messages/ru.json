@@ -11,6 +11,10 @@
     }
   },
   "admin": {
+    "title": "Админ",
+    "dashboard": "Панель",
+    "published": "опубликовано",
+    "draft": "черновик",
     "apartments": "Апартаменты",
     "createNewTour": "Создать тур",
     "editTour": "Редактировать тур",
@@ -18,7 +22,6 @@
     "tourNotFound": "Тур не найден",
     "tours": "Туры",
     "transfers": "Трансферы",
-    "title": "Админ",
     "actions": {
       "deleting": "Удаление...",
       "deleted": "Успешно удалено",
