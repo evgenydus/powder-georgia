@@ -10,7 +10,7 @@ async function getApartments(): Promise<Apartment[]> {
     const { data, error } = await supabase
       .from('apartments')
       .select('*')
-      .eq('is_active', true)
+      .eq('is_published', true)
       .order('created_at', { ascending: false })
 
     if (error) {

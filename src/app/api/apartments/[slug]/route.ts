@@ -14,7 +14,7 @@ export async function GET(
       .from('apartments')
       .select('*')
       .eq('slug', slug)
-      .eq('is_active', true)
+      .eq('is_published', true)
       .single()
 
     if (error) {

@@ -5,6 +5,8 @@ import { useLocale, useTranslations } from 'next-intl'
 
 import { routes } from '@/constants'
 
+import { ApartmentStats } from './ApartmentStats'
+
 import { Link } from '@/i18n/navigation'
 import type { Apartment } from '@/types'
 
@@ -37,17 +39,12 @@ export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
         </div>
         <div className="p-4">
           <h3 className="text-foreground mb-2 text-lg font-bold">{title}</h3>
-          <div className="text-muted-foreground mb-4 grid grid-cols-2 gap-2 text-xs">
-            <div className="flex items-center gap-1">
-              <span>👥</span>
-              <span>
-                {t('apartments.capacity')}: {apartment.capacity}
-              </span>
-            </div>
+          <div className="text-muted-foreground mb-4">
+            <ApartmentStats apartment={apartment} />
           </div>
           <div className="border-border flex items-center justify-between border-t pt-3">
             <span className="text-accent text-sm font-semibold">
-              ${apartment.price_per_night_usd}/night
+              ${apartment.price_per_night_usd}/{t('apartments.night')}
             </span>
             <span className="text-accent text-xs font-medium">{t('apartments.viewDetails')} →</span>
           </div>

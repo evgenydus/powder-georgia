@@ -132,6 +132,16 @@
         "labelKa": "Удобства (KA)",
         "labelRu": "Удобства (RU)"
       },
+      "area": {
+        "label": "Площадь (кв.м)",
+        "placeholder": "Необязательно"
+      },
+      "bathrooms": {
+        "label": "Ванные"
+      },
+      "bedrooms": {
+        "label": "Спальни"
+      },
       "capacity": {
         "label": "Вместимость (гостей)"
       },
@@ -236,9 +246,14 @@
     "title": "Апартаменты",
     "description": "Комфортное жилье",
     "capacity": "Вместимость",
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные",
+    "area": "Площадь",
     "amenities": "Удобства",
     "pricePerNight": "Цена за ночь",
-    "bookNow": "Забронировать"
+    "night": "ночь",
+    "bookNow": "Забронировать",
+    "gallery": "Галерея"
   },
   "about": {
     "title": "О нас",

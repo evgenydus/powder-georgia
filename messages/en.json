@@ -139,6 +139,16 @@
         "labelKa": "Amenities (KA)",
         "labelRu": "Amenities (RU)"
       },
+      "area": {
+        "label": "Area (sqm)",
+        "placeholder": "Optional"
+      },
+      "bathrooms": {
+        "label": "Bathrooms"
+      },
+      "bedrooms": {
+        "label": "Bedrooms"
+      },
       "capacity": {
         "label": "Capacity (guests)"
       },
@@ -249,11 +259,16 @@
     "title": "Apartment Rentals",
     "description": "Comfortable and convenient apartments for your stay in the mountains.",
     "capacity": "Capacity",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
     "amenities": "Amenities",
     "pricePerNight": "Price per night",
+    "night": "night",
     "bookNow": "Book Now",
     "noImage": "No Image Available",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "gallery": "Gallery"
   },
   "about": {
     "title": "About Us",

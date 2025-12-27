@@ -132,6 +132,16 @@
         "labelKa": "კომფორტი (KA)",
         "labelRu": "კომფორტი (RU)"
       },
+      "area": {
+        "label": "ფართობი (კვ.მ)",
+        "placeholder": "არასავალდებულო"
+      },
+      "bathrooms": {
+        "label": "სააბაზანო"
+      },
+      "bedrooms": {
+        "label": "საძინებელი"
+      },
       "capacity": {
         "label": "ტევადობა (სტუმარი)"
       },
@@ -236,9 +246,14 @@
     "title": "ბინები",
     "description": "კომფორტული საცხობელი",
     "capacity": "ტევადობა",
+    "bedrooms": "საძინებელი",
+    "bathrooms": "სააბაზანო",
+    "area": "ფართობი",
     "amenities": "მოხერხებულობა",
     "pricePerNight": "ფასი ღამეში",
-    "bookNow": "დაჯავშნე"
+    "night": "ღამე",
+    "bookNow": "დაჯავშნე",
+    "gallery": "გალერეა"
   },
   "about": {
     "title": "ჩვენ შესახებ",

@@ -82,8 +82,7 @@ const AdminApartmentsPage = async () => {
                 <td className="px-6 py-4 whitespace-nowrap">
                   <PublishEntityButton
                     entityId={apartment.id}
-                    fieldName="is_active"
-                    isPublished={apartment.is_active}
+                    isPublished={apartment.is_published}
                     tableName="apartments"
                   />
                 </td>
