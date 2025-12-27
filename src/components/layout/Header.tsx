@@ -23,7 +23,7 @@ export const Header = () => {
   ]
 
   return (
-    <header className="bg-gray-900 text-white shadow-md">
+    <header className="sticky top-0 z-50 bg-gray-900 text-white">
       <div className="container mx-auto flex items-center justify-between p-4">
         <Link href={routes.home}>
           <LogoAnimated />
@@ -43,6 +43,8 @@ export const Header = () => {
           <LanguageSwitcher />
         </div>
       </div>
+
+      <div className="absolute -bottom-6 h-6 w-full bg-linear-to-b from-gray-900 to-transparent" />
     </header>
   )
 }
