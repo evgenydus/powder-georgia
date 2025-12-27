@@ -19,7 +19,7 @@ export const FeaturedToursSection = async ({ tours }: FeaturedToursSectionProps)
   return (
     <section className="relative z-10 px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 text-center">
+        <div className="bg-gradient-fade mb-12 rounded-2xl px-8 py-6 text-center">
           <h2 className="text-foreground mb-4 text-4xl font-bold">{t('home.featured')}</h2>
           <p className="text-muted-foreground">{t('tours.description')}</p>
         </div>

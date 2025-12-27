@@ -19,6 +19,9 @@
   },
   "admin": {
     "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "published": "published",
+    "draft": "draft",
     "apartments": "Apartments",
     "createNewTour": "Create New Tour",
     "editTour": "Edit Tour",
