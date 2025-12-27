@@ -35,7 +35,7 @@ const RootLayout = async ({ children }: LayoutProps) => {
     <html>
       <NextIntlClientProvider messages={messages}>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} bg-primary text-white antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}
         >
           <AuthProvider>
             {children}

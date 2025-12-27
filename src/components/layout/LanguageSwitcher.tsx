@@ -22,7 +22,7 @@ export const LanguageSwitcher = () => {
   return (
     <div className="relative">
       <select
-        className="appearance-none rounded bg-gray-800 py-1 pr-8 pl-2 text-white focus:outline-none"
+        className="bg-card text-foreground appearance-none rounded py-1 pr-8 pl-2 focus:outline-none"
         defaultValue={locale}
         disabled={isPending}
         onChange={handleChange}
@@ -31,7 +31,7 @@ export const LanguageSwitcher = () => {
         <option value="ka">KA</option>
         <option value="ru">RU</option>
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
+      <div className="text-foreground pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
         <svg
           className="h-4 w-4 fill-current"
           viewBox="0 0 20 20"

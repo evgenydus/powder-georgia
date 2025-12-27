@@ -10,7 +10,7 @@ export const InstructorGrid = ({ instructors }: InstructorGridProps) => {
   if (instructors.length === 0) {
     return (
       <div className="py-12 text-center">
-        <p className="text-gray-400">No instructors available</p>
+        <p className="text-muted-foreground">No instructors available</p>
       </div>
     )
   }

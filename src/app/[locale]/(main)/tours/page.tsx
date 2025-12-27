@@ -32,11 +32,13 @@ const ToursPage = async () => {
   const tours = await getTours()
 
   return (
-    <main className="bg-primary min-h-screen">
-      <section className="to-primary bg-linear-to-b from-gray-900 px-4 py-16 sm:px-6 lg:px-8">
+    <main className="bg-background min-h-screen">
+      <section className="to-background from-card bg-linear-to-b px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">{t('tours.title')}</h1>
-          <p className="text-gray-300">{t('tours.description')}</p>
+          <h1 className="text-foreground mb-4 text-4xl font-bold md:text-5xl">
+            {t('tours.title')}
+          </h1>
+          <p className="text-foreground/80">{t('tours.description')}</p>
         </div>
       </section>
 

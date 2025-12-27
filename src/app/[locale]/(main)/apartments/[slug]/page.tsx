@@ -30,8 +30,8 @@ const ApartmentPage = async ({ params }: { params: { slug: string } }) => {
 
   if (!apartment) {
     return (
-      <main className="bg-primary flex min-h-screen items-center justify-center">
-        <h1 className="text-2xl text-white">{t('errors.notFound')}</h1>
+      <main className="bg-background flex min-h-screen items-center justify-center">
+        <h1 className="text-foreground text-2xl">{t('errors.notFound')}</h1>
       </main>
     )
   }
@@ -42,7 +42,7 @@ const ApartmentPage = async ({ params }: { params: { slug: string } }) => {
   const amenities = apartment[`amenities_${locale as 'en' | 'ka' | 'ru'}`] || apartment.amenities_en
 
   return (
-    <main className="bg-primary min-h-screen text-white">
+    <main className="bg-background text-foreground min-h-screen">
       <div className="relative h-96 w-full">
         <Image alt={title} className="object-cover" fill src={apartment.images[0]} />
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
@@ -73,9 +73,7 @@ const ApartmentPage = async ({ params }: { params: { slug: string } }) => {
         )}
 
         <div className="mt-8 text-right">
-          <p className="text-3xl font-bold text-orange-400">
-            ${apartment.price_per_night_usd}/night
-          </p>
+          <p className="text-accent text-3xl font-bold">${apartment.price_per_night_usd}/night</p>
         </div>
       </div>
     </main>

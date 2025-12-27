@@ -17,7 +17,7 @@ export const AuthControls = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="hidden text-sm text-gray-300 sm:inline">{displayName}</span>
+      <span className="text-foreground/80 hidden text-sm sm:inline">{displayName}</span>
       <Button onClick={signOut} size="sm" variant="secondary">
         {t('auth.logout')}
       </Button>
