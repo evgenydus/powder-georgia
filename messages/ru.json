@@ -1,7 +1,14 @@
 {
   "common": {
     "siteName": "Powder Georgia",
-    "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia"
+    "siteDescription": "Откройте для себя чудеса грузинских гор вместе с Powder Georgia",
+    "confirmDialog": {
+      "title": "Вы уверены?",
+      "description": "Это действие нельзя отменить.",
+      "confirm": "Подтвердить",
+      "cancel": "Отмена",
+      "loading": "Подождите..."
+    }
   },
   "admin": {
     "apartments": "Апартаменты",
@@ -12,6 +19,35 @@
     "tours": "Туры",
     "transfers": "Трансферы",
     "title": "Админ",
+    "actions": {
+      "deleting": "Удаление...",
+      "deleted": "Успешно удалено",
+      "deleteError": "Ошибка удаления",
+      "deleteErrorMessage": "Произошла ошибка при удалении",
+      "publishing": "Публикация...",
+      "published": "Успешно опубликовано",
+      "unpublishing": "Снятие с публикации...",
+      "unpublished": "Успешно снято с публикации",
+      "publishError": "Ошибка публикации",
+      "publishErrorMessage": "Произошла ошибка при изменении статуса",
+      "publish": "Опубликовать",
+      "unpublish": "Снять"
+    },
+    "media": {
+      "addSelected": "Добавить {count} выбранных",
+      "cancel": "Отмена",
+      "chooseFromLibrary": "Выбрать из библиотеки",
+      "empty": "Библиотека пуста. Сначала загрузите изображения.",
+      "selectImages": "Выбрать изображения",
+      "tabs": {
+        "all": "Все",
+        "apartment": "Апартаменты",
+        "instructor": "Инструкторы",
+        "tour": "Туры",
+        "transfer": "Трансферы"
+      },
+      "upload": "Загрузить"
+    },
     "tourForm": {
       "active": {
         "description": "Тур виден пользователям?",
@@ -41,6 +77,7 @@
         "price": "Цена (USD)"
       },
       "slug": {
+        "exists": "Этот слаг уже занят",
         "label": "Слаг",
         "placeholder": "unikalnyj-tur"
       },
@@ -67,6 +104,19 @@
       },
       "verticalDrop": {
         "label": "Перепад высоты (м)"
+      },
+      "images": {
+        "addImages": "Добавить изображения",
+        "cover": "Обложка",
+        "deleted": "Изображение удалено",
+        "deleteError": "Не удалось удалить изображение",
+        "heading": "Изображения",
+        "hint": "JPEG, PNG, WebP или GIF (макс. 10MB)",
+        "maxReached": "Достигнут лимит в 10 изображений",
+        "noImages": "Изображения не загружены",
+        "uploadError": "Не удалось загрузить изображение",
+        "uploading": "Загрузка...",
+        "uploadSuccess": "Изображения успешно загружены"
       }
     }
   },
@@ -107,7 +157,8 @@
     "price": "Цена",
     "details": "Подробнее",
     "bookNow": "Забронировать",
-    "requiredEquipment": "Необходимое оборудование"
+    "requiredEquipment": "Необходимое оборудование",
+    "gallery": "Галерея"
   },
   "transfers": {
     "title": "Трансферы",

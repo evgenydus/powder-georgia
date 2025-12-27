@@ -8,6 +8,13 @@
     "messages": {
       "success": "Success!",
       "error": "Something went wrong. Please try again later."
+    },
+    "confirmDialog": {
+      "title": "Are you sure?",
+      "description": "This action cannot be undone.",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "loading": "Please wait..."
     }
   },
   "admin": {
@@ -19,6 +26,35 @@
     "tourNotFound": "Tour not found",
     "tours": "Tours",
     "transfers": "Transfers",
+    "actions": {
+      "deleting": "Deleting...",
+      "deleted": "Deleted successfully",
+      "deleteError": "Delete failed",
+      "deleteErrorMessage": "An error occurred while deleting",
+      "publishing": "Publishing...",
+      "published": "Published successfully",
+      "unpublishing": "Unpublishing...",
+      "unpublished": "Unpublished successfully",
+      "publishError": "Publish failed",
+      "publishErrorMessage": "An error occurred while updating status",
+      "publish": "Publish",
+      "unpublish": "Unpublish"
+    },
+    "media": {
+      "addSelected": "Add {count} selected",
+      "cancel": "Cancel",
+      "chooseFromLibrary": "Choose from Library",
+      "empty": "No images in library. Upload some first.",
+      "selectImages": "Select Images",
+      "tabs": {
+        "all": "All",
+        "apartment": "Apartments",
+        "instructor": "Instructors",
+        "tour": "Tours",
+        "transfer": "Transfers"
+      },
+      "upload": "Upload"
+    },
     "tourForm": {
       "active": {
         "description": "Is this tour visible to users?",
@@ -48,6 +84,7 @@
         "price": "Price (USD)"
       },
       "slug": {
+        "exists": "This slug is already taken",
         "label": "Slug",
         "placeholder": "unique-tour-slug"
       },
@@ -74,6 +111,19 @@
       },
       "verticalDrop": {
         "label": "Vertical Drop (m)"
+      },
+      "images": {
+        "addImages": "Add Images",
+        "cover": "Cover",
+        "deleted": "Image deleted",
+        "deleteError": "Failed to delete image",
+        "heading": "Images",
+        "hint": "JPEG, PNG, WebP or GIF (max 10MB)",
+        "maxReached": "Maximum 10 images reached",
+        "noImages": "No images uploaded yet",
+        "uploadError": "Failed to upload image",
+        "uploading": "Uploading...",
+        "uploadSuccess": "Images uploaded successfully"
       }
     }
   },
@@ -118,6 +168,7 @@
     "bookNow": "Book Now",
     "viewAll": "View All Tours",
     "requiredEquipment": "Required Equipment",
+    "gallery": "Gallery",
     "noImage": "No image available"
   },
   "transfers": {

@@ -1,12 +1,19 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 
+import { ImageGallery } from '@/components/ui'
+
 import { supabase } from '@/lib/supabase'
 import type { Tour } from '@/types'
 
 async function getTourBySlug(slug: string): Promise<Tour | null> {
   try {
-    const { data, error } = await supabase.from('tours').select('*').eq('slug', slug).single()
+    const { data, error } = await supabase
+      .from('tours')
+      .select('*')
+      .eq('slug', slug)
+      .eq('is_published', true)
+      .single()
 
     if (error) {
       console.error('Supabase error:', error)
@@ -22,8 +29,8 @@ async function getTourBySlug(slug: string): Promise<Tour | null> {
   }
 }
 
-const TourPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params
+const TourPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params
   const locale = await getLocale()
   const t = await getTranslations()
   const tour = await getTourBySlug(slug)
@@ -85,6 +92,13 @@ const TourPage = async ({ params }: { params: { slug: string } }) => {
           <div className="mt-8">
             <h2 className="mb-4 text-2xl font-bold">{t('tours.requiredEquipment')}</h2>
             <p>{requiredEquipment}</p>
+          </div>
+        )}
+
+        {tour.images.length > 1 && (
+          <div className="mt-8">
+            <h2 className="mb-4 text-2xl font-bold">{t('tours.gallery')}</h2>
+            <ImageGallery alt={title} images={tour.images} />
           </div>
         )}
 

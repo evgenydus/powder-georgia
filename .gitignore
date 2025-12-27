@@ -45,3 +45,6 @@ next-env.d.ts
 # Other
 .idea
 AGENTS.md
+CLAUDE.md
+.claude
+local/

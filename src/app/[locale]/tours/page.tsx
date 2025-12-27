@@ -10,7 +10,7 @@ async function getTours(): Promise<Tour[]> {
     const { data, error } = await supabase
       .from('tours')
       .select('*')
-      .eq('is_active', true)
+      .eq('is_published', true)
       .order('created_at', { ascending: false })
 
     if (error) {

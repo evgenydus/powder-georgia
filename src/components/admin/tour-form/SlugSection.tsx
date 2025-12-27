@@ -1,26 +1,79 @@
+'use client'
+
+import { useCallback, useState } from 'react'
+import type { ChangeHandler } from 'react-hook-form'
 import { useTranslations } from 'next-intl'
 
 import type { SectionProps } from './types'
 import { FormField } from '../FormField'
 
-/* eslint-disable react/jsx-props-no-spreading -- register() returns known props */
-const SlugSection = ({ errors, register }: SectionProps) => {
+import { supabase } from '@/lib/supabase'
+
+type SlugSectionProps = SectionProps & {
+  currentTourId?: string
+}
+
+const SlugSection = ({ currentTourId, errors, register }: SlugSectionProps) => {
   const t = useTranslations()
+  const [slugExists, setSlugExists] = useState(false)
+  const [isChecking, setIsChecking] = useState(false)
+
+  const checkSlugExists = useCallback(
+    async (slug: string) => {
+      if (!slug) return
+
+      setIsChecking(true)
+
+      let query = supabase.from('tours').select('id').eq('slug', slug)
+
+      if (currentTourId) {
+        query = query.neq('id', currentTourId)
+      }
+
+      const { data } = await query.maybeSingle()
+
+      setSlugExists(!!data)
+      setIsChecking(false)
+    },
+    [currentTourId],
+  )
+
+  const { onBlur, ...rest } = register('slug')
+
+  const handleBlur: ChangeHandler = useCallback(
+    (e) => {
+      onBlur(e)
+      checkSlugExists(e.target.value)
+
+      return Promise.resolve()
+    },
+    [checkSlugExists, onBlur],
+  )
+
+  const hasError = !!errors.slug || slugExists
+
+  const getErrorText = () => {
+    if (errors.slug?.message) return errors.slug.message
+    if (slugExists) return t('admin.tourForm.slug.exists')
+
+    return t('admin.tourForm.validation.required')
+  }
 
   return (
     <section className="space-y-4">
       <FormField
-        error={!!errors.slug}
-        errorText={t('admin.tourForm.validation.required')}
+        error={hasError}
+        errorText={hasError ? getErrorText() : undefined}
         id="slug"
-        label={t('admin.tourForm.slug.label')}
+        label={`${t('admin.tourForm.slug.label')}${isChecking ? ' ...' : ''}`}
+        onBlur={handleBlur}
         placeholder="unique-tour-slug"
         required
-        {...register('slug')}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
       />
     </section>
   )
 }
-/* eslint-enable react/jsx-props-no-spreading */
 
 export { SlugSection }

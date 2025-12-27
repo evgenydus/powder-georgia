@@ -1,7 +1,14 @@
 {
   "common": {
     "siteName": "Powder Georgia",
-    "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად"
+    "siteDescription": "აღმოაჩინეთ ქართული მთების სამოთხე Powder Georgia-ს ერთად",
+    "confirmDialog": {
+      "title": "დარწმუნებული ხართ?",
+      "description": "ეს მოქმედება შეუქცევადია.",
+      "confirm": "დადასტურება",
+      "cancel": "გაუქმება",
+      "loading": "გთხოვთ დაელოდოთ..."
+    }
   },
   "admin": {
     "apartments": "ბინები",
@@ -12,6 +19,35 @@
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
     "title": "ადმინი",
+    "actions": {
+      "deleting": "იშლება...",
+      "deleted": "წარმატებით წაიშალა",
+      "deleteError": "წაშლა ვერ მოხერხდა",
+      "deleteErrorMessage": "შეცდომა წაშლისას",
+      "publishing": "ქვეყნდება...",
+      "published": "წარმატებით გამოქვეყნდა",
+      "unpublishing": "იმალება...",
+      "unpublished": "წარმატებით დაიმალა",
+      "publishError": "გამოქვეყნება ვერ მოხერხდა",
+      "publishErrorMessage": "შეცდომა სტატუსის შეცვლისას",
+      "publish": "გამოქვეყნება",
+      "unpublish": "დამალვა"
+    },
+    "media": {
+      "addSelected": "{count} არჩეულის დამატება",
+      "cancel": "გაუქმება",
+      "chooseFromLibrary": "ბიბლიოთეკიდან არჩევა",
+      "empty": "ბიბლიოთეკა ცარიელია. ჯერ ატვირთეთ სურათები.",
+      "selectImages": "სურათების არჩევა",
+      "tabs": {
+        "all": "ყველა",
+        "apartment": "ბინები",
+        "instructor": "ინსტრუქტორები",
+        "tour": "ტურები",
+        "transfer": "ტრანსფერები"
+      },
+      "upload": "ატვირთვა"
+    },
     "tourForm": {
       "active": {
         "description": "ტური ჩანს მომხმარებლებისთვის?",
@@ -41,6 +77,7 @@
         "price": "ფასი (USD)"
       },
       "slug": {
+        "exists": "ეს სლაგი უკვე დაკავებულია",
         "label": "სლაგი",
         "placeholder": "unikaluri-turi"
       },
@@ -67,6 +104,19 @@
       },
       "verticalDrop": {
         "label": "ვერტიკალური ვარდნა (მ)"
+      },
+      "images": {
+        "addImages": "სურათების დამატება",
+        "cover": "გარეკანი",
+        "deleted": "სურათი წაიშალა",
+        "deleteError": "სურათის წაშლა ვერ მოხერხდა",
+        "heading": "სურათები",
+        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 10MB)",
+        "maxReached": "მიღწეულია მაქსიმუმ 10 სურათი",
+        "noImages": "სურათები არ არის ატვირთული",
+        "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
+        "uploading": "იტვირთება...",
+        "uploadSuccess": "სურათები წარმატებით აიტვირთა"
       }
     }
   },
@@ -107,7 +157,8 @@
     "price": "ფასი",
     "details": "დეტალები",
     "bookNow": "დაჯავშნე",
-    "requiredEquipment": "საჭირო აღჭურვილობა"
+    "requiredEquipment": "საჭირო აღჭურვილობა",
+    "gallery": "გალერეა"
   },
   "transfers": {
     "title": "ტრანსფერი",
