@@ -1,4 +1,4 @@
-import { Car, Home, Map, Mountain } from 'lucide-react'
+import { Car, Home, Mail, Map, Mountain } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { routes } from '@/constants'
@@ -8,6 +8,11 @@ import { createClient } from '@/lib/supabase/server'
 
 type EntityStats = {
   active: number
+  total: number
+}
+
+type InquiryStats = {
+  new: number
   total: number
 }
 
@@ -41,8 +46,27 @@ async function getEntityCounts(): Promise<Record<string, EntityStats>> {
   return results
 }
 
+async function getInquiryStats(): Promise<InquiryStats> {
+  const supabase = await createClient()
+
+  const [totalResponse, newResponse] = await Promise.all([
+    supabase.from('inquiries').select('*', { count: 'exact', head: true }),
+    supabase
+      .from('inquiries')
+      .select('*', { count: 'exact', head: true })
+      .eq('is_read', false)
+      .eq('is_processed', false),
+  ])
+
+  return {
+    new: newResponse.count ?? 0,
+    total: totalResponse.count ?? 0,
+  }
+}
+
 const icons = {
   apartments: Home,
+  inquiries: Mail,
   instructors: Mountain,
   tours: Map,
   transfers: Car,
@@ -50,20 +74,34 @@ const icons = {
 
 const AdminDashboard = async () => {
   const t = await getTranslations()
-  const counts = await getEntityCounts()
+  const [counts, inquiryStats] = await Promise.all([getEntityCounts(), getInquiryStats()])
 
   const cards = [
+    { href: routes.adminApartments, key: 'apartments', label: t('navigation.apartments') },
+    { href: routes.adminInstructors, key: 'instructors', label: t('navigation.instructors') },
     { href: routes.adminTours, key: 'tours', label: t('navigation.tours') },
     { href: routes.adminTransfers, key: 'transfers', label: t('navigation.transfers') },
-    { href: routes.adminInstructors, key: 'instructors', label: t('navigation.instructors') },
-    { href: routes.adminApartments, key: 'apartments', label: t('navigation.apartments') },
   ]
 
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold">{t('admin.dashboard')}</h1>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        <Link
+          className="bg-card hover:bg-muted rounded-lg p-6 transition-colors"
+          href={routes.adminInquiries}
+        >
+          <div className="mb-4 flex items-center justify-between">
+            <Mail className="text-accent size-8" />
+            <span className="text-3xl font-bold">{inquiryStats.total}</span>
+          </div>
+          <h2 className="text-foreground mb-1 font-semibold">{t('navigation.inquiries')}</h2>
+          <p className="text-muted-foreground text-sm">
+            {inquiryStats.new} {t('admin.status.new')}
+          </p>
+        </Link>
+
         {cards.map(({ href, key, label }) => {
           const Icon = icons[key as keyof typeof icons]
           const stats = counts[key]

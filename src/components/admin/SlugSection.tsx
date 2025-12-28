@@ -73,7 +73,6 @@ const SlugSection = ({ currentEntityId, errors, register, tableName }: SlugSecti
         onBlur={handleBlur}
         placeholder="unique-slug"
         required
-        //eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </section>

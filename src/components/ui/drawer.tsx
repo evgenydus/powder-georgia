@@ -5,7 +5,7 @@ import { Drawer as DrawerPrimitive } from 'vaul'
 
 import { cn } from '@/lib/utils'
 
-/* eslint-disable react/jsx-props-no-spreading, max-lines */
+/* eslint-disable max-lines */
 
 const Drawer = ({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) => {
   return <DrawerPrimitive.Root data-slot="drawer" {...props} />

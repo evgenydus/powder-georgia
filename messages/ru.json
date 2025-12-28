@@ -182,6 +182,38 @@
       "validation": {
         "required": "Обязательно"
       }
+    },
+    "inquiries": "Запросы",
+    "inquiryActions": {
+      "markNew": "Отметить как новый",
+      "markReplied": "Отметить как отвеченный",
+      "markSeen": "Отметить как просмотренный",
+      "updateError": "Не удалось обновить статус",
+      "updated": "Статус обновлен",
+      "updating": "Обновление статуса...",
+      "view": "Посмотреть детали"
+    },
+    "inquiryDetail": {
+      "close": "Закрыть",
+      "language": "Язык",
+      "message": "Сообщение",
+      "notProvided": "Не указано",
+      "phone": "Телефон",
+      "submittedAt": "Отправлено",
+      "title": "Детали запроса"
+    },
+    "noInquiries": "Запросов пока нет",
+    "status": {
+      "new": "Новый",
+      "replied": "Отвечен",
+      "seen": "Просмотрен"
+    },
+    "table": {
+      "clientName": "Имя клиента",
+      "date": "Дата",
+      "email": "Email",
+      "status": "Статус",
+      "type": "Тип"
     }
   },
   "auth": {
@@ -196,15 +228,16 @@
     "title": "Вход"
   },
   "navigation": {
-    "home": "Главная",
-    "tours": "Туры",
-    "transfers": "Трансферы",
-    "instructors": "Инструкторы",
-    "apartments": "Апартаменты",
     "about": "О нас",
+    "apartments": "Апартаменты",
     "contact": "Контакты",
+    "home": "Главная",
+    "inquiries": "Запросы",
+    "instructors": "Инструкторы",
     "language": "Язык",
-    "menu": "Меню"
+    "menu": "Меню",
+    "tours": "Туры",
+    "transfers": "Трансферы"
   },
   "home": {
     "title": "Powder Georgia",

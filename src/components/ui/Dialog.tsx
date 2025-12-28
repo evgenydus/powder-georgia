@@ -1,5 +1,4 @@
 'use client'
-/* eslint-disable react/jsx-props-no-spreading */
 
 import * as React from 'react'
 import * as DialogPrimitive from '@radix-ui/react-dialog'

@@ -53,7 +53,6 @@ export const ContactForm = () => {
         <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="name">
           {t('contact.name')} *
         </label>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Input id="name" {...register('name')} />
         {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
       </div>

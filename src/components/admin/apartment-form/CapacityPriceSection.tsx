@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl'
 import type { RegisterOnlyProps } from './types'
 import { FormField } from '../FormField'
 
-/* eslint-disable react/jsx-props-no-spreading -- register() returns known props */
 const CapacityPriceSection = ({ register }: RegisterOnlyProps) => {
   const t = useTranslations()
 
@@ -53,6 +52,5 @@ const CapacityPriceSection = ({ register }: RegisterOnlyProps) => {
     </section>
   )
 }
-/* eslint-enable react/jsx-props-no-spreading */
 
 export { CapacityPriceSection }

@@ -189,6 +189,38 @@
       "validation": {
         "required": "Required"
       }
+    },
+    "inquiries": "Inquiries",
+    "inquiryActions": {
+      "markNew": "Mark as New",
+      "markReplied": "Mark as Replied",
+      "markSeen": "Mark as Seen",
+      "updateError": "Failed to update status",
+      "updated": "Status updated",
+      "updating": "Updating status...",
+      "view": "View Details"
+    },
+    "inquiryDetail": {
+      "close": "Close",
+      "language": "Language",
+      "message": "Message",
+      "notProvided": "Not provided",
+      "phone": "Phone",
+      "submittedAt": "Submitted",
+      "title": "Inquiry Details"
+    },
+    "noInquiries": "No inquiries yet",
+    "status": {
+      "new": "New",
+      "replied": "Replied",
+      "seen": "Seen"
+    },
+    "table": {
+      "clientName": "Client Name",
+      "date": "Date",
+      "email": "Email",
+      "status": "Status",
+      "type": "Type"
     }
   },
   "auth": {
@@ -203,15 +235,16 @@
     "title": "Log in"
   },
   "navigation": {
-    "home": "Home",
-    "tours": "Tours",
-    "transfers": "Transfers",
-    "instructors": "Instructors",
-    "apartments": "Apartments",
     "about": "About",
+    "apartments": "Apartments",
     "contact": "Contact",
+    "home": "Home",
+    "inquiries": "Inquiries",
+    "instructors": "Instructors",
     "language": "Language",
-    "menu": "Menu"
+    "menu": "Menu",
+    "tours": "Tours",
+    "transfers": "Transfers"
   },
   "home": {
     "title": "Powder Georgia",

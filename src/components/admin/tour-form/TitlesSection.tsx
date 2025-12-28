@@ -26,7 +26,6 @@ const TitlesSection = ({ errors, onTitleEnBlur, register }: TitlesSectionProps) 
     [onBlur, onTitleEnBlur],
   )
 
-  /* eslint-disable react/jsx-props-no-spreading -- register() returns known props */
   return (
     <section className="space-y-4">
       <h3 className="text-lg font-semibold">{t('admin.tourForm.titles.heading')}</h3>
@@ -60,6 +59,5 @@ const TitlesSection = ({ errors, onTitleEnBlur, register }: TitlesSectionProps) 
     </section>
   )
 }
-/* eslint-enable react/jsx-props-no-spreading */
 
 export { TitlesSection }

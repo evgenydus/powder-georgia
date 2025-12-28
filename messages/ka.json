@@ -182,6 +182,38 @@
       "validation": {
         "required": "სავალდებულოა"
       }
+    },
+    "inquiries": "მოთხოვნები",
+    "inquiryActions": {
+      "markNew": "ახლად მონიშვნა",
+      "markReplied": "პასუხგაცემულად მონიშვნა",
+      "markSeen": "ნანახად მონიშვნა",
+      "updateError": "სტატუსის განახლება ვერ მოხერხდა",
+      "updated": "სტატუსი განახლდა",
+      "updating": "სტატუსი ახლდება...",
+      "view": "დეტალების ნახვა"
+    },
+    "inquiryDetail": {
+      "close": "დახურვა",
+      "language": "ენა",
+      "message": "შეტყობინება",
+      "notProvided": "არ არის მითითებული",
+      "phone": "ტელეფონი",
+      "submittedAt": "გაგზავნილია",
+      "title": "მოთხოვნის დეტალები"
+    },
+    "noInquiries": "მოთხოვნები ჯერ არ არის",
+    "status": {
+      "new": "ახალი",
+      "replied": "პასუხგაცემული",
+      "seen": "ნანახი"
+    },
+    "table": {
+      "clientName": "კლიენტის სახელი",
+      "date": "თარიღი",
+      "email": "ელფოსტა",
+      "status": "სტატუსი",
+      "type": "ტიპი"
     }
   },
   "auth": {
@@ -196,15 +228,16 @@
     "title": "ავტორიზაცია"
   },
   "navigation": {
-    "home": "მთავარი",
-    "tours": "ტური",
-    "transfers": "ტრანსფერი",
-    "instructors": "ინსტრუქტორი",
-    "apartments": "ბინები",
     "about": "ჩვენ შესახებ",
+    "apartments": "ბინები",
     "contact": "კონტაქტი",
+    "home": "მთავარი",
+    "inquiries": "მოთხოვნები",
+    "instructors": "ინსტრუქტორი",
     "language": "ენა",
-    "menu": "მენიუ"
+    "menu": "მენიუ",
+    "tours": "ტური",
+    "transfers": "ტრანსფერი"
   },
   "home": {
     "title": "Powder Georgia",
