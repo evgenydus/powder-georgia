@@ -42,14 +42,16 @@ const ApartmentPage = async ({ params }: { params: Promise<{ slug: string }> }) 
     )
   }
 
-  const title = apartment[`title_${locale}`] || apartment.title_en
-  const description = apartment[`description_${locale}`] || apartment.description_en
-  const amenities = apartment[`amenities_${locale}`] || apartment.amenities_en
+  const { amenities_en, description_en, images, price_per_night_usd, title_en } = apartment
+
+  const title = apartment[`title_${locale}`] || title_en
+  const description = apartment[`description_${locale}`] || description_en
+  const amenities = apartment[`amenities_${locale}`] || amenities_en
 
   return (
     <main className="bg-background text-foreground min-h-screen">
       <div className="relative h-96 w-full">
-        <Image alt={title} className="object-cover" fill src={apartment.images[0]} />
+        {images.length > 0 && <Image alt={title} className="object-cover" fill src={images[0]} />}
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
@@ -71,16 +73,16 @@ const ApartmentPage = async ({ params }: { params: Promise<{ slug: string }> }) 
           </div>
         )}
 
-        {apartment.images.length > 1 && (
+        {images.length > 1 && (
           <div className="mt-8">
             <h2 className="mb-4 text-2xl font-bold">{t('apartments.gallery')}</h2>
-            <ImageGallery alt={title} images={apartment.images} />
+            <ImageGallery alt={title} images={images} />
           </div>
         )}
 
         <div className="mt-8 flex items-center justify-between">
           <p className="text-accent text-3xl font-bold">
-            ${apartment.price_per_night_usd}/{t('apartments.night')}
+            ${price_per_night_usd}/{t('apartments.night')}
           </p>
           <Button asChild size="lg">
             <Link href={routes.contact}>{t('apartments.bookNow')}</Link>

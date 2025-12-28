@@ -17,7 +17,10 @@ export const AdminSidebar = () => {
 
   return (
     <aside className="bg-sidebar flex w-64 flex-col p-4">
-      <h2 className="mb-8 text-2xl font-bold">{t('admin.title')}</h2>
+      <Link href={routes.admin}>
+        <h2 className="mb-8 text-2xl font-bold">{t('admin.title')}</h2>
+      </Link>
+
       <nav className="flex-1">
         <ul className="space-y-4">
           {navLinks.map((link) => (
