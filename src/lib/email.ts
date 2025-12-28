@@ -37,8 +37,10 @@ export const sendInquiryNotification = async (data: InquiryEmailData) => {
     const safeType = escapeHtml(inquiryType)
     const safeMessage = escapeHtml(message)
 
+    const fromEmail = process.env.EMAIL_FROM || '<onboarding@resend.dev>'
+
     const { error: emailError } = await resend.emails.send({
-      from: 'Powder Georgia <onboarding@resend.dev>',
+      from: `Powder Georgia ${fromEmail}`,
       html: `
         <h2>New Inquiry from ${safeName}</h2>
         <p><strong>Type:</strong> ${safeType}</p>

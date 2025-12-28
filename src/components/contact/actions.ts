@@ -1,6 +1,6 @@
 'use server'
 
-import type { ContactFormData } from './contactSchema'
+import { contactSchema } from './contactSchema'
 
 import { locales } from '@/i18n/config'
 import { sendInquiryNotification } from '@/lib/email'
@@ -12,14 +12,19 @@ type SubmitInquiryResult = {
 }
 
 export const submitInquiry = async (
-  data: ContactFormData,
+  data: unknown,
   language: string,
 ): Promise<SubmitInquiryResult> => {
   try {
+    const parsed = contactSchema.safeParse(data)
+
+    if (!parsed.success) {
+      return { error: 'Invalid form data', success: false }
+    }
+
+    const { email, inquiryType, message, name, phone } = parsed.data
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
-
-    const { email, inquiryType, message, name, phone } = data
 
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
