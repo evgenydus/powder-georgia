@@ -32,7 +32,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
         } as React.CSSProperties
       }
       theme={theme as ToasterProps['theme']}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     />
   )

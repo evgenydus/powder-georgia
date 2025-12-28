@@ -9,10 +9,11 @@ export const AdminSidebar = () => {
   const t = useTranslations()
 
   const navLinks = [
+    { href: routes.adminApartments, label: t('navigation.apartments') },
+    { href: routes.adminInquiries, label: t('navigation.inquiries') },
+    { href: routes.adminInstructors, label: t('navigation.instructors') },
     { href: routes.adminTours, label: t('navigation.tours') },
     { href: routes.adminTransfers, label: t('navigation.transfers') },
-    { href: routes.adminInstructors, label: t('navigation.instructors') },
-    { href: routes.adminApartments, label: t('navigation.apartments') },
   ]
 
   return (

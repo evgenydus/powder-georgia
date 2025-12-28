@@ -3,7 +3,6 @@ import { useTranslations } from 'next-intl'
 import type { SectionProps } from './types'
 import { FormField } from '../FormField'
 
-/* eslint-disable react/jsx-props-no-spreading -- register() returns known props */
 const DescriptionsSection = ({ errors, register }: SectionProps) => {
   const t = useTranslations()
 
@@ -42,6 +41,5 @@ const DescriptionsSection = ({ errors, register }: SectionProps) => {
     </section>
   )
 }
-/* eslint-enable react/jsx-props-no-spreading */
 
 export { DescriptionsSection }

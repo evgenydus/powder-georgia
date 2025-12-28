@@ -9,6 +9,7 @@ import useToast from '@/components/ui/hooks/useToast'
 
 import { Button } from '@/components/ui/Button'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
+import { Tooltip } from '@/components/ui/tooltip'
 
 import { supabase } from '@/lib/supabase/client'
 
@@ -47,9 +48,11 @@ const DeleteEntityButton = ({ entityId, tableName }: DeleteEntityButtonProps) =>
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} size="icon-sm" variant="ghost">
-        <Trash2 className="size-4 text-red-500" />
-      </Button>
+      <Tooltip content={t('admin.actions.delete')}>
+        <Button onClick={() => setIsOpen(true)} size="icon-sm" variant="ghost">
+          <Trash2 className="size-4 text-red-500" />
+        </Button>
+      </Tooltip>
       <ConfirmDialog
         isLoading={isLoading}
         onConfirm={handleDelete}

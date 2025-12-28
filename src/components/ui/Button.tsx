@@ -45,7 +45,6 @@ const Button = React.forwardRef<
       ref={ref}
       className={cn(buttonVariants({ className, size, variant }))}
       data-slot="button"
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     />
   )

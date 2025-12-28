@@ -1,48 +1,15 @@
-import { Car, Home, Map, Mountain } from 'lucide-react'
+import { Car, Home, Mail, Map, Mountain } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { routes } from '@/constants'
 
+import { getDashboardStats } from './getDashboardStats'
+
 import { Link } from '@/i18n/navigation'
-import { createClient } from '@/lib/supabase/server'
-
-type EntityStats = {
-  active: number
-  total: number
-}
-
-async function getEntityCounts(): Promise<Record<string, EntityStats>> {
-  const supabase = await createClient()
-  const tables = [
-    { activeField: 'is_published', name: 'tours' },
-    { activeField: 'is_active', name: 'transfers' },
-    { activeField: 'is_active', name: 'instructors' },
-    { activeField: 'is_published', name: 'apartments' },
-  ]
-
-  const queries = tables.flatMap(({ activeField, name }) => [
-    supabase.from(name).select('*', { count: 'exact', head: true }),
-    supabase.from(name).select('*', { count: 'exact', head: true }).eq(activeField, true),
-  ])
-
-  const responses = await Promise.all(queries)
-  const results: Record<string, EntityStats> = {}
-
-  tables.forEach(({ name }, index) => {
-    const totalResponse = responses[index * 2]
-    const activeResponse = responses[index * 2 + 1]
-
-    results[name] = {
-      active: activeResponse.count ?? 0,
-      total: totalResponse.count ?? 0,
-    }
-  })
-
-  return results
-}
 
 const icons = {
   apartments: Home,
+  inquiries: Mail,
   instructors: Mountain,
   tours: Map,
   transfers: Car,
@@ -50,23 +17,29 @@ const icons = {
 
 const AdminDashboard = async () => {
   const t = await getTranslations()
-  const counts = await getEntityCounts()
+  const { entities, inquiries } = await getDashboardStats()
 
   const cards = [
-    { href: routes.adminTours, key: 'tours', label: t('navigation.tours') },
-    { href: routes.adminTransfers, key: 'transfers', label: t('navigation.transfers') },
-    { href: routes.adminInstructors, key: 'instructors', label: t('navigation.instructors') },
-    { href: routes.adminApartments, key: 'apartments', label: t('navigation.apartments') },
+    {
+      href: routes.adminInquiries,
+      key: 'inquiries',
+      stats: `${inquiries.new} ${t('admin.status.new')}`,
+    },
+    { href: routes.adminApartments, key: 'apartments', stats: null },
+    { href: routes.adminInstructors, key: 'instructors', stats: null },
+    { href: routes.adminTours, key: 'tours', stats: null },
+    { href: routes.adminTransfers, key: 'transfers', stats: null },
   ]
 
   return (
     <div>
       <h1 className="mb-8 text-3xl font-bold">{t('admin.dashboard')}</h1>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {cards.map(({ href, key, label }) => {
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        {cards.map(({ href, key, stats }) => {
           const Icon = icons[key as keyof typeof icons]
-          const stats = counts[key]
+          const entity = entities[key]
+          const total = key === 'inquiries' ? inquiries.total : (entity?.total ?? 0)
 
           return (
             <Link
@@ -76,12 +49,12 @@ const AdminDashboard = async () => {
             >
               <div className="mb-4 flex items-center justify-between">
                 <Icon className="text-accent size-8" />
-                <span className="text-3xl font-bold">{stats.total}</span>
+                <span className="text-3xl font-bold">{total}</span>
               </div>
-              <h2 className="text-foreground mb-1 font-semibold">{label}</h2>
+              <h2 className="text-foreground mb-1 font-semibold">{t(`navigation.${key}`)}</h2>
               <p className="text-muted-foreground text-sm">
-                {stats.active} {t('admin.published')} / {stats.total - stats.active}{' '}
-                {t('admin.draft')}
+                {stats ??
+                  `${entity?.active ?? 0} ${t('admin.published')} / ${(entity?.total ?? 0) - (entity?.active ?? 0)} ${t('admin.draft')}`}
               </p>
             </Link>
           )

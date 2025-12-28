@@ -1,5 +1,7 @@
 export * from './Button'
 export { ConfirmDialog } from './ConfirmDialog'
 export { ImageGallery } from './ImageGallery'
+export { Input } from './Input'
 export { Skeleton } from './Skeleton'
+export { Textarea } from './Textarea'
 export { default as Toaster } from './Toaster'

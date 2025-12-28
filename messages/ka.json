@@ -26,10 +26,11 @@
     "editApartment": "ბინის რედაქტირება",
     "apartmentNotFound": "ბინა ვერ მოიძებნა",
     "actions": {
-      "deleting": "იშლება...",
-      "deleted": "წარმატებით წაიშალა",
+      "delete": "წაშლა",
       "deleteError": "წაშლა ვერ მოხერხდა",
       "deleteErrorMessage": "შეცდომა წაშლისას",
+      "deleted": "წარმატებით წაიშალა",
+      "deleting": "იშლება...",
       "publishing": "ქვეყნდება...",
       "published": "წარმატებით გამოქვეყნდა",
       "unpublishing": "იმალება...",
@@ -182,6 +183,38 @@
       "validation": {
         "required": "სავალდებულოა"
       }
+    },
+    "inquiries": "მოთხოვნები",
+    "inquiryActions": {
+      "markNew": "ახლად მონიშვნა",
+      "markReplied": "პასუხგაცემულად მონიშვნა",
+      "markSeen": "ნანახად მონიშვნა",
+      "updateError": "სტატუსის განახლება ვერ მოხერხდა",
+      "updated": "სტატუსი განახლდა",
+      "updating": "სტატუსი ახლდება...",
+      "view": "დეტალების ნახვა"
+    },
+    "inquiryDetail": {
+      "close": "დახურვა",
+      "email": "ელფოსტა",
+      "language": "ენა",
+      "message": "შეტყობინება",
+      "notProvided": "არ არის მითითებული",
+      "phone": "ტელეფონი",
+      "submittedAt": "გაგზავნილია"
+    },
+    "noInquiries": "მოთხოვნები ჯერ არ არის",
+    "status": {
+      "new": "ახალი",
+      "replied": "პასუხგაცემული",
+      "seen": "ნანახი"
+    },
+    "table": {
+      "clientName": "კლიენტის სახელი",
+      "date": "თარიღი",
+      "email": "ელფოსტა",
+      "status": "სტატუსი",
+      "type": "ტიპი"
     }
   },
   "auth": {
@@ -196,15 +229,16 @@
     "title": "ავტორიზაცია"
   },
   "navigation": {
-    "home": "მთავარი",
-    "tours": "ტური",
-    "transfers": "ტრანსფერი",
-    "instructors": "ინსტრუქტორი",
-    "apartments": "ბინები",
     "about": "ჩვენ შესახებ",
+    "apartments": "ბინები",
     "contact": "კონტაქტი",
+    "home": "მთავარი",
+    "inquiries": "მოთხოვნები",
+    "instructors": "ინსტრუქტორი",
     "language": "ენა",
-    "menu": "მენიუ"
+    "menu": "მენიუ",
+    "tours": "ტური",
+    "transfers": "ტრანსფერი"
   },
   "home": {
     "title": "Powder Georgia",
@@ -266,9 +300,18 @@
     "email": "ელფოსტა",
     "phone": "ტელეფონი",
     "message": "შეტყობინება",
+    "messageHint": "მაქსიმუმ 2000 სიმბოლო",
+    "inquiryType": "მოთხოვნის ტიპი",
     "send": "გაგზავნა",
-    "phone_number": "+995 123 456 789",
-    "email_address": "info@powder.ge"
+    "sending": "იგზავნება...",
+    "success": "თქვენი შეტყობინება წარმატებით გაიგზავნა!",
+    "types": {
+      "general": "ზოგადი მოთხოვნა",
+      "tour": "ტურის დაჯავშნა",
+      "transfer": "ტრანსფერის დაჯავშნა",
+      "instructor": "ინსტრუქტორის მოთხოვნა",
+      "apartment": "ბინის დაჯავშნა"
+    }
   },
   "footer": {
     "copyright": "© 2024 Powder Georgia. ყველა უფლება დაცულია.",

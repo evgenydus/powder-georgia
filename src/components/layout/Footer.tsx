@@ -14,6 +14,7 @@ export const Footer = () => {
     { href: routes.transfers, label: t('navigation.transfers') },
     { href: routes.instructors, label: t('navigation.instructors') },
     { href: routes.apartments, label: t('navigation.apartments') },
+    { href: routes.contact, label: t('navigation.contact') },
   ]
 
   return (

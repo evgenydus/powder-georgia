@@ -33,10 +33,11 @@
     "editApartment": "Edit Apartment",
     "apartmentNotFound": "Apartment not found",
     "actions": {
-      "deleting": "Deleting...",
-      "deleted": "Deleted successfully",
+      "delete": "Delete",
       "deleteError": "Delete failed",
       "deleteErrorMessage": "An error occurred while deleting",
+      "deleted": "Deleted successfully",
+      "deleting": "Deleting...",
       "publishing": "Publishing...",
       "published": "Published successfully",
       "unpublishing": "Unpublishing...",
@@ -189,6 +190,38 @@
       "validation": {
         "required": "Required"
       }
+    },
+    "inquiries": "Inquiries",
+    "inquiryActions": {
+      "markNew": "Mark as New",
+      "markReplied": "Mark as Replied",
+      "markSeen": "Mark as Seen",
+      "updateError": "Failed to update status",
+      "updated": "Status updated",
+      "updating": "Updating status...",
+      "view": "View Details"
+    },
+    "inquiryDetail": {
+      "close": "Close",
+      "email": "Email",
+      "language": "Language",
+      "message": "Message",
+      "notProvided": "Not provided",
+      "phone": "Phone",
+      "submittedAt": "Submitted"
+    },
+    "noInquiries": "No inquiries yet",
+    "status": {
+      "new": "New",
+      "replied": "Replied",
+      "seen": "Seen"
+    },
+    "table": {
+      "clientName": "Client Name",
+      "date": "Date",
+      "email": "Email",
+      "status": "Status",
+      "type": "Type"
     }
   },
   "auth": {
@@ -203,15 +236,16 @@
     "title": "Log in"
   },
   "navigation": {
-    "home": "Home",
-    "tours": "Tours",
-    "transfers": "Transfers",
-    "instructors": "Instructors",
-    "apartments": "Apartments",
     "about": "About",
+    "apartments": "Apartments",
     "contact": "Contact",
+    "home": "Home",
+    "inquiries": "Inquiries",
+    "instructors": "Instructors",
     "language": "Language",
-    "menu": "Menu"
+    "menu": "Menu",
+    "tours": "Tours",
+    "transfers": "Transfers"
   },
   "home": {
     "title": "Powder Georgia",
@@ -281,9 +315,18 @@
     "email": "Email",
     "phone": "Phone",
     "message": "Message",
-    "send": "Send",
-    "phone_number": "+995 123 456 789",
-    "email_address": "info@powder.ge"
+    "messageHint": "Maximum 2000 characters",
+    "inquiryType": "Inquiry Type",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Your message has been sent successfully!",
+    "types": {
+      "general": "General Inquiry",
+      "tour": "Tour Booking",
+      "transfer": "Transfer Booking",
+      "instructor": "Instructor Inquiry",
+      "apartment": "Apartment Booking"
+    }
   },
   "footer": {
     "copyright": "© 2025 Powder Georgia. All rights reserved.",
