@@ -52,9 +52,17 @@ export default async function proxy(request: NextRequest) {
     // User is authenticated - continue with intl middleware and preserve auth cookies
     const intlResponse = intlMiddleware(request)
 
-    // Copy cookies from supabase response to intl response
+    // Copy cookies from supabase response to intl response (preserving all options)
     response.cookies.getAll().forEach((cookie) => {
-      intlResponse.cookies.set(cookie.name, cookie.value)
+      intlResponse.cookies.set(cookie.name, cookie.value, {
+        domain: cookie.domain,
+        expires: cookie.expires,
+        httpOnly: cookie.httpOnly,
+        maxAge: cookie.maxAge,
+        path: cookie.path,
+        sameSite: cookie.sameSite,
+        secure: cookie.secure,
+      })
     })
 
     return intlResponse
