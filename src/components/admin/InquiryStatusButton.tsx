@@ -1,11 +1,13 @@
 'use client'
 
+import { CheckCircle, Circle, Eye } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import useToast from '@/components/ui/hooks/useToast'
 
 import { Button } from '@/components/ui/Button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { supabase } from '@/lib/supabase/client'
 
@@ -20,12 +22,14 @@ type InquiryStatusButtonProps = {
 const getStatus = (isRead: boolean, isProcessed: boolean): InquiryStatus => {
   if (isProcessed) return 'replied'
   if (isRead) return 'seen'
+
   return 'new'
 }
 
 const getNextStatus = (current: InquiryStatus): InquiryStatus => {
   const order: InquiryStatus[] = ['new', 'seen', 'replied']
   const currentIndex = order.indexOf(current)
+
   return order[(currentIndex + 1) % order.length]
 }
 
@@ -33,6 +37,12 @@ const statusUpdates: Record<InquiryStatus, { is_processed: boolean; is_read: boo
   new: { is_processed: false, is_read: false },
   replied: { is_processed: true, is_read: true },
   seen: { is_processed: false, is_read: true },
+}
+
+const statusIcons: Record<InquiryStatus, typeof Circle> = {
+  new: Circle,
+  replied: CheckCircle,
+  seen: Eye,
 }
 
 export const InquiryStatusButton = ({
@@ -63,6 +73,7 @@ export const InquiryStatusButton = ({
 
     if (error) {
       toastError(t('updateError'), { error, message: t('updateError') })
+
       return
     }
 
@@ -70,9 +81,18 @@ export const InquiryStatusButton = ({
     router.refresh()
   }
 
+  const Icon = statusIcons[nextStatus]
+
   return (
-    <Button className="w-36" onClick={handleToggle} size="sm" variant="outline">
-      {buttonLabels[nextStatus]}
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button onClick={handleToggle} size="icon-sm" variant="ghost">
+          <Icon className="size-4" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{buttonLabels[nextStatus]}</p>
+      </TooltipContent>
+    </Tooltip>
   )
 }
