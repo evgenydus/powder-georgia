@@ -19,6 +19,9 @@
   },
   "admin": {
     "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "published": "published",
+    "draft": "draft",
     "apartments": "Apartments",
     "createNewTour": "Create New Tour",
     "editTour": "Edit Tour",
@@ -224,6 +227,7 @@
   "errors": {
     "notFound": "Page not found",
     "serverError": "Server error",
-    "tryAgain": "Try again"
+    "tryAgain": "Try again",
+    "unknownError": "An unexpected error occurred"
   }
 }

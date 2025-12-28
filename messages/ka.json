@@ -11,6 +11,10 @@
     }
   },
   "admin": {
+    "title": "ადმინი",
+    "dashboard": "დაფა",
+    "published": "გამოქვეყნებული",
+    "draft": "მონახაზი",
     "apartments": "ბინები",
     "createNewTour": "ახალი ტურის შექმნა",
     "editTour": "ტურის რედაქტირება",
@@ -18,7 +22,6 @@
     "tourNotFound": "ტური ვერ მოიძებნა",
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
-    "title": "ადმინი",
     "actions": {
       "deleting": "იშლება...",
       "deleted": "წარმატებით წაიშალა",
@@ -209,6 +212,7 @@
   "errors": {
     "notFound": "გვერდი ვერ მოიძებნა",
     "serverError": "სერვერის შეცდომა",
-    "tryAgain": "ხელახლა სცადეთ"
+    "tryAgain": "ხელახლა სცადეთ",
+    "unknownError": "მოხდა მოულოდნელი შეცდომა"
   }
 }

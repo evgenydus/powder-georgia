@@ -1,4 +1,5 @@
 export * from './Button'
 export { ConfirmDialog } from './ConfirmDialog'
 export { ImageGallery } from './ImageGallery'
+export { Skeleton } from './Skeleton'
 export { default as Toaster } from './Toaster'

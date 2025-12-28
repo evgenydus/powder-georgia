@@ -111,3 +111,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .bg-gradient-fade {
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      color-mix(in oklch, var(--color-primary) 75%, transparent) 40%,
+      color-mix(in oklch, var(--color-primary) 75%, transparent) 60%,
+      transparent 100%
+    );
+  }
+}
