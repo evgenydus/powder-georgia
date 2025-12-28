@@ -1,6 +1,5 @@
 export { AmenitiesSection } from './AmenitiesSection'
 export { CapacityPriceSection } from './CapacityPriceSection'
 export { DescriptionsSection } from './DescriptionsSection'
-export { SlugSection } from './SlugSection'
 export { TitlesSection } from './TitlesSection'
 export type { RegisterOnlyProps, SectionProps } from './types'

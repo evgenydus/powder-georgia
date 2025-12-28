@@ -3,13 +3,13 @@
 import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/Button'
+import { SlugSection } from './SlugSection'
 import {
   DescriptionsSection,
   EquipmentSection,
   GroupSizeSection,
   ImagesSection,
   MetricsSection,
-  SlugSection,
   TitlesSection,
   VerticalDropSection,
 } from './tour-form'
@@ -38,7 +38,12 @@ const TourForm = ({ tour }: TourFormProps) => {
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <TitlesSection errors={errors} onTitleEnBlur={handleTitleEnBlur} register={register} />
-      <SlugSection currentEntityId={tour?.id} errors={errors} register={register} />
+      <SlugSection
+        currentEntityId={tour?.id}
+        errors={errors}
+        register={register}
+        tableName="tours"
+      />
       <DescriptionsSection errors={errors} register={register} />
       <MetricsSection register={register} />
       <GroupSizeSection register={register} />

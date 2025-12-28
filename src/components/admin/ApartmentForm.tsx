@@ -7,9 +7,9 @@ import {
   AmenitiesSection,
   CapacityPriceSection,
   DescriptionsSection,
-  SlugSection,
   TitlesSection,
 } from './apartment-form'
+import { SlugSection } from './SlugSection'
 import { ImagesSection } from './tour-form'
 import { useApartmentForm } from './useApartmentForm'
 
@@ -36,7 +36,12 @@ const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
       <TitlesSection errors={errors} onTitleEnBlur={handleTitleEnBlur} register={register} />
-      <SlugSection currentEntityId={apartment?.id} errors={errors} register={register} />
+      <SlugSection
+        currentEntityId={apartment?.id}
+        errors={errors}
+        register={register}
+        tableName="apartments"
+      />
       <DescriptionsSection errors={errors} register={register} />
       <CapacityPriceSection register={register} />
       <AmenitiesSection register={register} />

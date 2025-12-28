@@ -2,27 +2,25 @@
 
 import { useCallback, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import type { ChangeHandler } from 'react-hook-form'
+import type { ChangeHandler, FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
 
-import type { SectionProps } from './types'
-import { FormField } from '../FormField'
+import { FormField } from './FormField'
 
 import { supabase } from '@/lib/supabase'
 
-type SlugSectionProps = SectionProps & {
+type SlugSectionProps = {
   currentEntityId?: string
-  tableName?: string
+  errors: FieldErrors<{ slug: string }>
+  register: (name: 'slug') => UseFormRegisterReturn<'slug'>
+  tableName: 'apartments' | 'tours'
 }
 
-const SlugSection = ({
-  currentEntityId,
-  errors,
-  register,
-  tableName = 'tours',
-}: SlugSectionProps) => {
+const SlugSection = ({ currentEntityId, errors, register, tableName }: SlugSectionProps) => {
   const t = useTranslations()
   const [slugExists, setSlugExists] = useState(false)
   const [isChecking, setIsChecking] = useState(false)
+
+  const formKey = `${tableName.slice(0, -1)}Form`
 
   const checkSlugExists = useCallback(
     async (slug: string) => {
@@ -60,9 +58,9 @@ const SlugSection = ({
 
   const getErrorText = () => {
     if (errors.slug?.message) return errors.slug.message
-    if (slugExists) return t('admin.tourForm.slug.exists')
+    if (slugExists) return t(`admin.${formKey}.slug.exists`)
 
-    return t('admin.tourForm.validation.required')
+    return t(`admin.${formKey}.validation.required`)
   }
 
   return (
@@ -71,11 +69,11 @@ const SlugSection = ({
         error={hasError}
         errorText={hasError ? getErrorText() : undefined}
         id="slug"
-        label={`${t('admin.tourForm.slug.label')}${isChecking ? ' ...' : ''}`}
+        label={`${t(`admin.${formKey}.slug.label`)}${isChecking ? ' ...' : ''}`}
         onBlur={handleBlur}
-        placeholder="unique-tour-slug"
+        placeholder="unique-slug"
         required
-        // eslint-disable-next-line react/jsx-props-no-spreading
+        //eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       />
     </section>
