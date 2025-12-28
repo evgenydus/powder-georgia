@@ -22,6 +22,9 @@
     "tourNotFound": "Тур не найден",
     "tours": "Туры",
     "transfers": "Трансферы",
+    "createNewApartment": "Создать апартамент",
+    "editApartment": "Редактировать апартамент",
+    "apartmentNotFound": "Апартамент не найден",
     "actions": {
       "deleting": "Удаление...",
       "deleted": "Успешно удалено",
@@ -121,6 +124,64 @@
         "uploading": "Загрузка...",
         "uploadSuccess": "Изображения успешно загружены"
       }
+    },
+    "apartmentForm": {
+      "amenities": {
+        "heading": "Удобства",
+        "labelEn": "Удобства (EN)",
+        "labelKa": "Удобства (KA)",
+        "labelRu": "Удобства (RU)"
+      },
+      "area": {
+        "label": "Площадь (кв.м)",
+        "placeholder": "Необязательно"
+      },
+      "bathrooms": {
+        "label": "Ванные"
+      },
+      "bedrooms": {
+        "label": "Спальни"
+      },
+      "capacity": {
+        "label": "Вместимость (гостей)"
+      },
+      "descriptions": {
+        "heading": "Описания",
+        "labelEn": "Описание (EN)",
+        "labelKa": "Описание (KA)",
+        "labelRu": "Описание (RU)"
+      },
+      "metrics": {
+        "heading": "Детали"
+      },
+      "price": {
+        "label": "Цена за ночь (USD)"
+      },
+      "slug": {
+        "exists": "Этот слаг уже занят",
+        "label": "Слаг"
+      },
+      "submit": {
+        "create": "Создать апартамент",
+        "update": "Обновить апартамент"
+      },
+      "titles": {
+        "heading": "Заголовки",
+        "labelEn": "Заголовок (EN)",
+        "labelKa": "Заголовок (KA)",
+        "labelRu": "Заголовок (RU)"
+      },
+      "toast": {
+        "created": "Апартамент создан!",
+        "creating": "Создание апартамента...",
+        "errorMessage": "Не удалось сохранить апартамент",
+        "errorTitle": "Ошибка",
+        "updated": "Апартамент обновлен!",
+        "updating": "Обновление апартамента..."
+      },
+      "validation": {
+        "required": "Обязательно"
+      }
     }
   },
   "auth": {
@@ -185,9 +246,14 @@
     "title": "Апартаменты",
     "description": "Комфортное жилье",
     "capacity": "Вместимость",
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные",
+    "area": "Площадь",
     "amenities": "Удобства",
     "pricePerNight": "Цена за ночь",
-    "bookNow": "Забронировать"
+    "night": "ночь",
+    "bookNow": "Забронировать",
+    "gallery": "Галерея"
   },
   "about": {
     "title": "О нас",

@@ -87,12 +87,15 @@ export interface Apartment {
   description_ka?: string
   description_ru?: string
   capacity: number
+  bedrooms: number
+  bathrooms: number
+  area_sqm?: number
   amenities_en?: string
   amenities_ka?: string
   amenities_ru?: string
   price_per_night_usd: number
   images: string[]
-  is_active: boolean
+  is_published: boolean
   created_at: string
   updated_at: string
 }

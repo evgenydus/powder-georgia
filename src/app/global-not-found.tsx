@@ -20,6 +20,7 @@ const GlobalNotFound = () => {
         <div className="flex min-h-screen flex-col items-center justify-center px-4 text-center">
           <h1 className="text-foreground mb-2 text-6xl font-bold">404</h1>
           <p className="text-muted-foreground mb-6 text-lg">Page not found</p>
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a
             className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-lg px-6 py-2 font-medium transition-colors"
             href="/"

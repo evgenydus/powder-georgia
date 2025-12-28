@@ -23,10 +23,10 @@ async function getTourById(id: string): Promise<Tour | null> {
   }
 }
 
-const EditTourPage = async ({ params }: { params: { id: string } }) => {
+const EditTourPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const t = await getTranslations('admin')
-  const paramsData = await params
-  const tour = await getTourById(paramsData.id)
+  const { id } = await params
+  const tour = await getTourById(id)
 
   if (!tour) {
     return <div>{t('tourNotFound')}</div>

@@ -1,2 +1,3 @@
 export * from './AdminSidebar'
-export * from './DeleteTourButton'
+export * from './DeleteEntityButton'
+export * from './PublishEntityButton'
