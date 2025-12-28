@@ -300,6 +300,7 @@
     "email": "Email",
     "phone": "Телефон",
     "message": "Сообщение",
+    "messageHint": "Максимум 2000 символов",
     "inquiryType": "Тип запроса",
     "send": "Отправить",
     "sending": "Отправка...",

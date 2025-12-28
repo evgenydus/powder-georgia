@@ -2,6 +2,7 @@
 
 import type { ContactFormData } from './contactSchema'
 
+import { locales } from '@/i18n/config'
 import { sendInquiryNotification } from '@/lib/email'
 import { createClient } from '@/lib/supabase/server'
 
@@ -15,6 +16,7 @@ export const submitInquiry = async (
   language: string,
 ): Promise<SubmitInquiryResult> => {
   try {
+    const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
 
     const { email, inquiryType, message, name, phone } = data
@@ -24,7 +26,7 @@ export const submitInquiry = async (
       client_name: name,
       client_phone: phone || null,
       inquiry_type: inquiryType,
-      language,
+      language: validLanguage,
       message: message,
     })
 
@@ -34,15 +36,19 @@ export const submitInquiry = async (
       return { error: 'Failed to submit inquiry', success: false }
     }
 
-    // Send email notification
-    await sendInquiryNotification({
+    // Send email notification (don't fail the request if email fails)
+    const emailResult = await sendInquiryNotification({
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
       inquiryType: inquiryType,
-      language,
+      language: validLanguage,
       message: message,
     })
+
+    if (!emailResult.success) {
+      console.error('Email notification failed:', emailResult.error)
+    }
 
     return { success: true }
   } catch (error) {

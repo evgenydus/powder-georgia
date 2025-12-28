@@ -315,6 +315,7 @@
     "email": "Email",
     "phone": "Phone",
     "message": "Message",
+    "messageHint": "Maximum 2000 characters",
     "inquiryType": "Inquiry Type",
     "send": "Send Message",
     "sending": "Sending...",

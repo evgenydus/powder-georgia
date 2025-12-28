@@ -93,7 +93,8 @@ export const ContactForm = () => {
         <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="message">
           {t('contact.message')} *
         </label>
-        <Textarea id="message" rows={5} {...register('message')} />
+        <Textarea id="message" maxLength={2000} rows={5} {...register('message')} />
+        <p className="text-muted-foreground mt-1 text-xs">{t('contact.messageHint')}</p>
         {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
       </div>
 

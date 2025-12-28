@@ -2,6 +2,14 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+const escapeHtml = (str: string) =>
+  str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+
 type InquiryEmailData = {
   clientEmail: string
   clientName: string
@@ -23,20 +31,26 @@ export const sendInquiryNotification = async (data: InquiryEmailData) => {
   }
 
   try {
+    const safeName = escapeHtml(clientName)
+    const safeEmail = escapeHtml(clientEmail)
+    const safePhone = clientPhone ? escapeHtml(clientPhone) : ''
+    const safeType = escapeHtml(inquiryType)
+    const safeMessage = escapeHtml(message)
+
     const { error: emailError } = await resend.emails.send({
       from: 'Powder Georgia <onboarding@resend.dev>',
       html: `
-        <h2>New Inquiry from ${clientName}</h2>
-        <p><strong>Type:</strong> ${inquiryType}</p>
-        <p><strong>Name:</strong> ${clientName}</p>
-        <p><strong>Email:</strong> ${clientEmail}</p>
-        ${clientPhone ? `<p><strong>Phone:</strong> ${clientPhone}</p>` : ''}
+        <h2>New Inquiry from ${safeName}</h2>
+        <p><strong>Type:</strong> ${safeType}</p>
+        <p><strong>Name:</strong> ${safeName}</p>
+        <p><strong>Email:</strong> ${safeEmail}</p>
+        ${safePhone ? `<p><strong>Phone:</strong> ${safePhone}</p>` : ''}
         <p><strong>Language:</strong> ${language}</p>
         <hr />
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p>${safeMessage}</p>
       `,
-      subject: `New ${inquiryType} inquiry from ${clientName}`,
+      subject: `New ${safeType} inquiry from ${safeName}`,
       to: adminEmail,
     })
 
