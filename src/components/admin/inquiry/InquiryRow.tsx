@@ -3,10 +3,10 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 
-import { DeleteEntityButton } from '@/components/admin/DeleteEntityButton'
 import { InquiryDetailDialog } from './InquiryDetailDialog'
 import { InquiryStatusBadge } from './InquiryStatusBadge'
 import { InquiryStatusButton } from './InquiryStatusButton'
+import { DeleteEntityButton } from '../DeleteEntityButton'
 
 import type { Inquiry } from '@/types'
 

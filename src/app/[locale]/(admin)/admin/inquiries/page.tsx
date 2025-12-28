@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { InquiryRow } from '@/components/admin/InquiryRow'
+import { InquiryRow } from '@/components/admin'
 
 import { createClient } from '@/lib/supabase/server'
 import type { Inquiry } from '@/types'
@@ -15,12 +15,14 @@ async function getInquiries(): Promise<Inquiry[]> {
 
     if (error) {
       console.error('Supabase error:', error)
+
       return []
     }
 
     return data || []
   } catch (error) {
     console.error('Error fetching inquiries:', error)
+
     return []
   }
 }
@@ -64,7 +66,7 @@ const AdminInquiriesPage = async () => {
             </thead>
             <tbody className="divide-border divide-y">
               {inquiries.map((inquiry) => (
-                <InquiryRow inquiry={inquiry} key={inquiry.id} />
+                <InquiryRow key={inquiry.id} inquiry={inquiry} />
               ))}
             </tbody>
           </table>

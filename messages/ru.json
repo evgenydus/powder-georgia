@@ -196,12 +196,12 @@
     },
     "inquiryDetail": {
       "close": "Закрыть",
+      "email": "Email",
       "language": "Язык",
       "message": "Сообщение",
       "notProvided": "Не указано",
       "phone": "Телефон",
-      "submittedAt": "Отправлено",
-      "title": "Детали запроса"
+      "submittedAt": "Отправлено"
     },
     "noInquiries": "Запросов пока нет",
     "status": {

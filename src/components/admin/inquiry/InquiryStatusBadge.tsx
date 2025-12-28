@@ -12,6 +12,7 @@ type InquiryStatusBadgeProps = {
 const getStatus = (isRead: boolean, isProcessed: boolean): InquiryStatus => {
   if (isProcessed) return 'replied'
   if (isRead) return 'seen'
+
   return 'new'
 }
 

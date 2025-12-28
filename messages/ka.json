@@ -196,12 +196,12 @@
     },
     "inquiryDetail": {
       "close": "დახურვა",
+      "email": "ელფოსტა",
       "language": "ენა",
       "message": "შეტყობინება",
       "notProvided": "არ არის მითითებული",
       "phone": "ტელეფონი",
-      "submittedAt": "გაგზავნილია",
-      "title": "მოთხოვნის დეტალები"
+      "submittedAt": "გაგზავნილია"
     },
     "noInquiries": "მოთხოვნები ჯერ არ არის",
     "status": {

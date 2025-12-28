@@ -203,12 +203,12 @@
     },
     "inquiryDetail": {
       "close": "Close",
+      "email": "Email",
       "language": "Language",
       "message": "Message",
       "notProvided": "Not provided",
       "phone": "Phone",
-      "submittedAt": "Submitted",
-      "title": "Inquiry Details"
+      "submittedAt": "Submitted"
     },
     "noInquiries": "No inquiries yet",
     "status": {
