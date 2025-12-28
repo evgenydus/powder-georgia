@@ -35,7 +35,7 @@ export const InquiryDetailDialog = ({ inquiry, onOpenChange, open }: InquiryDeta
 
   return (
     <Dialog onOpenChange={onOpenChange} open={open}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-xl">
         <DialogHeader>
           <DialogTitle>{inquiry.client_name}</DialogTitle>
           <DialogDescription className="flex items-center gap-2">
