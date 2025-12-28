@@ -10,7 +10,7 @@ import useToast from '@/components/ui/hooks/useToast'
 import { Button } from '@/components/ui/Button'
 import { ConfirmDialog } from '@/components/ui/ConfirmDialog'
 
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 
 type DeleteEntityButtonProps = {
   entityId: string

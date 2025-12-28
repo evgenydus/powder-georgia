@@ -2,11 +2,12 @@ import { getTranslations } from 'next-intl/server'
 
 import { TourForm } from '@/components/admin/TourForm'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
 async function getTourById(id: string): Promise<Tour | null> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase.from('tours').select('*').eq('id', id).single()
 
     if (error) {

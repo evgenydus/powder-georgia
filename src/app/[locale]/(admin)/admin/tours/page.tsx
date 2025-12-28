@@ -7,11 +7,12 @@ import { EditButton } from '@/components/admin/EditButton'
 import { PublishEntityButton } from '@/components/admin/PublishEntityButton'
 
 import { Link } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
 async function getTours(): Promise<Tour[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('tours')
       .select('*')

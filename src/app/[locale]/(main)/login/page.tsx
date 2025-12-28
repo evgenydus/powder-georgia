@@ -9,7 +9,7 @@ import { useAuth } from '@/components/auth'
 import { Button } from '@/components/ui'
 
 import { useRouter } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 
 const LoginPage = () => {
   const t = useTranslations()

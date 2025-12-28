@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
 async function getInstructorBySlug(slug: string): Promise<Instructor | null> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase.from('instructors').select('*').eq('slug', slug).single()
 
     if (error) {
@@ -22,8 +23,8 @@ async function getInstructorBySlug(slug: string): Promise<Instructor | null> {
   }
 }
 
-const InstructorPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params
+const InstructorPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params
   const locale = await getLocale()
   const t = await getTranslations()
   const instructor = await getInstructorBySlug(slug)

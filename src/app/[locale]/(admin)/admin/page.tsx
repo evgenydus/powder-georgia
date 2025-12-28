@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import { routes } from '@/constants'
 
 import { Link } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 
 type EntityStats = {
   active: number
@@ -12,6 +12,7 @@ type EntityStats = {
 }
 
 async function getEntityCounts(): Promise<Record<string, EntityStats>> {
+  const supabase = await createClient()
   const tables = [
     { activeField: 'is_published', name: 'tours' },
     { activeField: 'is_active', name: 'transfers' },

@@ -7,11 +7,12 @@ import { EditButton } from '@/components/admin/EditButton'
 import { PublishEntityButton } from '@/components/admin/PublishEntityButton'
 
 import { Link } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
 async function getApartments(): Promise<Apartment[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('apartments')
       .select('*')
