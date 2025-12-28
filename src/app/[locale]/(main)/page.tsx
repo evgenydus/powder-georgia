@@ -2,11 +2,12 @@ import Image from 'next/image'
 
 import { CTASection, FeaturedToursSection, HeroSection } from '@/components/home'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
 async function getTours(): Promise<Tour[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('tours')
       .select('*')

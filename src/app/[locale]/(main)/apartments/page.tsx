@@ -2,11 +2,12 @@ import { getTranslations } from 'next-intl/server'
 
 import { ApartmentGrid } from '@/components/apartments'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
 async function getApartments(): Promise<Apartment[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('apartments')
       .select('*')

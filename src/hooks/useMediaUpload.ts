@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from 'react'
 
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 import type { Media, MediaEntityType } from '@/types'
 
 const maxFileSize = 10 * 1024 * 1024 // 10MB

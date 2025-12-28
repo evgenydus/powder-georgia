@@ -2,11 +2,12 @@ import { getTranslations } from 'next-intl/server'
 
 import { ApartmentForm } from '@/components/admin/ApartmentForm'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
 async function getApartmentById(id: string): Promise<Apartment | null> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase.from('apartments').select('*').eq('id', id).single()
 
     if (error) {

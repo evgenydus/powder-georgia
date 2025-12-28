@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Transfer } from '@/types'
 
 async function getTransferBySlug(slug: string): Promise<Transfer | null> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase.from('transfers').select('*').eq('slug', slug).single()
 
     if (error) {
@@ -22,8 +23,8 @@ async function getTransferBySlug(slug: string): Promise<Transfer | null> {
   }
 }
 
-const TransferPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params
+const TransferPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params
   const locale = await getLocale()
   const t = await getTranslations()
   const transfer = await getTransferBySlug(slug)

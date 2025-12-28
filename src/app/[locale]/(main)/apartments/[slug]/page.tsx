@@ -8,10 +8,11 @@ import { Button, ImageGallery } from '@/components/ui'
 
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
 async function getApartmentBySlug(slug: string): Promise<Apartment | null> {
+  const supabase = await createClient()
   const { data, error } = await supabase
     .from('apartments')
     .select('*')

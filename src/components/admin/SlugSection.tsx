@@ -6,7 +6,7 @@ import type { ChangeHandler, FieldErrors, UseFormRegisterReturn } from 'react-ho
 
 import { FormField } from './FormField'
 
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 
 type SlugSectionProps = {
   currentEntityId?: string

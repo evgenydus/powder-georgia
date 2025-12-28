@@ -12,7 +12,7 @@ import { routes } from '@/constants'
 import { getInitialValues, type TourFormData, tourSchema } from './tourSchema'
 
 import { useRouter } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 import type { Tour } from '@/types'
 
 export const useTourForm = (tour?: Tour) => {

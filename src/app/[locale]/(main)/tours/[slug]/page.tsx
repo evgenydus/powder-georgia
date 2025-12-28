@@ -3,11 +3,12 @@ import { getLocale, getTranslations } from 'next-intl/server'
 
 import { ImageGallery } from '@/components/ui'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
 async function getTourBySlug(slug: string): Promise<Tour | null> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('tours')
       .select('*')

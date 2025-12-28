@@ -7,7 +7,7 @@ import useToast from '@/components/ui/hooks/useToast'
 
 import { Button } from '@/components/ui/Button'
 
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 
 type PublishEntityButtonProps = {
   entityId: string

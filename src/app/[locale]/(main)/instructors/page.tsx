@@ -2,11 +2,12 @@ import { getTranslations } from 'next-intl/server'
 
 import { InstructorGrid } from '@/components/instructors'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
 async function getInstructors(): Promise<Instructor[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('instructors')
       .select('*')

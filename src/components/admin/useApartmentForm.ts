@@ -12,7 +12,7 @@ import { routes } from '@/constants'
 import { type ApartmentFormData, apartmentSchema, getInitialValues } from './apartmentSchema'
 
 import { useRouter } from '@/i18n/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase/client'
 import type { Apartment } from '@/types'
 
 export const useApartmentForm = (apartment?: Apartment) => {

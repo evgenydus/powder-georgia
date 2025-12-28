@@ -2,11 +2,12 @@ import { getTranslations } from 'next-intl/server'
 
 import { TransferGrid } from '@/components/transfers'
 
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase/server'
 import type { Transfer } from '@/types'
 
 async function getTransfers(): Promise<Transfer[]> {
   try {
+    const supabase = await createClient()
     const { data, error } = await supabase
       .from('transfers')
       .select('*')
