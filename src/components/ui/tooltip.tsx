@@ -18,7 +18,7 @@ const TooltipProvider = ({
   )
 }
 
-const Tooltip = ({ ...props }: React.ComponentProps<typeof TooltipPrimitive.Root>) => {
+const TooltipRoot = ({ ...props }: React.ComponentProps<typeof TooltipPrimitive.Root>) => {
   return (
     <TooltipProvider>
       <TooltipPrimitive.Root data-slot="tooltip" {...props} />
@@ -57,4 +57,16 @@ const TooltipContent = ({
   )
 }
 
-export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }
+type TooltipProps = {
+  children: React.ReactNode
+  content: React.ReactNode
+}
+
+const Tooltip = ({ children, content }: TooltipProps) => (
+  <TooltipRoot>
+    <TooltipTrigger asChild>{children}</TooltipTrigger>
+    <TooltipContent>{content}</TooltipContent>
+  </TooltipRoot>
+)
+
+export { Tooltip, TooltipContent, TooltipProvider, TooltipRoot, TooltipTrigger }

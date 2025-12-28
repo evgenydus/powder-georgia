@@ -26,10 +26,11 @@
     "editApartment": "Редактировать апартамент",
     "apartmentNotFound": "Апартамент не найден",
     "actions": {
-      "deleting": "Удаление...",
-      "deleted": "Успешно удалено",
+      "delete": "Удалить",
       "deleteError": "Ошибка удаления",
       "deleteErrorMessage": "Произошла ошибка при удалении",
+      "deleted": "Успешно удалено",
+      "deleting": "Удаление...",
       "publishing": "Публикация...",
       "published": "Успешно опубликовано",
       "unpublishing": "Снятие с публикации...",

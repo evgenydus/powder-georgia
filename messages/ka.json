@@ -26,10 +26,11 @@
     "editApartment": "ბინის რედაქტირება",
     "apartmentNotFound": "ბინა ვერ მოიძებნა",
     "actions": {
-      "deleting": "იშლება...",
-      "deleted": "წარმატებით წაიშალა",
+      "delete": "წაშლა",
       "deleteError": "წაშლა ვერ მოხერხდა",
       "deleteErrorMessage": "შეცდომა წაშლისას",
+      "deleted": "წარმატებით წაიშალა",
+      "deleting": "იშლება...",
       "publishing": "ქვეყნდება...",
       "published": "წარმატებით გამოქვეყნდა",
       "unpublishing": "იმალება...",

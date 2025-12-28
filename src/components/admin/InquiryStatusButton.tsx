@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import useToast from '@/components/ui/hooks/useToast'
 
 import { Button } from '@/components/ui/Button'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Tooltip } from '@/components/ui/tooltip'
 
 import { supabase } from '@/lib/supabase/client'
 
@@ -84,15 +84,10 @@ export const InquiryStatusButton = ({
   const Icon = statusIcons[nextStatus]
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button onClick={handleToggle} size="icon-sm" variant="ghost">
-          <Icon className="size-4" />
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>{buttonLabels[nextStatus]}</p>
-      </TooltipContent>
+    <Tooltip content={buttonLabels[nextStatus]}>
+      <Button onClick={handleToggle} size="icon-sm" variant="ghost">
+        <Icon className="size-4" />
+      </Button>
     </Tooltip>
   )
 }

@@ -25,7 +25,7 @@ export const InquiryRow = ({ inquiry }: InquiryRowProps) => {
       <tr>
         <td className="px-6 py-4 text-sm whitespace-nowrap">
           <button
-            className="text-foreground hover:text-accent font-medium hover:underline"
+            className="text-foreground hover:text-accent cursor-pointer font-medium hover:underline"
             onClick={() => setIsDialogOpen(true)}
             type="button"
           >

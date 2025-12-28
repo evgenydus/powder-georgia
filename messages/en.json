@@ -33,10 +33,11 @@
     "editApartment": "Edit Apartment",
     "apartmentNotFound": "Apartment not found",
     "actions": {
-      "deleting": "Deleting...",
-      "deleted": "Deleted successfully",
+      "delete": "Delete",
       "deleteError": "Delete failed",
       "deleteErrorMessage": "An error occurred while deleting",
+      "deleted": "Deleted successfully",
+      "deleting": "Deleting...",
       "publishing": "Publishing...",
       "published": "Published successfully",
       "unpublishing": "Unpublishing...",
