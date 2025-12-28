@@ -1,12 +1,14 @@
 import { Car, Home, Map, Mountain } from 'lucide-react'
-import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 
+import { routes } from '@/constants'
+
+import { Link } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase'
 
 type EntityStats = {
-  total: number
   active: number
+  total: number
 }
 
 async function getEntityCounts(): Promise<Record<string, EntityStats>> {
@@ -14,20 +16,26 @@ async function getEntityCounts(): Promise<Record<string, EntityStats>> {
     { activeField: 'is_published', name: 'tours' },
     { activeField: 'is_active', name: 'transfers' },
     { activeField: 'is_active', name: 'instructors' },
-    { activeField: 'is_active', name: 'apartments' },
+    { activeField: 'is_published', name: 'apartments' },
   ]
 
+  const queries = tables.flatMap(({ activeField, name }) => [
+    supabase.from(name).select('*', { count: 'exact', head: true }),
+    supabase.from(name).select('*', { count: 'exact', head: true }).eq(activeField, true),
+  ])
+
+  const responses = await Promise.all(queries)
   const results: Record<string, EntityStats> = {}
 
-  for (const { activeField, name } of tables) {
-    const { count: total } = await supabase.from(name).select('*', { count: 'exact', head: true })
-    const { count: active } = await supabase
-      .from(name)
-      .select('*', { count: 'exact', head: true })
-      .eq(activeField, true)
+  tables.forEach(({ name }, index) => {
+    const totalResponse = responses[index * 2]
+    const activeResponse = responses[index * 2 + 1]
 
-    results[name] = { active: active ?? 0, total: total ?? 0 }
-  }
+    results[name] = {
+      active: activeResponse.count ?? 0,
+      total: totalResponse.count ?? 0,
+    }
+  })
 
   return results
 }
@@ -44,10 +52,10 @@ const AdminDashboard = async () => {
   const counts = await getEntityCounts()
 
   const cards = [
-    { key: 'tours', label: t('navigation.tours') },
-    { key: 'transfers', label: t('navigation.transfers') },
-    { key: 'instructors', label: t('navigation.instructors') },
-    { key: 'apartments', label: t('navigation.apartments') },
+    { href: routes.adminTours, key: 'tours', label: t('navigation.tours') },
+    { href: routes.adminTransfers, key: 'transfers', label: t('navigation.transfers') },
+    { href: routes.adminInstructors, key: 'instructors', label: t('navigation.instructors') },
+    { href: routes.adminApartments, key: 'apartments', label: t('navigation.apartments') },
   ]
 
   return (
@@ -55,7 +63,7 @@ const AdminDashboard = async () => {
       <h1 className="mb-8 text-3xl font-bold">{t('admin.dashboard')}</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {cards.map(({ key, label }) => {
+        {cards.map(({ href, key, label }) => {
           const Icon = icons[key as keyof typeof icons]
           const stats = counts[key]
 
@@ -63,7 +71,7 @@ const AdminDashboard = async () => {
             <Link
               key={key}
               className="bg-card hover:bg-muted rounded-lg p-6 transition-colors"
-              href={`/admin/${key}`}
+              href={href}
             >
               <div className="mb-4 flex items-center justify-between">
                 <Icon className="text-accent size-8" />

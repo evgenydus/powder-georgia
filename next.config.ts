@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
   },
   images: {
-    qualities: [100, 75],
+    qualities: [75, 100],
     remotePatterns: [
       {
         hostname: '**.supabase.co',

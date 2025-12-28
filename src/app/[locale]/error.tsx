@@ -22,7 +22,7 @@ const ErrorPage = ({ error, reset }: ErrorProps) => {
     <div className="flex min-h-[50vh] flex-col items-center justify-center px-4 text-center">
       <AlertTriangle className="text-destructive mb-4 size-16" />
       <h1 className="text-foreground mb-2 text-2xl font-bold">{t('errors.serverError')}</h1>
-      <p className="text-muted-foreground mb-6">{error.message || t('errors.serverError')}</p>
+      <p className="text-muted-foreground mb-6">{error.message || t('errors.unknownError')}</p>
       <Button onClick={reset} variant="outline">
         {t('errors.tryAgain')}
       </Button>
