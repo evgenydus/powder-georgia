@@ -266,9 +266,17 @@
     "email": "ელფოსტა",
     "phone": "ტელეფონი",
     "message": "შეტყობინება",
+    "inquiryType": "მოთხოვნის ტიპი",
     "send": "გაგზავნა",
-    "phone_number": "+995 123 456 789",
-    "email_address": "info@powder.ge"
+    "sending": "იგზავნება...",
+    "success": "თქვენი შეტყობინება წარმატებით გაიგზავნა!",
+    "types": {
+      "general": "ზოგადი მოთხოვნა",
+      "tour": "ტურის დაჯავშნა",
+      "transfer": "ტრანსფერის დაჯავშნა",
+      "instructor": "ინსტრუქტორის მოთხოვნა",
+      "apartment": "ბინის დაჯავშნა"
+    }
   },
   "footer": {
     "copyright": "© 2024 Powder Georgia. ყველა უფლება დაცულია.",

@@ -266,9 +266,17 @@
     "email": "Email",
     "phone": "Телефон",
     "message": "Сообщение",
+    "inquiryType": "Тип запроса",
     "send": "Отправить",
-    "phone_number": "+995 123 456 789",
-    "email_address": "info@powder.ge"
+    "sending": "Отправка...",
+    "success": "Ваше сообщение успешно отправлено!",
+    "types": {
+      "general": "Общий запрос",
+      "tour": "Бронирование тура",
+      "transfer": "Бронирование трансфера",
+      "instructor": "Запрос инструктора",
+      "apartment": "Бронирование апартамента"
+    }
   },
   "footer": {
     "copyright": "© 2024 Powder Georgia. Все права защищены.",

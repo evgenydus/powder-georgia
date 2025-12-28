@@ -44,3 +44,8 @@ export const vehicleTypes = {
   suv: 'SUV',
   van: 'Van',
 } as const
+
+export const contact = {
+  email: 'info@powder.ge',
+  phone: '+995 123 456 789',
+} as const
