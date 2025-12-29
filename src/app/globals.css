@@ -28,6 +28,8 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-info-foreground: var(--info-foreground);
+  --color-info: var(--info);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -79,6 +81,10 @@
 
   /* Destructive = red */
   --destructive: oklch(0.65 0.2 25);
+
+  /* Info = teal (#11576d) */
+  --info: oklch(0.38 0.08 220);
+  --info-foreground: oklch(0.98 0 0);
 
   /* Border/Input */
   --border: oklch(1 0 0 / 12%);
