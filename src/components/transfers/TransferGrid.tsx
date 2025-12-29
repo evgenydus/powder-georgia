@@ -1,22 +1,26 @@
+import { useTranslations } from 'next-intl'
+
 import { TransferCard } from './TransferCard'
 
 import type { Transfer } from '@/types'
 
-interface TransferGridProps {
+type TransferGridProps = {
   transfers: Transfer[]
 }
 
 export const TransferGrid = ({ transfers }: TransferGridProps) => {
+  const t = useTranslations()
+
   if (transfers.length === 0) {
     return (
       <div className="py-12 text-center">
-        <p className="text-muted-foreground">No transfers available</p>
+        <p className="text-muted-foreground">{t('transfers.empty')}</p>
       </div>
     )
   }
 
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="space-y-4">
       {transfers.map((transfer) => (
         <TransferCard key={transfer.id} transfer={transfer} />
       ))}

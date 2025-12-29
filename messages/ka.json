@@ -22,6 +22,9 @@
     "tourNotFound": "ტური ვერ მოიძებნა",
     "tours": "ტურები",
     "transfers": "ტრანსფერები",
+    "createNewTransfer": "ახალი ტრანსფერის შექმნა",
+    "editTransfer": "ტრანსფერის რედაქტირება",
+    "transferNotFound": "ტრანსფერი ვერ მოიძებნა",
     "createNewApartment": "ახალი ბინის შექმნა",
     "editApartment": "ბინის რედაქტირება",
     "apartmentNotFound": "ბინა ვერ მოიძებნა",
@@ -124,6 +127,56 @@
         "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
         "uploading": "იტვირთება...",
         "uploadSuccess": "სურათები წარმატებით აიტვირთა"
+      }
+    },
+    "transferForm": {
+      "descriptions": {
+        "heading": "აღწერები (არასავალდებულო)",
+        "hint": "დაამატეთ დამატებითი დეტალები ტრანსფერის შესახებ",
+        "labelEn": "აღწერა (EN)",
+        "labelKa": "აღწერა (KA)",
+        "labelRu": "აღწერა (RU)"
+      },
+      "image": {
+        "heading": "სურათი",
+        "noImage": "სურათი არ არის ატვირთული",
+        "uploadError": "ატვირთვა ვერ მოხერხდა",
+        "uploadSuccess": "სურათი აიტვირთა",
+        "uploading": "იტვირთება..."
+      },
+      "price": {
+        "heading": "ფასი",
+        "label": "ფასი (USD)"
+      },
+      "slug": {
+        "exists": "ეს სლაგი უკვე დაკავებულია",
+        "label": "სლაგი"
+      },
+      "submit": {
+        "create": "შექმენი ტრანსფერი",
+        "update": "განაახლე ტრანსფერი"
+      },
+      "titles": {
+        "heading": "სათაურები",
+        "labelEn": "სათაური (EN)",
+        "labelKa": "სათაური (KA)",
+        "labelRu": "სათაური (RU)"
+      },
+      "toast": {
+        "created": "ტრანსფერი შეიქმნა!",
+        "creating": "ტრანსფერი იქმნება...",
+        "errorMessage": "შენახვა ვერ მოხერხდა",
+        "errorTitle": "შეცდომა",
+        "updated": "ტრანსფერი განახლდა!",
+        "updating": "ტრანსფერი ახლდება..."
+      },
+      "validation": {
+        "required": "სავალდებულოა"
+      },
+      "vehicle": {
+        "capacity": "ტევადობა (მგზავრი)",
+        "heading": "მანქანის დეტალები",
+        "type": "მანქანის ტიპი"
       }
     },
     "apartmentForm": {
@@ -263,9 +316,29 @@
     "title": "ტრანსფერი",
     "description": "კომფორტული ტრანსპორტი მთებში",
     "vehicle": "მანქანა",
-    "capacity": "ტევადობა",
+    "capacity": "{count} მგზავრამდე",
+    "book": "დაჯავშნე",
+    "priceFrom": "${price}-დან",
+    "empty": "ტრანსფერები არ არის"
+  },
+  "request": {
+    "title": "ტრანსფერის მოთხოვნა",
+    "successTitle": "მოთხოვნა გაიგზავნა",
+    "name": "თქვენი სახელი",
+    "email": "ელფოსტა",
+    "phone": "ტელეფონი",
     "route": "მარშრუტი",
-    "bookNow": "დაჯავშნე ტრანსფერი"
+    "routePlaceholder": "თბილისი-გუდაური",
+    "groupSize": "ჯგუფის ზომა",
+    "preferredDate": "სასურველი თარიღი",
+    "selectDate": "აირჩიეთ თარიღი",
+    "message": "დამატებითი შეტყობინება",
+    "submit": "მოთხოვნის გაგზავნა",
+    "cancel": "გაუქმება",
+    "close": "დახურვა",
+    "sending": "იგზავნება...",
+    "successMessage": "თქვენი მოთხოვნა გაიგზავნა. ჩვენი მენეჯერი მალე დაგიკავშირდებათ.",
+    "error": "მოთხოვნის გაგზავნა ვერ მოხერხდა"
   },
   "instructors": {
     "title": "ინსტრუქტორი",

@@ -1,3 +1,5 @@
+import type { vehicleTypes } from '@/constants'
+
 export type MediaEntityType = 'tour' | 'apartment' | 'transfer' | 'instructor'
 
 export interface Media {
@@ -40,10 +42,7 @@ export interface Transfer {
   title_en: string
   title_ka: string
   title_ru: string
-  route_en: string
-  route_ka: string
-  route_ru: string
-  vehicle_type: string
+  vehicle_type: keyof typeof vehicleTypes
   capacity: number
   price_usd: number
   description_en?: string

@@ -1,56 +1,80 @@
 'use client'
 
+import { useState } from 'react'
+import { Car, Users } from 'lucide-react'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 
-import { routes } from '@/constants'
+import { vehicleTypes } from '@/constants'
 
-import { Link } from '@/i18n/navigation'
+import { Button } from '@/components/ui'
+import { BookingModal } from './BookingModal'
+
+import type { Locale } from '@/i18n/config'
 import type { Transfer } from '@/types'
 
-interface TransferCardProps {
+type TransferCardProps = {
   transfer: Transfer
 }
 
 export const TransferCard = ({ transfer }: TransferCardProps) => {
-  const locale = useLocale()
+  const locale = useLocale() as Locale
   const t = useTranslations()
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const title = transfer[`title_${locale as 'en' | 'ka' | 'ru'}`] || transfer.title_en
-  const route = transfer[`route_${locale as 'en' | 'ka' | 'ru'}`] || transfer.route_en
+  const title = transfer[`title_${locale}`] || transfer.title_en
+  const description = transfer[`description_${locale}`] || transfer.description_en
+  const vehicleLabel = vehicleTypes[transfer.vehicle_type] || transfer.vehicle_type
 
   return (
-    <Link href={`${routes.transfers}/${transfer.slug}`}>
-      <div className="group bg-card cursor-pointer overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
-        <div className="bg-muted relative h-48 w-full overflow-hidden">
-          <Image
-            alt={title}
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
-            fill
-            src={transfer.image_url}
-          />
+    <>
+      <div className="bg-card flex flex-col overflow-hidden rounded-lg md:flex-row">
+        <div className="bg-muted relative h-48 w-full shrink-0 md:h-auto md:w-64">
+          {transfer.image_url ? (
+            <Image
+              alt={title}
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 256px"
+              src={transfer.image_url}
+            />
+          ) : (
+            <div className="text-muted-foreground flex h-full items-center justify-center">
+              <Car className="size-14" />
+            </div>
+          )}
         </div>
-        <div className="p-4">
-          <h3 className="text-foreground mb-2 text-lg font-bold">{title}</h3>
-          <p className="text-foreground/80 mb-4 text-sm">{route}</p>
-          <div className="text-muted-foreground mb-4 grid grid-cols-2 gap-2 text-xs">
-            <div className="flex items-center gap-1">
-              <span>🚗</span>
-              <span>{transfer.vehicle_type}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <span>👥</span>
-              <span>
-                {t('transfers.capacity')}: {transfer.capacity}
-              </span>
-            </div>
+        <div className="flex flex-1 flex-col p-4 md:p-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-foreground mb-2 text-xl font-bold">{title}</h3>
+            <span className="text-accent text-lg font-bold">
+              {t('transfers.priceFrom', { price: transfer.price_usd })}
+            </span>
           </div>
-          <div className="border-border flex items-center justify-between border-t pt-3">
-            <span className="text-accent text-sm font-semibold">${transfer.price_usd}</span>
-            <span className="text-accent text-xs font-medium">{t('transfers.inquire')} →</span>
+
+          <div className="text-muted-foreground mb-3 flex flex-wrap items-center gap-4 text-sm">
+            <span className="flex items-center gap-2">
+              <Car className="text-accent size-6" />
+              {vehicleLabel}
+            </span>
+            <span className="flex items-center gap-2">
+              <Users className="text-accent size-6" />
+              {t('transfers.capacity', { count: transfer.capacity })}
+            </span>
+          </div>
+
+          {description && (
+            <p className="text-foreground/80 mb-4 line-clamp-5 text-sm whitespace-pre-line">
+              {description}
+            </p>
+          )}
+
+          <div className="mt-auto flex justify-end">
+            <Button onClick={() => setIsModalOpen(true)}>{t('transfers.book')}</Button>
           </div>
         </div>
       </div>
-    </Link>
+      {isModalOpen && <BookingModal onClose={() => setIsModalOpen(false)} transfer={transfer} />}
+    </>
   )
 }

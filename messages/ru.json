@@ -22,6 +22,9 @@
     "tourNotFound": "Тур не найден",
     "tours": "Туры",
     "transfers": "Трансферы",
+    "createNewTransfer": "Создать трансфер",
+    "editTransfer": "Редактировать трансфер",
+    "transferNotFound": "Трансфер не найден",
     "createNewApartment": "Создать апартамент",
     "editApartment": "Редактировать апартамент",
     "apartmentNotFound": "Апартамент не найден",
@@ -124,6 +127,56 @@
         "uploadError": "Не удалось загрузить изображение",
         "uploading": "Загрузка...",
         "uploadSuccess": "Изображения успешно загружены"
+      }
+    },
+    "transferForm": {
+      "descriptions": {
+        "heading": "Описания (необязательно)",
+        "hint": "Добавьте дополнительные детали о трансфере",
+        "labelEn": "Описание (EN)",
+        "labelKa": "Описание (KA)",
+        "labelRu": "Описание (RU)"
+      },
+      "image": {
+        "heading": "Изображение",
+        "noImage": "Изображение не загружено",
+        "uploadError": "Ошибка загрузки",
+        "uploadSuccess": "Изображение загружено",
+        "uploading": "Загрузка..."
+      },
+      "price": {
+        "heading": "Цена",
+        "label": "Цена (USD)"
+      },
+      "slug": {
+        "exists": "Этот слаг уже занят",
+        "label": "Слаг"
+      },
+      "submit": {
+        "create": "Создать трансфер",
+        "update": "Обновить трансфер"
+      },
+      "titles": {
+        "heading": "Заголовки",
+        "labelEn": "Заголовок (EN)",
+        "labelKa": "Заголовок (KA)",
+        "labelRu": "Заголовок (RU)"
+      },
+      "toast": {
+        "created": "Трансфер создан!",
+        "creating": "Создание трансфера...",
+        "errorMessage": "Не удалось сохранить трансфер",
+        "errorTitle": "Ошибка",
+        "updated": "Трансфер обновлен!",
+        "updating": "Обновление трансфера..."
+      },
+      "validation": {
+        "required": "Обязательно"
+      },
+      "vehicle": {
+        "capacity": "Вместимость (пассажиров)",
+        "heading": "Детали транспорта",
+        "type": "Тип транспорта"
       }
     },
     "apartmentForm": {
@@ -263,9 +316,29 @@
     "title": "Трансферы",
     "description": "Комфортные трансферы в горы",
     "vehicle": "Транспорт",
-    "capacity": "Вместимость",
+    "capacity": "До {count} пассажиров",
+    "book": "Забронировать",
+    "priceFrom": "от ${price}",
+    "empty": "Трансферы не найдены"
+  },
+  "request": {
+    "title": "Заявка на трансфер",
+    "successTitle": "Заявка отправлена",
+    "name": "Ваше имя",
+    "email": "Email",
+    "phone": "Телефон",
     "route": "Маршрут",
-    "bookNow": "Забронировать трансфер"
+    "routePlaceholder": "Тбилиси-Гудаури",
+    "groupSize": "Размер группы",
+    "preferredDate": "Предпочтительная дата",
+    "selectDate": "Выберите дату",
+    "message": "Дополнительное сообщение",
+    "submit": "Отправить заявку",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "sending": "Отправка...",
+    "successMessage": "Ваша заявка отправлена. Наш менеджер свяжется с вами в ближайшее время.",
+    "error": "Не удалось отправить заявку"
   },
   "instructors": {
     "title": "Инструкторы",

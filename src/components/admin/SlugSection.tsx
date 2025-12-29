@@ -12,7 +12,7 @@ type SlugSectionProps = {
   currentEntityId?: string
   errors: FieldErrors<{ slug: string }>
   register: (name: 'slug') => UseFormRegisterReturn<'slug'>
-  tableName: 'apartments' | 'tours'
+  tableName: 'apartments' | 'tours' | 'transfers'
 }
 
 const SlugSection = ({ currentEntityId, errors, register, tableName }: SlugSectionProps) => {
