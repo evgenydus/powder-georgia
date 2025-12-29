@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 import useToast from '@/components/ui/hooks/useToast'
+
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
 import type { Inquiry } from '@/types'
@@ -35,6 +36,7 @@ export const useInquiryDialog = (inquiry: Inquiry, open: boolean, onClose: () =>
 
     if (error) {
       toastError(t('updateError'), { error, message: t('updateError') })
+
       return
     }
 
@@ -50,6 +52,7 @@ export const useInquiryDialog = (inquiry: Inquiry, open: boolean, onClose: () =>
 
     if (error) {
       toastError(t('updateError'), { error, message: t('updateError') })
+
       return
     }
 
