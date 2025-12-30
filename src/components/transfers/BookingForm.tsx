@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useLocale, useTranslations } from 'next-intl'
 import type { Resolver } from 'react-hook-form'
@@ -16,11 +16,18 @@ import { bookingSchema, defaultValues } from './bookingSchema'
 type BookingFormProps = {
   maxCapacity: number
   onCancel: () => void
+  onDirtyChange?: (isDirty: boolean) => void
   onSuccess: () => void
   transferId: string
 }
 
-export const BookingForm = ({ maxCapacity, onCancel, onSuccess, transferId }: BookingFormProps) => {
+export const BookingForm = ({
+  maxCapacity,
+  onCancel,
+  onDirtyChange,
+  onSuccess,
+  transferId,
+}: BookingFormProps) => {
   const t = useTranslations()
   const locale = useLocale()
   const { toastError } = useToast()
@@ -28,13 +35,17 @@ export const BookingForm = ({ maxCapacity, onCancel, onSuccess, transferId }: Bo
 
   const {
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     handleSubmit,
     register,
   } = useForm<BookingFormData>({
     defaultValues: { ...defaultValues, transferId },
     resolver: zodResolver(bookingSchema) as Resolver<BookingFormData>,
   })
+
+  useEffect(() => {
+    onDirtyChange?.(isDirty)
+  }, [isDirty, onDirtyChange])
 
   const onSubmit = async (data: BookingFormData) => {
     setIsSubmitting(true)

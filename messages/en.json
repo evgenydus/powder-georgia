@@ -15,6 +15,12 @@
       "confirm": "Confirm",
       "cancel": "Cancel",
       "loading": "Please wait..."
+    },
+    "unsavedChanges": {
+      "title": "Unsaved Changes",
+      "description": "You have unsaved changes. Are you sure you want to leave?",
+      "confirm": "Leave",
+      "cancel": "Stay"
     }
   },
   "admin": {

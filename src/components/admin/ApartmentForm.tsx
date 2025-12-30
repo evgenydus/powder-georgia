@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
+
 import { Button } from '@/components/ui'
 import {
   AmenitiesSection,
@@ -24,12 +26,14 @@ const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
   const { form, handleTitleEnBlur, onSubmit } = useApartmentForm(apartment)
 
   const {
-    formState: { errors },
+    formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
     setValue,
     watch,
   } = form
+
+  useUnsavedChanges({ isDirty, isSubmitSuccessful })
 
   const images = watch('images')
 

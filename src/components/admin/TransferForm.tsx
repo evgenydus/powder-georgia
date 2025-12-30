@@ -2,6 +2,8 @@
 
 import { useTranslations } from 'next-intl'
 
+import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
+
 import { Button } from '@/components/ui'
 import { SlugSection } from './SlugSection'
 import {
@@ -24,12 +26,14 @@ const TransferForm = ({ transfer }: TransferFormProps) => {
   const { form, handleTitleEnBlur, onSubmit } = useTransferForm(transfer)
 
   const {
-    formState: { errors },
+    formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
     setValue,
     watch,
   } = form
+
+  useUnsavedChanges({ isDirty, isSubmitSuccessful })
 
   const imageUrl = watch('image_url') || ''
 
