@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl'
 
 import { routes } from '@/constants'
 
+import { FollowUsBlock } from '@/components/contact'
+
 import { Link } from '@/i18n/navigation'
 
 export const Footer = () => {
@@ -37,10 +39,8 @@ export const Footer = () => {
               ))}
             </ul>
           </div>
-          <div>
-            <h3 className="mb-4 text-lg font-bold">{t('footer.followUs')}</h3>
-            <div className="flex space-x-4">{/* Add social media links here */}</div>
-          </div>
+
+          <FollowUsBlock />
         </div>
       </div>
     </footer>
