@@ -8,6 +8,7 @@ type InquiryEmailData = {
   clientEmail: string
   clientName: string
   clientPhone?: string
+  entityName?: string
   groupSize?: number
   inquiryType: InquiryType
   language: string
@@ -69,10 +70,36 @@ const baseStyles = `
   .badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; color: #ffffff; }
 `
 
+const ENTITY_LABELS: Record<InquiryType, string> = {
+  apartment: 'Apartment',
+  general: '',
+  instructor: 'Instructor',
+  tour: 'Tour',
+  transfer: 'Transfer',
+}
+
 const getTypeSpecificFields = (data: InquiryEmailData): string => {
-  const { groupSize, inquiryType, lessonType, preferredDate, preferredDateEnd, route, skillLevel } =
-    data
+  const {
+    entityName,
+    groupSize,
+    inquiryType,
+    lessonType,
+    preferredDate,
+    preferredDateEnd,
+    route,
+    skillLevel,
+  } = data
   const fields: string[] = []
+
+  // Show entity name first if available
+  if (entityName && inquiryType !== 'general') {
+    fields.push(`
+      <div class="field">
+        <div class="label">${ENTITY_LABELS[inquiryType]}</div>
+        <div class="value" style="font-weight: 600;">${escapeHtml(entityName)}</div>
+      </div>
+    `)
+  }
 
   if (inquiryType === 'transfer') {
     if (route) {

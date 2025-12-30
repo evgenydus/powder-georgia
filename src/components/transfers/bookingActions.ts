@@ -27,6 +27,13 @@ export const submitBooking = async (
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
 
+    // Fetch transfer name for email
+    const { data: transfer } = await supabase
+      .from('transfers')
+      .select('title_en')
+      .eq('id', transferId)
+      .single()
+
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
       client_name: name,
@@ -51,6 +58,7 @@ export const submitBooking = async (
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
+      entityName: transfer?.title_en,
       groupSize: groupSize || undefined,
       inquiryType: 'transfer',
       language: validLanguage,

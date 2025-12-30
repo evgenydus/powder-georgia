@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/Dialog'
 import { InquiryStatusBadge } from './InquiryStatusBadge'
 import { useInquiryDialog } from './useInquiryDialog'
+import { useRelatedEntity } from './useRelatedEntity'
 
 import type { Inquiry } from '@/types'
 
@@ -24,10 +25,18 @@ type InquiryDetailDialogProps = {
 
 const languageLabels: Record<string, string> = { en: 'English', ka: 'ქართული', ru: 'Русский' }
 
+const ENTITY_LABELS: Record<string, string> = {
+  apartment: 'Apartment',
+  instructor: 'Instructor',
+  tour: 'Tour',
+  transfer: 'Transfer',
+}
+
 export const InquiryDetailDialog = ({ inquiry, onOpenChange, open }: InquiryDetailDialogProps) => {
   const t = useTranslations('admin.inquiryDetail')
   const tActions = useTranslations('admin.inquiryActions')
   const tContact = useTranslations('contact.types')
+  const entityName = useRelatedEntity(inquiry, open)
 
   const { handleMarkAsNew, handleMarkAsReplied } = useInquiryDialog(inquiry, open, () =>
     onOpenChange(false),
@@ -45,6 +54,7 @@ export const InquiryDetailDialog = ({ inquiry, onOpenChange, open }: InquiryDeta
         </DialogHeader>
 
         <dl className="space-y-3 text-sm">
+          {entityName && <Field label={ENTITY_LABELS[inquiry.inquiry_type]} value={entityName} />}
           <Field label={t('email')} value={inquiry.client_email} />
           <Field label={t('phone')} value={inquiry.client_phone || t('notProvided')} />
           {inquiry.route && <Field label={t('route')} value={inquiry.route} />}
