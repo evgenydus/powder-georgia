@@ -3,10 +3,10 @@
 import { useTranslations } from 'next-intl'
 import { useWatch } from 'react-hook-form'
 
-import { Button, Input, Textarea } from '@/components/ui'
+import { Button, FormField, Input, Textarea } from '@/components/ui'
 import type { ContactFormData } from './contactSchema'
 import { inquiryTypes } from './contactSchema'
-import { Field, Select } from './FormPrimitives'
+import { Select } from './FormPrimitives'
 import { TypeSpecificFields } from './TypeSpecificFields'
 import { useContactForm } from './useContactForm'
 
@@ -25,19 +25,19 @@ export const ContactForm = () => {
 
   return (
     <form className="space-y-6" onSubmit={onSubmit}>
-      <Field error={errors.name?.message} label={`${t('contact.name')} *`}>
+      <FormField error={errors.name?.message} htmlFor="name" label={t('contact.name')} required>
         <Input id="name" {...register('name')} />
-      </Field>
+      </FormField>
 
-      <Field error={errors.email?.message} label={`${t('contact.email')} *`}>
+      <FormField error={errors.email?.message} htmlFor="email" label={t('contact.email')} required>
         <Input id="email" type="email" {...register('email')} />
-      </Field>
+      </FormField>
 
-      <Field label={t('contact.phone')}>
+      <FormField htmlFor="phone" label={t('contact.phone')}>
         <Input id="phone" type="tel" {...register('phone')} />
-      </Field>
+      </FormField>
 
-      <Field label={`${t('contact.inquiryType')} *`}>
+      <FormField htmlFor="inquiryType" label={t('contact.inquiryType')} required>
         <Select id="inquiryType" {...register('inquiryType')}>
           {inquiryTypes.map((type) => (
             <option key={type} value={type}>
@@ -45,7 +45,7 @@ export const ContactForm = () => {
             </option>
           ))}
         </Select>
-      </Field>
+      </FormField>
 
       <TypeSpecificFields
         control={control}
@@ -54,13 +54,15 @@ export const ContactForm = () => {
         register={register}
       />
 
-      <Field
+      <FormField
+        description={t('contact.messageHint')}
         error={errors.message?.message}
-        label={inquiryType === 'general' ? `${t('contact.message')} *` : t('contact.message')}
+        htmlFor="message"
+        label={t('contact.message')}
+        required={inquiryType === 'general'}
       >
         <Textarea id="message" maxLength={2000} rows={5} {...register('message')} />
-        <p className="text-muted-foreground mt-1 text-xs">{t('contact.messageHint')}</p>
-      </Field>
+      </FormField>
 
       <Button className="w-full" disabled={isSubmitting} type="submit">
         {isSubmitting ? t('contact.sending') : t('contact.send')}

@@ -8,11 +8,10 @@ import { Controller, useForm } from 'react-hook-form'
 
 import useToast from '@/components/ui/hooks/useToast'
 
-import { Button, DatePicker, Input, Textarea } from '@/components/ui'
+import { Button, DatePicker, FormField, Input, Textarea } from '@/components/ui'
 import { submitBooking } from './bookingActions'
 import type { BookingFormData } from './bookingSchema'
 import { bookingSchema, defaultValues } from './bookingSchema'
-import { FormField } from './FormField'
 
 type BookingFormProps = {
   maxCapacity: number
@@ -58,20 +57,20 @@ export const BookingForm = ({ maxCapacity, onCancel, onSuccess, transferId }: Bo
   return (
     <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
       <input type="hidden" {...register('transferId')} />
-      <FormField error={errors.name?.message} label={`${t('request.name')} *`}>
+      <FormField error={errors.name?.message} htmlFor="name" label={t('request.name')} required>
         <Input id="name" {...register('name')} />
       </FormField>
-      <FormField error={errors.email?.message} label={`${t('request.email')} *`}>
+      <FormField error={errors.email?.message} htmlFor="email" label={t('request.email')} required>
         <Input id="email" type="email" {...register('email')} />
       </FormField>
-      <FormField error={errors.route?.message} label={`${t('request.route')} *`}>
+      <FormField error={errors.route?.message} htmlFor="route" label={t('request.route')} required>
         <Input id="route" placeholder={t('request.routePlaceholder')} {...register('route')} />
       </FormField>
       <div className="grid grid-cols-2 gap-4">
-        <FormField label={t('request.phone')}>
+        <FormField htmlFor="phone" label={t('request.phone')}>
           <Input id="phone" type="tel" {...register('phone')} />
         </FormField>
-        <FormField label={t('request.groupSize')}>
+        <FormField htmlFor="groupSize" label={t('request.groupSize')}>
           <Input
             id="groupSize"
             max={maxCapacity}
@@ -81,7 +80,7 @@ export const BookingForm = ({ maxCapacity, onCancel, onSuccess, transferId }: Bo
           />
         </FormField>
       </div>
-      <FormField label={t('request.preferredDate')}>
+      <FormField htmlFor="preferredDate" label={t('request.preferredDate')}>
         <Controller
           control={control}
           name="preferredDate"
@@ -94,7 +93,7 @@ export const BookingForm = ({ maxCapacity, onCancel, onSuccess, transferId }: Bo
           )}
         />
       </FormField>
-      <FormField label={t('request.message')}>
+      <FormField htmlFor="message" label={t('request.message')}>
         <Textarea id="message" maxLength={2000} rows={3} {...register('message')} />
       </FormField>
       <div className="flex gap-3 pt-2">

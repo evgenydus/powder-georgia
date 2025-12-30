@@ -4,10 +4,10 @@ import { useTranslations } from 'next-intl'
 import type { Control, FieldErrors, UseFormRegister } from 'react-hook-form'
 import { Controller } from 'react-hook-form'
 
-import { DatePicker, Input } from '@/components/ui'
+import { DatePicker, FormField, Input } from '@/components/ui'
 import type { ContactFormData, InquiryType } from './contactSchema'
 import { lessonTypes, skillLevels } from './contactSchema'
-import { Field, Select } from './FormPrimitives'
+import { Select } from './FormPrimitives'
 
 const fieldsWithPreferredDate: InquiryType[] = ['tour', 'apartment', 'instructor']
 const fieldsWithGroupSize: InquiryType[] = ['tour', 'transfer', 'apartment']
@@ -30,17 +30,22 @@ export const TypeSpecificFields = ({
   return (
     <>
       {inquiryType === 'transfer' && (
-        <Field error={errors.route?.message} label={`${t('contact.fields.route')} *`}>
+        <FormField
+          error={errors.route?.message}
+          htmlFor="route"
+          label={t('contact.fields.route')}
+          required
+        >
           <Input
             id="route"
             placeholder={t('contact.fields.routePlaceholder')}
             {...register('route')}
           />
-        </Field>
+        </FormField>
       )}
 
       {fieldsWithPreferredDate.includes(inquiryType) && (
-        <Field label={t('contact.fields.preferredDate')}>
+        <FormField htmlFor="preferredDate" label={t('contact.fields.preferredDate')}>
           <Controller
             control={control}
             name="preferredDate"
@@ -52,11 +57,11 @@ export const TypeSpecificFields = ({
               />
             )}
           />
-        </Field>
+        </FormField>
       )}
 
       {inquiryType === 'apartment' && (
-        <Field label={t('contact.fields.checkOutDate')}>
+        <FormField htmlFor="preferredDateEnd" label={t('contact.fields.checkOutDate')}>
           <Controller
             control={control}
             name="preferredDateEnd"
@@ -68,18 +73,18 @@ export const TypeSpecificFields = ({
               />
             )}
           />
-        </Field>
+        </FormField>
       )}
 
       {fieldsWithGroupSize.includes(inquiryType) && (
-        <Field label={getGroupSizeLabel(inquiryType, t)}>
+        <FormField htmlFor="groupSize" label={getGroupSizeLabel(inquiryType, t)}>
           <Input id="groupSize" min={1} type="number" {...register('groupSize')} />
-        </Field>
+        </FormField>
       )}
 
       {inquiryType === 'instructor' && (
         <>
-          <Field label={t('contact.fields.lessonType')}>
+          <FormField htmlFor="lessonType" label={t('contact.fields.lessonType')}>
             <Select id="lessonType" {...register('lessonType')}>
               <option value="">{t('contact.fields.selectOption')}</option>
               {lessonTypes.map((type) => (
@@ -88,8 +93,8 @@ export const TypeSpecificFields = ({
                 </option>
               ))}
             </Select>
-          </Field>
-          <Field label={t('contact.fields.skillLevel')}>
+          </FormField>
+          <FormField htmlFor="skillLevel" label={t('contact.fields.skillLevel')}>
             <Select id="skillLevel" {...register('skillLevel')}>
               <option value="">{t('contact.fields.selectOption')}</option>
               {skillLevels.map((level) => (
@@ -98,7 +103,7 @@ export const TypeSpecificFields = ({
                 </option>
               ))}
             </Select>
-          </Field>
+          </FormField>
         </>
       )}
     </>
