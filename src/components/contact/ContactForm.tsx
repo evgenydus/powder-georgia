@@ -1,8 +1,10 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { useWatch } from 'react-hook-form'
 
 import { Button, Input, Textarea } from '@/components/ui'
+import type { ContactFormData } from './contactSchema'
 import { inquiryTypes } from './contactSchema'
 import { Field, Select } from './FormPrimitives'
 import { TypeSpecificFields } from './TypeSpecificFields'
@@ -16,10 +18,10 @@ export const ContactForm = () => {
     isSubmitting,
     onSubmit,
     register,
-    watch,
   } = useContactForm()
 
-  const inquiryType = watch('inquiryType')
+  const inquiryType =
+    useWatch<ContactFormData, 'inquiryType'>({ control, name: 'inquiryType' }) ?? 'general'
 
   return (
     <form className="space-y-6" onSubmit={onSubmit}>

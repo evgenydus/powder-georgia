@@ -9,14 +9,22 @@ import type { ContactFormData, InquiryType } from './contactSchema'
 import { lessonTypes, skillLevels } from './contactSchema'
 import { Field, Select } from './FormPrimitives'
 
-type Props = {
+const fieldsWithPreferredDate: InquiryType[] = ['tour', 'apartment', 'instructor']
+const fieldsWithGroupSize: InquiryType[] = ['tour', 'transfer', 'apartment']
+
+type TypeSpecificFieldsProps = {
   control: Control<ContactFormData>
   errors: FieldErrors<ContactFormData>
   inquiryType: InquiryType
   register: UseFormRegister<ContactFormData>
 }
 
-export const TypeSpecificFields = ({ control, errors, inquiryType, register }: Props) => {
+export const TypeSpecificFields = ({
+  control,
+  errors,
+  inquiryType,
+  register,
+}: TypeSpecificFieldsProps) => {
   const t = useTranslations()
 
   return (
@@ -31,7 +39,7 @@ export const TypeSpecificFields = ({ control, errors, inquiryType, register }: P
         </Field>
       )}
 
-      {['tour', 'apartment', 'instructor'].includes(inquiryType) && (
+      {fieldsWithPreferredDate.includes(inquiryType) && (
         <Field label={t('contact.fields.preferredDate')}>
           <Controller
             control={control}
@@ -63,7 +71,7 @@ export const TypeSpecificFields = ({ control, errors, inquiryType, register }: P
         </Field>
       )}
 
-      {['tour', 'transfer', 'apartment'].includes(inquiryType) && (
+      {fieldsWithGroupSize.includes(inquiryType) && (
         <Field label={getGroupSizeLabel(inquiryType, t)}>
           <Input id="groupSize" min={1} type="number" {...register('groupSize')} />
         </Field>
