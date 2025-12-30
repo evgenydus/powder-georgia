@@ -21,9 +21,7 @@ const ContactPage = async () => {
 
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-2">
-          <div>
-            <ContactForm />
-          </div>
+          <ContactForm />
 
           <div className="space-y-8">
             <div className="bg-card rounded-lg p-6">

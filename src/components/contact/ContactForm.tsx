@@ -1,102 +1,68 @@
 'use client'
 
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useLocale, useTranslations } from 'next-intl'
-import { useForm } from 'react-hook-form'
+import { useTranslations } from 'next-intl'
+import { useWatch } from 'react-hook-form'
 
-import useToast from '@/components/ui/hooks/useToast'
-
-import { Button, Input, Textarea } from '@/components/ui'
-import { submitInquiry } from './actions'
+import { Button, FormField, Input, Textarea } from '@/components/ui'
 import type { ContactFormData } from './contactSchema'
-import { contactSchema, defaultValues, inquiryTypes } from './contactSchema'
+import { inquiryTypes } from './contactSchema'
+import { Select } from './FormPrimitives'
+import { TypeSpecificFields } from './TypeSpecificFields'
+import { useContactForm } from './useContactForm'
 
 export const ContactForm = () => {
   const t = useTranslations()
-  const locale = useLocale()
-  const { toastError, toastSuccess } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
   const {
+    control,
     formState: { errors },
-    handleSubmit,
+    isSubmitting,
+    onSubmit,
     register,
-    reset,
-  } = useForm<ContactFormData>({
-    defaultValues,
-    resolver: zodResolver(contactSchema),
-  })
+  } = useContactForm()
 
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true)
-
-    try {
-      const result = await submitInquiry(data, locale)
-
-      if (result.success) {
-        toastSuccess(t('contact.success'))
-        reset()
-      } else {
-        toastError('ContactForm', { message: result.error })
-      }
-    } catch (error) {
-      toastError('ContactForm', { error })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const inquiryType =
+    useWatch<ContactFormData, 'inquiryType'>({ control, name: 'inquiryType' }) ?? 'general'
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="name">
-          {t('contact.name')} *
-        </label>
+    <form className="space-y-6" onSubmit={onSubmit}>
+      <FormField error={errors.name?.message} htmlFor="name" label={t('contact.name')} required>
         <Input id="name" {...register('name')} />
-        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
-      </div>
+      </FormField>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="email">
-          {t('contact.email')} *
-        </label>
+      <FormField error={errors.email?.message} htmlFor="email" label={t('contact.email')} required>
         <Input id="email" type="email" {...register('email')} />
-        {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
-      </div>
+      </FormField>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="phone">
-          {t('contact.phone')}
-        </label>
+      <FormField htmlFor="phone" label={t('contact.phone')}>
         <Input id="phone" type="tel" {...register('phone')} />
-      </div>
+      </FormField>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="inquiryType">
-          {t('contact.inquiryType')} *
-        </label>
-        <select
-          className="border-input bg-background text-foreground focus:ring-accent w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-          id="inquiryType"
-          {...register('inquiryType')}
-        >
+      <FormField htmlFor="inquiryType" label={t('contact.inquiryType')} required>
+        <Select id="inquiryType" {...register('inquiryType')}>
           {inquiryTypes.map((type) => (
             <option key={type} value={type}>
               {t(`contact.types.${type}`)}
             </option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </FormField>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="message">
-          {t('contact.message')} *
-        </label>
+      <TypeSpecificFields
+        control={control}
+        errors={errors}
+        inquiryType={inquiryType}
+        register={register}
+      />
+
+      <FormField
+        description={t('contact.messageHint')}
+        error={errors.message?.message}
+        htmlFor="message"
+        label={t('contact.message')}
+        required={inquiryType === 'general'}
+      >
         <Textarea id="message" maxLength={2000} rows={5} {...register('message')} />
-        <p className="text-muted-foreground mt-1 text-xs">{t('contact.messageHint')}</p>
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
-      </div>
+      </FormField>
 
       <Button className="w-full" disabled={isSubmitting} type="submit">
         {isSubmitting ? t('contact.sending') : t('contact.send')}

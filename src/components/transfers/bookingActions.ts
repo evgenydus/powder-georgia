@@ -1,79 +1,70 @@
 'use server'
 
-import { contactSchema } from './contactSchema'
+import { bookingSchema } from './bookingSchema'
 
 import { locales } from '@/i18n/config'
 import { sendInquiryNotification } from '@/lib/email'
 import { createClient } from '@/lib/supabase/server'
 
-type SubmitInquiryResult = {
+type SubmitBookingResult = {
   error?: string
   success: boolean
 }
 
-export const submitInquiry = async (
+export const submitBooking = async (
   data: unknown,
   language: string,
-): Promise<SubmitInquiryResult> => {
+): Promise<SubmitBookingResult> => {
   try {
-    const parsed = contactSchema.safeParse(data)
+    const parsed = bookingSchema.safeParse(data)
 
     if (!parsed.success) {
       return { error: 'Invalid form data', success: false }
     }
 
-    const {
-      email,
-      groupSize,
-      inquiryType,
-      lessonType,
-      message,
-      name,
-      phone,
-      preferredDate,
-      preferredDateEnd,
-      route,
-      skillLevel,
-    } = parsed.data
+    const { email, groupSize, message, name, phone, preferredDate, route, transferId } = parsed.data
 
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
+
+    // Fetch transfer name for email
+    const { data: transfer } = await supabase
+      .from('transfers')
+      .select('title_en')
+      .eq('id', transferId)
+      .single()
 
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
       client_name: name,
       client_phone: phone || null,
-      group_size: groupSize ? parseInt(groupSize, 10) : null,
-      inquiry_type: inquiryType,
+      group_size: groupSize || null,
+      inquiry_type: 'transfer',
       language: validLanguage,
-      lesson_type: lessonType || null,
       message: message || null,
       preferred_date: preferredDate || null,
-      preferred_date_end: preferredDateEnd || null,
-      route: route || null,
-      skill_level: skillLevel || null,
+      related_id: transferId,
+      route,
     })
 
     if (error) {
       console.error('Supabase error:', error)
 
-      return { error: 'Failed to submit inquiry', success: false }
+      return { error: 'Failed to submit booking', success: false }
     }
 
-    // Send email notification (don't fail the request if email fails)
+    // Send email notification
     const emailResult = await sendInquiryNotification({
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
-      groupSize: groupSize ? parseInt(groupSize, 10) : undefined,
-      inquiryType,
+      entityName: transfer?.title_en,
+      groupSize: groupSize || undefined,
+      inquiryType: 'transfer',
       language: validLanguage,
-      lessonType,
       message,
       preferredDate,
-      preferredDateEnd,
       route,
-      skillLevel,
     })
 
     if (!emailResult.success) {
@@ -82,7 +73,7 @@ export const submitInquiry = async (
 
     return { success: true }
   } catch (error) {
-    console.error('Error submitting inquiry:', error)
+    console.error('Error submitting booking:', error)
 
     return { error: 'An unexpected error occurred', success: false }
   }

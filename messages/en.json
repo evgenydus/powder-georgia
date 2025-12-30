@@ -29,6 +29,9 @@
     "tourNotFound": "Tour not found",
     "tours": "Tours",
     "transfers": "Transfers",
+    "createNewTransfer": "Create New Transfer",
+    "editTransfer": "Edit Transfer",
+    "transferNotFound": "Transfer not found",
     "createNewApartment": "Create New Apartment",
     "editApartment": "Edit Apartment",
     "apartmentNotFound": "Apartment not found",
@@ -133,6 +136,56 @@
         "uploadSuccess": "Images uploaded successfully"
       }
     },
+    "transferForm": {
+      "descriptions": {
+        "heading": "Descriptions (Optional)",
+        "hint": "Add optional details about the transfer",
+        "labelEn": "Description (EN)",
+        "labelKa": "Description (KA)",
+        "labelRu": "Description (RU)"
+      },
+      "image": {
+        "heading": "Image",
+        "noImage": "No image uploaded yet",
+        "uploadError": "Upload failed",
+        "uploadSuccess": "Image uploaded",
+        "uploading": "Uploading..."
+      },
+      "price": {
+        "heading": "Pricing",
+        "label": "Price (USD)"
+      },
+      "slug": {
+        "exists": "This slug is already taken",
+        "label": "Slug"
+      },
+      "submit": {
+        "create": "Create Transfer",
+        "update": "Update Transfer"
+      },
+      "titles": {
+        "heading": "Titles",
+        "labelEn": "Title (EN)",
+        "labelKa": "Title (KA)",
+        "labelRu": "Title (RU)"
+      },
+      "toast": {
+        "created": "Transfer created!",
+        "creating": "Creating transfer...",
+        "errorMessage": "Failed to save transfer",
+        "errorTitle": "Error",
+        "updated": "Transfer updated!",
+        "updating": "Updating transfer..."
+      },
+      "validation": {
+        "required": "Required"
+      },
+      "vehicle": {
+        "capacity": "Capacity (passengers)",
+        "heading": "Vehicle Details",
+        "type": "Vehicle Type"
+      }
+    },
     "apartmentForm": {
       "amenities": {
         "heading": "Amenities",
@@ -204,10 +257,13 @@
     "inquiryDetail": {
       "close": "Close",
       "email": "Email",
+      "groupSize": "Group Size",
       "language": "Language",
       "message": "Message",
       "notProvided": "Not provided",
       "phone": "Phone",
+      "preferredDate": "Preferred Date",
+      "route": "Route",
       "submittedAt": "Submitted"
     },
     "noInquiries": "No inquiries yet",
@@ -274,10 +330,29 @@
     "title": "Transfers",
     "description": "Comfortable transfers to the mountains",
     "vehicle": "Vehicle",
-    "capacity": "Capacity",
+    "capacity": "Up to {count} passengers",
+    "book": "Book",
+    "priceFrom": "from ${price}",
+    "empty": "No transfers available"
+  },
+  "request": {
+    "title": "Transfer Request",
+    "successTitle": "Request Sent",
+    "name": "Your Name",
+    "email": "Email",
+    "phone": "Phone",
     "route": "Route",
-    "bookNow": "Book Transfer",
-    "inquire": "Inquire"
+    "routePlaceholder": "Tbilisi-Gudauri",
+    "groupSize": "Group Size",
+    "preferredDate": "Preferred Date",
+    "selectDate": "Select date",
+    "message": "Additional Message",
+    "submit": "Send Request",
+    "cancel": "Cancel",
+    "close": "Close",
+    "sending": "Sending...",
+    "successMessage": "Your request has been sent. Our manager will contact you shortly.",
+    "error": "Failed to send request"
   },
   "instructors": {
     "title": "Our Instructors",
@@ -320,12 +395,36 @@
     "send": "Send Message",
     "sending": "Sending...",
     "success": "Your message has been sent successfully!",
+    "error": "Failed to send message",
     "types": {
       "general": "General Inquiry",
       "tour": "Tour Booking",
       "transfer": "Transfer Booking",
       "instructor": "Instructor Inquiry",
       "apartment": "Apartment Booking"
+    },
+    "fields": {
+      "route": "Route",
+      "routePlaceholder": "Tbilisi-Gudauri",
+      "preferredDate": "Preferred Date",
+      "checkOutDate": "Check-out Date",
+      "selectDate": "Select date",
+      "groupSize": "Group Size",
+      "guests": "Number of Guests",
+      "passengers": "Passengers",
+      "lessonType": "Lesson Type",
+      "skillLevel": "Skill Level",
+      "selectOption": "Select option",
+      "lessonTypes": {
+        "ski": "Skiing",
+        "snowboard": "Snowboarding",
+        "freeride": "Freeride"
+      },
+      "skillLevels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      }
     }
   },
   "footer": {
