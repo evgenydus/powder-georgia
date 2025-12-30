@@ -47,5 +47,8 @@ export const vehicleTypes = {
 
 export const contact = {
   email: 'info@powder.ge',
+  facebook: 'https://www.facebook.com/powdergeorgia',
+  instagram: 'https://www.instagram.com/powdergeorgia',
   phone: '+995 123 456 789',
+  telegram: 'https://t.me/powder_ge',
 } as const

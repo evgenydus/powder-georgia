@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { contact } from '@/constants'
 
-import { ContactForm } from '@/components/contact'
+import { ContactForm, FollowUsBlock } from '@/components/contact'
 
 const ContactPage = async () => {
   const t = await getTranslations()
@@ -51,6 +51,8 @@ const ContactPage = async () => {
                 {contact.email}
               </a>
             </div>
+
+            <FollowUsBlock />
           </div>
         </div>
       </section>
