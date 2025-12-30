@@ -47,14 +47,16 @@ export const submitBooking = async (
     }
 
     // Send email notification
-    const emailMessage = `Route: ${route}${message ? `\n\nMessage: ${message}` : ''}`
     const emailResult = await sendInquiryNotification({
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
+      groupSize: groupSize || undefined,
       inquiryType: 'transfer',
       language: validLanguage,
-      message: emailMessage,
+      message,
+      preferredDate,
+      route,
     })
 
     if (!emailResult.success) {

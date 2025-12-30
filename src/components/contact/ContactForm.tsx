@@ -3,7 +3,6 @@
 import { useTranslations } from 'next-intl'
 
 import { Button, Input, Textarea } from '@/components/ui'
-
 import { inquiryTypes } from './contactSchema'
 import { Field, Select } from './FormPrimitives'
 import { TypeSpecificFields } from './TypeSpecificFields'

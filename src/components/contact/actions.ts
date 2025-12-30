@@ -39,15 +39,6 @@ export const submitInquiry = async (
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
 
-    // Build an extended message for email (includes type-specific fields)
-    const emailParts = [
-      route ? `Route: ${route}` : null,
-      lessonType ? `Lesson type: ${lessonType}` : null,
-      skillLevel ? `Skill level: ${skillLevel}` : null,
-      message ? `Message: ${message}` : null,
-    ].filter(Boolean)
-    const emailMessage = emailParts.join('\n\n') || 'No message provided'
-
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
       client_name: name,
@@ -74,9 +65,15 @@ export const submitInquiry = async (
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
-      inquiryType: inquiryType,
+      groupSize: groupSize ? parseInt(groupSize, 10) : undefined,
+      inquiryType,
       language: validLanguage,
-      message: emailMessage,
+      lessonType,
+      message,
+      preferredDate,
+      preferredDateEnd,
+      route,
+      skillLevel,
     })
 
     if (!emailResult.success) {
