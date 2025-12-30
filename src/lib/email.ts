@@ -35,7 +35,7 @@ export const sendInquiryNotification = async (data: InquiryEmailData) => {
     const safeEmail = escapeHtml(clientEmail)
     const safePhone = clientPhone ? escapeHtml(clientPhone) : ''
     const safeType = escapeHtml(inquiryType)
-    const safeMessage = escapeHtml(message)
+    const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
 
     const fromEmail = process.env.EMAIL_FROM || '<onboarding@resend.dev>'
 

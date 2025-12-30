@@ -109,6 +109,7 @@ export interface Inquiry {
   message?: string
   preferred_date?: string
   group_size?: number
+  route?: string
   language: 'en' | 'ka' | 'ru'
   is_read: boolean
   is_processed: boolean

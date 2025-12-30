@@ -250,10 +250,13 @@
     "inquiryDetail": {
       "close": "Закрыть",
       "email": "Email",
+      "groupSize": "Размер группы",
       "language": "Язык",
       "message": "Сообщение",
       "notProvided": "Не указано",
       "phone": "Телефон",
+      "preferredDate": "Желаемая дата",
+      "route": "Маршрут",
       "submittedAt": "Отправлено"
     },
     "noInquiries": "Запросов пока нет",
@@ -378,12 +381,36 @@
     "send": "Отправить",
     "sending": "Отправка...",
     "success": "Ваше сообщение успешно отправлено!",
+    "error": "Не удалось отправить сообщение",
     "types": {
       "general": "Общий запрос",
       "tour": "Бронирование тура",
       "transfer": "Бронирование трансфера",
       "instructor": "Запрос инструктора",
       "apartment": "Бронирование апартамента"
+    },
+    "fields": {
+      "route": "Маршрут",
+      "routePlaceholder": "Тбилиси-Гудаури",
+      "preferredDate": "Желаемая дата",
+      "checkOutDate": "Дата выезда",
+      "selectDate": "Выберите дату",
+      "groupSize": "Размер группы",
+      "guests": "Количество гостей",
+      "passengers": "Пассажиры",
+      "lessonType": "Тип занятия",
+      "skillLevel": "Уровень подготовки",
+      "selectOption": "Выберите вариант",
+      "lessonTypes": {
+        "ski": "Горные лыжи",
+        "snowboard": "Сноуборд",
+        "freeride": "Фрирайд"
+      },
+      "skillLevels": {
+        "beginner": "Начинающий",
+        "intermediate": "Средний",
+        "advanced": "Продвинутый"
+      }
     }
   },
   "footer": {

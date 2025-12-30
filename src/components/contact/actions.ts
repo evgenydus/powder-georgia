@@ -22,17 +22,45 @@ export const submitInquiry = async (
       return { error: 'Invalid form data', success: false }
     }
 
-    const { email, inquiryType, message, name, phone } = parsed.data
+    const {
+      email,
+      groupSize,
+      inquiryType,
+      lessonType,
+      message,
+      name,
+      phone,
+      preferredDate,
+      preferredDateEnd,
+      route,
+      skillLevel,
+    } = parsed.data
+
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
+
+    // Build an extended message for email (includes type-specific fields)
+    const emailParts = [
+      route ? `Route: ${route}` : null,
+      lessonType ? `Lesson type: ${lessonType}` : null,
+      skillLevel ? `Skill level: ${skillLevel}` : null,
+      message ? `Message: ${message}` : null,
+    ].filter(Boolean)
+    const emailMessage = emailParts.join('\n\n') || 'No message provided'
 
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
       client_name: name,
       client_phone: phone || null,
+      group_size: groupSize ? parseInt(groupSize, 10) : null,
       inquiry_type: inquiryType,
       language: validLanguage,
-      message: message,
+      lesson_type: lessonType || null,
+      message: message || null,
+      preferred_date: preferredDate || null,
+      preferred_date_end: preferredDateEnd || null,
+      route: route || null,
+      skill_level: skillLevel || null,
     })
 
     if (error) {
@@ -48,7 +76,7 @@ export const submitInquiry = async (
       clientPhone: phone,
       inquiryType: inquiryType,
       language: validLanguage,
-      message: message,
+      message: emailMessage,
     })
 
     if (!emailResult.success) {

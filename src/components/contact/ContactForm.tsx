@@ -1,102 +1,65 @@
 'use client'
 
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useLocale, useTranslations } from 'next-intl'
-import { useForm } from 'react-hook-form'
-
-import useToast from '@/components/ui/hooks/useToast'
+import { useTranslations } from 'next-intl'
 
 import { Button, Input, Textarea } from '@/components/ui'
-import { submitInquiry } from './actions'
-import type { ContactFormData } from './contactSchema'
-import { contactSchema, defaultValues, inquiryTypes } from './contactSchema'
+
+import { inquiryTypes } from './contactSchema'
+import { Field, Select } from './FormPrimitives'
+import { TypeSpecificFields } from './TypeSpecificFields'
+import { useContactForm } from './useContactForm'
 
 export const ContactForm = () => {
   const t = useTranslations()
-  const locale = useLocale()
-  const { toastError, toastSuccess } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
   const {
+    control,
     formState: { errors },
-    handleSubmit,
+    isSubmitting,
+    onSubmit,
     register,
-    reset,
-  } = useForm<ContactFormData>({
-    defaultValues,
-    resolver: zodResolver(contactSchema),
-  })
+    watch,
+  } = useContactForm()
 
-  const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true)
-
-    try {
-      const result = await submitInquiry(data, locale)
-
-      if (result.success) {
-        toastSuccess(t('contact.success'))
-        reset()
-      } else {
-        toastError('ContactForm', { message: result.error })
-      }
-    } catch (error) {
-      toastError('ContactForm', { error })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const inquiryType = watch('inquiryType')
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="name">
-          {t('contact.name')} *
-        </label>
+    <form className="space-y-6" onSubmit={onSubmit}>
+      <Field error={errors.name?.message} label={`${t('contact.name')} *`}>
         <Input id="name" {...register('name')} />
-        {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>}
-      </div>
+      </Field>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="email">
-          {t('contact.email')} *
-        </label>
+      <Field error={errors.email?.message} label={`${t('contact.email')} *`}>
         <Input id="email" type="email" {...register('email')} />
-        {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
-      </div>
+      </Field>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="phone">
-          {t('contact.phone')}
-        </label>
+      <Field label={t('contact.phone')}>
         <Input id="phone" type="tel" {...register('phone')} />
-      </div>
+      </Field>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="inquiryType">
-          {t('contact.inquiryType')} *
-        </label>
-        <select
-          className="border-input bg-background text-foreground focus:ring-accent w-full rounded-md border px-3 py-2 focus:ring-2 focus:outline-none"
-          id="inquiryType"
-          {...register('inquiryType')}
-        >
+      <Field label={`${t('contact.inquiryType')} *`}>
+        <Select id="inquiryType" {...register('inquiryType')}>
           {inquiryTypes.map((type) => (
             <option key={type} value={type}>
               {t(`contact.types.${type}`)}
             </option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </Field>
 
-      <div>
-        <label className="text-foreground mb-2 block text-sm font-medium" htmlFor="message">
-          {t('contact.message')} *
-        </label>
+      <TypeSpecificFields
+        control={control}
+        errors={errors}
+        inquiryType={inquiryType}
+        register={register}
+      />
+
+      <Field
+        error={errors.message?.message}
+        label={inquiryType === 'general' ? `${t('contact.message')} *` : t('contact.message')}
+      >
         <Textarea id="message" maxLength={2000} rows={5} {...register('message')} />
         <p className="text-muted-foreground mt-1 text-xs">{t('contact.messageHint')}</p>
-        {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>}
-      </div>
+      </Field>
 
       <Button className="w-full" disabled={isSubmitting} type="submit">
         {isSubmitting ? t('contact.sending') : t('contact.send')}

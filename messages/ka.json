@@ -250,10 +250,13 @@
     "inquiryDetail": {
       "close": "დახურვა",
       "email": "ელფოსტა",
+      "groupSize": "ჯგუფის ზომა",
       "language": "ენა",
       "message": "შეტყობინება",
       "notProvided": "არ არის მითითებული",
       "phone": "ტელეფონი",
+      "preferredDate": "სასურველი თარიღი",
+      "route": "მარშრუტი",
       "submittedAt": "გაგზავნილია"
     },
     "noInquiries": "მოთხოვნები ჯერ არ არის",
@@ -378,12 +381,36 @@
     "send": "გაგზავნა",
     "sending": "იგზავნება...",
     "success": "თქვენი შეტყობინება წარმატებით გაიგზავნა!",
+    "error": "შეტყობინების გაგზავნა ვერ მოხერხდა",
     "types": {
       "general": "ზოგადი მოთხოვნა",
       "tour": "ტურის დაჯავშნა",
       "transfer": "ტრანსფერის დაჯავშნა",
       "instructor": "ინსტრუქტორის მოთხოვნა",
       "apartment": "ბინის დაჯავშნა"
+    },
+    "fields": {
+      "route": "მარშრუტი",
+      "routePlaceholder": "თბილისი-გუდაური",
+      "preferredDate": "სასურველი თარიღი",
+      "checkOutDate": "გასვლის თარიღი",
+      "selectDate": "აირჩიეთ თარიღი",
+      "groupSize": "ჯგუფის ზომა",
+      "guests": "სტუმრების რაოდენობა",
+      "passengers": "მგზავრები",
+      "lessonType": "გაკვეთილის ტიპი",
+      "skillLevel": "დონე",
+      "selectOption": "აირჩიეთ ვარიანტი",
+      "lessonTypes": {
+        "ski": "თხილამური",
+        "snowboard": "სნოუბორდი",
+        "freeride": "ფრირაიდი"
+      },
+      "skillLevels": {
+        "beginner": "დამწყები",
+        "intermediate": "საშუალო",
+        "advanced": "მოწინავე"
+      }
     }
   },
   "footer": {

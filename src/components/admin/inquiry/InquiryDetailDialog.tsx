@@ -47,6 +47,16 @@ export const InquiryDetailDialog = ({ inquiry, onOpenChange, open }: InquiryDeta
         <dl className="space-y-3 text-sm">
           <Field label={t('email')} value={inquiry.client_email} />
           <Field label={t('phone')} value={inquiry.client_phone || t('notProvided')} />
+          {inquiry.route && <Field label={t('route')} value={inquiry.route} />}
+          {inquiry.preferred_date && (
+            <Field
+              label={t('preferredDate')}
+              value={new Date(inquiry.preferred_date).toLocaleDateString()}
+            />
+          )}
+          {inquiry.group_size && (
+            <Field label={t('groupSize')} value={String(inquiry.group_size)} />
+          )}
           <Field label={t('message')} pre value={inquiry.message || t('notProvided')} />
           <div className="flex gap-6">
             <Field label={t('language')} value={languageLabels[inquiry.language]} />

@@ -257,10 +257,13 @@
     "inquiryDetail": {
       "close": "Close",
       "email": "Email",
+      "groupSize": "Group Size",
       "language": "Language",
       "message": "Message",
       "notProvided": "Not provided",
       "phone": "Phone",
+      "preferredDate": "Preferred Date",
+      "route": "Route",
       "submittedAt": "Submitted"
     },
     "noInquiries": "No inquiries yet",
@@ -392,12 +395,36 @@
     "send": "Send Message",
     "sending": "Sending...",
     "success": "Your message has been sent successfully!",
+    "error": "Failed to send message",
     "types": {
       "general": "General Inquiry",
       "tour": "Tour Booking",
       "transfer": "Transfer Booking",
       "instructor": "Instructor Inquiry",
       "apartment": "Apartment Booking"
+    },
+    "fields": {
+      "route": "Route",
+      "routePlaceholder": "Tbilisi-Gudauri",
+      "preferredDate": "Preferred Date",
+      "checkOutDate": "Check-out Date",
+      "selectDate": "Select date",
+      "groupSize": "Group Size",
+      "guests": "Number of Guests",
+      "passengers": "Passengers",
+      "lessonType": "Lesson Type",
+      "skillLevel": "Skill Level",
+      "selectOption": "Select option",
+      "lessonTypes": {
+        "ski": "Skiing",
+        "snowboard": "Snowboarding",
+        "freeride": "Freeride"
+      },
+      "skillLevels": {
+        "beginner": "Beginner",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced"
+      }
     }
   },
   "footer": {

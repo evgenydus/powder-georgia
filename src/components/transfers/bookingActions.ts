@@ -27,9 +27,6 @@ export const submitBooking = async (
     const validLanguage = locales.includes(language as (typeof locales)[number]) ? language : 'en'
     const supabase = await createClient()
 
-    // Build message with route included
-    const fullMessage = `Route: ${route}${message ? `\n\nMessage: ${message}` : ''}`
-
     const { error } = await supabase.from('inquiries').insert({
       client_email: email,
       client_name: name,
@@ -37,9 +34,10 @@ export const submitBooking = async (
       group_size: groupSize || null,
       inquiry_type: 'transfer',
       language: validLanguage,
-      message: fullMessage,
+      message: message || null,
       preferred_date: preferredDate || null,
       related_id: transferId,
+      route,
     })
 
     if (error) {
@@ -49,13 +47,14 @@ export const submitBooking = async (
     }
 
     // Send email notification
+    const emailMessage = `Route: ${route}${message ? `\n\nMessage: ${message}` : ''}`
     const emailResult = await sendInquiryNotification({
       clientEmail: email,
       clientName: name,
       clientPhone: phone,
       inquiryType: 'transfer',
       language: validLanguage,
-      message: fullMessage,
+      message: emailMessage,
     })
 
     if (!emailResult.success) {
