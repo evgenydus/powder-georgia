@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 
 import useToast from '@/components/ui/hooks/useToast'
@@ -12,6 +12,7 @@ import type { ContactFormData } from './contactSchema'
 import { contactSchema, defaultValues } from './contactSchema'
 
 export const useContactForm = (onSuccess?: () => void) => {
+  const t = useTranslations()
   const locale = useLocale()
   const { toastError, toastSuccess } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -28,14 +29,14 @@ export const useContactForm = (onSuccess?: () => void) => {
       const result = await submitInquiry(data, locale)
 
       if (result.success) {
-        toastSuccess('contact.success')
+        toastSuccess(t('contact.success'))
         form.reset()
         onSuccess?.()
       } else {
-        toastError('contact.error', { message: result.error })
+        toastError(t('contact.error'), { message: result.error })
       }
     } catch (error) {
-      toastError('contact.error', { error })
+      toastError(t('contact.error'), { error })
     } finally {
       setIsSubmitting(false)
     }
