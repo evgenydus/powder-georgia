@@ -15,7 +15,7 @@ export type BookingFormData = z.infer<typeof bookingSchema>
 
 export const defaultValues: Partial<BookingFormData> = {
   email: '',
-  groupSize: undefined,
+  groupSize: 1,
   message: '',
   name: '',
   phone: '',

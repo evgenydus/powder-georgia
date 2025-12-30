@@ -39,7 +39,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(
         </PopoverTrigger>
         <PopoverContent align="start" className="w-auto p-0">
           <Calendar
-            disabled={(date) => date < new Date()}
+            disabled={{ before: new Date() }}
             mode="single"
             onSelect={onChange}
             selected={value}

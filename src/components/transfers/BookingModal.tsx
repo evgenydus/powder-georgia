@@ -23,11 +23,16 @@ export const BookingModal = ({ onClose, transfer }: BookingModalProps) => {
   const vehicleLabel = vehicleTypes[transfer.vehicle_type] || transfer.vehicle_type
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+    <div
+      aria-labelledby="modal-title"
+      aria-modal="true"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      role="dialog"
+    >
       <div className="bg-card w-full max-w-md rounded-lg p-6">
         <div className="mb-6 flex items-start justify-between">
           <div>
-            <h2 className="text-xl font-bold">
+            <h2 className="text-xl font-bold" id="modal-title">
               {isSuccess ? t('request.successTitle') : t('request.title')}
             </h2>
             {!isSuccess && (
@@ -36,7 +41,11 @@ export const BookingModal = ({ onClose, transfer }: BookingModalProps) => {
               </p>
             )}
           </div>
-          <button className="text-muted-foreground hover:text-foreground" onClick={onClose}>
+          <button
+            aria-label={t('request.close')}
+            className="text-muted-foreground hover:text-foreground"
+            onClick={onClose}
+          >
             <X className="size-5" />
           </button>
         </div>
