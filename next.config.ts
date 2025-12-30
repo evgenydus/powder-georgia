@@ -31,10 +31,15 @@ const nextConfig: NextConfig = {
       rule.test?.test?.('.svg'),
     )
 
+    if (!fileLoaderRule) {
+      return config
+    }
+
     config.module.rules.push(
       // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
+        exclude: /\.svg$/i,
         resourceQuery: /url/,
         test: /\.svg$/i,
       },
