@@ -428,7 +428,27 @@
     "services": "Services",
     "pricePerHour": "Price per hour",
     "contact": "Contact",
-    "viewProfile": "View Profile"
+    "viewProfile": "View Profile",
+    "requestLesson": "Request Lesson"
+  },
+  "lessonRequest": {
+    "title": "Request a Lesson",
+    "successTitle": "Request Sent",
+    "name": "Your Name",
+    "email": "Email",
+    "phone": "Phone",
+    "lessonType": "Lesson Type",
+    "skillLevel": "Skill Level",
+    "groupSize": "Group Size",
+    "preferredDate": "Preferred Date",
+    "selectDate": "Select date",
+    "message": "Additional Message",
+    "submit": "Send Request",
+    "cancel": "Cancel",
+    "close": "Close",
+    "sending": "Sending...",
+    "successMessage": "Your lesson request has been sent. Our instructor will contact you shortly.",
+    "error": "Failed to send request"
   },
   "apartments": {
     "title": "Apartment Rentals",
