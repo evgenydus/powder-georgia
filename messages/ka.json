@@ -37,6 +37,13 @@
     "createNewInstructor": "ახალი ინსტრუქტორის შექმნა",
     "editInstructor": "ინსტრუქტორის რედაქტირება",
     "instructorNotFound": "ინსტრუქტორი ვერ მოიძებნა",
+    "tableHeaders": {
+      "actions": "მოქმედებები",
+      "name": "სახელი",
+      "pricePerHour": "ფასი/საათი",
+      "specialization": "სპეციალიზაცია",
+      "status": "სტატუსი"
+    },
     "actions": {
       "delete": "წაშლა",
       "deleteError": "წაშლა ვერ მოხერხდა",

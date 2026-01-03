@@ -37,6 +37,13 @@
     "createNewInstructor": "Создать инструктора",
     "editInstructor": "Редактировать инструктора",
     "instructorNotFound": "Инструктор не найден",
+    "tableHeaders": {
+      "actions": "Действия",
+      "name": "Имя",
+      "pricePerHour": "Цена/час",
+      "specialization": "Специализация",
+      "status": "Статус"
+    },
     "actions": {
       "delete": "Удалить",
       "deleteError": "Ошибка удаления",

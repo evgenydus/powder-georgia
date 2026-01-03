@@ -31,9 +31,13 @@ export const LessonModal = ({ instructor, onClose }: LessonModalProps) => {
         aria-labelledby="modal-title"
         aria-modal="true"
         className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+        onClick={wrappedClose}
         role="dialog"
       >
-        <div className="bg-card w-full max-w-md rounded-lg p-6">
+        <div
+          className="bg-card w-full max-w-md rounded-lg p-6"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="mb-6 flex items-start justify-between">
             <div>
               <h2 className="text-xl font-bold" id="modal-title">

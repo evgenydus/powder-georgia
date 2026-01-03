@@ -52,19 +52,19 @@ const AdminInstructorsPage = async () => {
           <thead className="bg-muted">
             <tr>
               <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                Name
+                {t('tableHeaders.name')}
               </th>
               <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                Specialization
+                {t('tableHeaders.specialization')}
               </th>
               <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                Price/Hour
+                {t('tableHeaders.pricePerHour')}
               </th>
               <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                Status
+                {t('tableHeaders.status')}
               </th>
               <th className="relative px-6 py-3">
-                <span className="sr-only">Actions</span>
+                <span className="sr-only">{t('tableHeaders.actions')}</span>
               </th>
             </tr>
           </thead>
