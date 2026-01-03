@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
 
+import { RequestLessonButton } from '@/components/instructors'
+
 import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
@@ -68,12 +70,13 @@ const InstructorPage = async ({ params }: { params: Promise<{ slug: string }> })
                 <p>{services}</p>
               </div>
             )}
-            <div className="text-right">
+            <div className="flex items-center justify-between">
               <p className="text-accent text-3xl font-bold">
                 {instructor.price_per_hour_usd
                   ? `$${instructor.price_per_hour_usd}/hr`
                   : t('common.inquire')}
               </p>
+              <RequestLessonButton instructor={instructor} />
             </div>
           </div>
         </div>

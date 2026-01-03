@@ -5,7 +5,7 @@ const transferSchema = z.object({
   description_en: z.string().optional(),
   description_ka: z.string().optional(),
   description_ru: z.string().optional(),
-  image_url: z.string().url().optional().or(z.literal('')),
+  image_url: z.url().optional().or(z.literal('')),
   is_active: z.boolean(),
   price_usd: z.coerce.number().min(0),
   slug: z.string().min(1),

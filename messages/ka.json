@@ -34,6 +34,16 @@
     "createNewApartment": "ახალი ბინის შექმნა",
     "editApartment": "ბინის რედაქტირება",
     "apartmentNotFound": "ბინა ვერ მოიძებნა",
+    "createNewInstructor": "ახალი ინსტრუქტორის შექმნა",
+    "editInstructor": "ინსტრუქტორის რედაქტირება",
+    "instructorNotFound": "ინსტრუქტორი ვერ მოიძებნა",
+    "tableHeaders": {
+      "actions": "მოქმედებები",
+      "name": "სახელი",
+      "pricePerHour": "ფასი/საათი",
+      "specialization": "სპეციალიზაცია",
+      "status": "სტატუსი"
+    },
     "actions": {
       "delete": "წაშლა",
       "deleteError": "წაშლა ვერ მოხერხდა",
@@ -127,7 +137,7 @@
         "deleted": "სურათი წაიშალა",
         "deleteError": "სურათის წაშლა ვერ მოხერხდა",
         "heading": "სურათები",
-        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 10MB)",
+        "hint": "JPEG, PNG, WebP ან GIF (მაქს. 5MB)",
         "maxReached": "მიღწეულია მაქსიმუმ 10 სურათი",
         "noImages": "სურათები არ არის ატვირთული",
         "uploadError": "სურათის ატვირთვა ვერ მოხერხდა",
@@ -238,6 +248,63 @@
         "errorTitle": "შეცდომა",
         "updated": "ბინა განახლდა!",
         "updating": "ბინა ახლდება..."
+      },
+      "validation": {
+        "required": "სავალდებულოა"
+      }
+    },
+    "instructorForm": {
+      "name": {
+        "heading": "ინსტრუქტორის სახელი",
+        "label": "სახელი"
+      },
+      "specialization": {
+        "heading": "სპეციალიზაცია",
+        "labelEn": "სპეციალიზაცია (EN)",
+        "labelKa": "სპეციალიზაცია (KA)",
+        "labelRu": "სპეციალიზაცია (RU)"
+      },
+      "bio": {
+        "heading": "ბიოგრაფია",
+        "labelEn": "ბიოგრაფია (EN)",
+        "labelKa": "ბიოგრაფია (KA)",
+        "labelRu": "ბიოგრაფია (RU)"
+      },
+      "services": {
+        "heading": "სერვისები",
+        "labelEn": "სერვისები (EN)",
+        "labelKa": "სერვისები (KA)",
+        "labelRu": "სერვისები (RU)"
+      },
+      "contact": {
+        "heading": "კონტაქტი და ფასი",
+        "email": "ელფოსტა",
+        "phone": "ტელეფონი",
+        "price": "ფასი საათში (USD)",
+        "pricePlaceholder": "არასავალდებულო"
+      },
+      "photo": {
+        "heading": "ფოტო",
+        "noPhoto": "ფოტო არ არის ატვირთული",
+        "uploadError": "ატვირთვა ვერ მოხერხდა",
+        "uploadSuccess": "ფოტო აიტვირთა",
+        "uploading": "იტვირთება..."
+      },
+      "slug": {
+        "exists": "ეს სლაგი უკვე დაკავებულია",
+        "label": "სლაგი"
+      },
+      "submit": {
+        "create": "შექმენი ინსტრუქტორი",
+        "update": "განაახლე ინსტრუქტორი"
+      },
+      "toast": {
+        "created": "ინსტრუქტორი შეიქმნა!",
+        "creating": "ინსტრუქტორი იქმნება...",
+        "errorMessage": "შენახვა ვერ მოხერხდა",
+        "errorTitle": "შეცდომა",
+        "updated": "ინსტრუქტორი განახლდა!",
+        "updating": "ინსტრუქტორი ახლდება..."
       },
       "validation": {
         "required": "სავალდებულოა"
@@ -356,7 +423,27 @@
     "bio": "ბიოგრაფია",
     "services": "სერვისი",
     "pricePerHour": "ფასი საათში",
-    "contact": "კონტაქტი"
+    "contact": "კონტაქტი",
+    "requestLesson": "გაკვეთილის მოთხოვნა"
+  },
+  "lessonRequest": {
+    "title": "გაკვეთილის მოთხოვნა",
+    "successTitle": "მოთხოვნა გაიგზავნა",
+    "name": "თქვენი სახელი",
+    "email": "ელფოსტა",
+    "phone": "ტელეფონი",
+    "lessonType": "გაკვეთილის ტიპი",
+    "skillLevel": "დონე",
+    "groupSize": "ჯგუფის ზომა",
+    "preferredDate": "სასურველი თარიღი",
+    "selectDate": "აირჩიეთ თარიღი",
+    "message": "დამატებითი შეტყობინება",
+    "submit": "მოთხოვნის გაგზავნა",
+    "cancel": "გაუქმება",
+    "close": "დახურვა",
+    "sending": "იგზავნება...",
+    "successMessage": "თქვენი მოთხოვნა გაიგზავნა. ინსტრუქტორი მალე დაგიკავშირდებათ.",
+    "error": "მოთხოვნის გაგზავნა ვერ მოხერხდა"
   },
   "apartments": {
     "title": "ბინები",

@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import type { Media, MediaEntityType } from '@/types'
 
-const maxFileSize = 10 * 1024 * 1024 // 10MB
+const maxFileSize = 5 * 1024 * 1024 // 5MB
 const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
 
 type UseMediaUploadOptions = {
@@ -27,7 +27,7 @@ const useMediaUpload = ({ entityType = null, onError, onSuccess }: UseMediaUploa
 
       for (const file of Array.from(files)) {
         if (file.size > maxFileSize) {
-          onError?.(`File "${file.name}" exceeds maximum size of 10MB`)
+          onError?.(`File "${file.name}" exceeds maximum size of 5MB`)
           continue
         }
 
