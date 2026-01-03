@@ -11,7 +11,7 @@ const apartmentSchema = z.object({
   description_en: z.string().min(1),
   description_ka: z.string().min(1),
   description_ru: z.string().min(1),
-  images: z.array(z.string().url()).max(10).default([]),
+  images: z.array(z.url()).max(10).default([]),
   is_published: z.boolean(),
   price_per_night_usd: z.coerce.number().min(0),
   slug: z.string().min(1),

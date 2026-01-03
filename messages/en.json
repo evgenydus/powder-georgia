@@ -41,6 +41,9 @@
     "createNewApartment": "Create New Apartment",
     "editApartment": "Edit Apartment",
     "apartmentNotFound": "Apartment not found",
+    "createNewInstructor": "Create New Instructor",
+    "editInstructor": "Edit Instructor",
+    "instructorNotFound": "Instructor not found",
     "actions": {
       "delete": "Delete",
       "deleteError": "Delete failed",
@@ -134,7 +137,7 @@
         "deleted": "Image deleted",
         "deleteError": "Failed to delete image",
         "heading": "Images",
-        "hint": "JPEG, PNG, WebP or GIF (max 10MB)",
+        "hint": "JPEG, PNG, WebP or GIF (max 5MB)",
         "maxReached": "Maximum 10 images reached",
         "noImages": "No images uploaded yet",
         "uploadError": "Failed to upload image",
@@ -245,6 +248,63 @@
         "errorTitle": "Error",
         "updated": "Apartment updated!",
         "updating": "Updating apartment..."
+      },
+      "validation": {
+        "required": "Required"
+      }
+    },
+    "instructorForm": {
+      "name": {
+        "heading": "Instructor Name",
+        "label": "Name"
+      },
+      "specialization": {
+        "heading": "Specialization",
+        "labelEn": "Specialization (EN)",
+        "labelKa": "Specialization (KA)",
+        "labelRu": "Specialization (RU)"
+      },
+      "bio": {
+        "heading": "Biography",
+        "labelEn": "Biography (EN)",
+        "labelKa": "Biography (KA)",
+        "labelRu": "Biography (RU)"
+      },
+      "services": {
+        "heading": "Services",
+        "labelEn": "Services (EN)",
+        "labelKa": "Services (KA)",
+        "labelRu": "Services (RU)"
+      },
+      "contact": {
+        "heading": "Contact & Pricing",
+        "email": "Email",
+        "phone": "Phone",
+        "price": "Price per Hour (USD)",
+        "pricePlaceholder": "Optional"
+      },
+      "photo": {
+        "heading": "Photo",
+        "noPhoto": "No photo uploaded yet",
+        "uploadError": "Upload failed",
+        "uploadSuccess": "Photo uploaded",
+        "uploading": "Uploading..."
+      },
+      "slug": {
+        "exists": "This slug is already taken",
+        "label": "Slug"
+      },
+      "submit": {
+        "create": "Create Instructor",
+        "update": "Update Instructor"
+      },
+      "toast": {
+        "created": "Instructor created!",
+        "creating": "Creating instructor...",
+        "errorMessage": "Failed to save instructor",
+        "errorTitle": "Error",
+        "updated": "Instructor updated!",
+        "updating": "Updating instructor..."
       },
       "validation": {
         "required": "Required"

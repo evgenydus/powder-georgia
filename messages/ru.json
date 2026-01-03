@@ -34,6 +34,9 @@
     "createNewApartment": "Создать апартамент",
     "editApartment": "Редактировать апартамент",
     "apartmentNotFound": "Апартамент не найден",
+    "createNewInstructor": "Создать инструктора",
+    "editInstructor": "Редактировать инструктора",
+    "instructorNotFound": "Инструктор не найден",
     "actions": {
       "delete": "Удалить",
       "deleteError": "Ошибка удаления",
@@ -127,7 +130,7 @@
         "deleted": "Изображение удалено",
         "deleteError": "Не удалось удалить изображение",
         "heading": "Изображения",
-        "hint": "JPEG, PNG, WebP или GIF (макс. 10MB)",
+        "hint": "JPEG, PNG, WebP или GIF (макс. 5MB)",
         "maxReached": "Достигнут лимит в 10 изображений",
         "noImages": "Изображения не загружены",
         "uploadError": "Не удалось загрузить изображение",
@@ -238,6 +241,63 @@
         "errorTitle": "Ошибка",
         "updated": "Апартамент обновлен!",
         "updating": "Обновление апартамента..."
+      },
+      "validation": {
+        "required": "Обязательно"
+      }
+    },
+    "instructorForm": {
+      "name": {
+        "heading": "Имя инструктора",
+        "label": "Имя"
+      },
+      "specialization": {
+        "heading": "Специализация",
+        "labelEn": "Специализация (EN)",
+        "labelKa": "Специализация (KA)",
+        "labelRu": "Специализация (RU)"
+      },
+      "bio": {
+        "heading": "Биография",
+        "labelEn": "Биография (EN)",
+        "labelKa": "Биография (KA)",
+        "labelRu": "Биография (RU)"
+      },
+      "services": {
+        "heading": "Услуги",
+        "labelEn": "Услуги (EN)",
+        "labelKa": "Услуги (KA)",
+        "labelRu": "Услуги (RU)"
+      },
+      "contact": {
+        "heading": "Контакты и цена",
+        "email": "Email",
+        "phone": "Телефон",
+        "price": "Цена в час (USD)",
+        "pricePlaceholder": "Необязательно"
+      },
+      "photo": {
+        "heading": "Фото",
+        "noPhoto": "Фото не загружено",
+        "uploadError": "Ошибка загрузки",
+        "uploadSuccess": "Фото загружено",
+        "uploading": "Загрузка..."
+      },
+      "slug": {
+        "exists": "Этот слаг уже занят",
+        "label": "Слаг"
+      },
+      "submit": {
+        "create": "Создать инструктора",
+        "update": "Обновить инструктора"
+      },
+      "toast": {
+        "created": "Инструктор создан!",
+        "creating": "Создание инструктора...",
+        "errorMessage": "Не удалось сохранить инструктора",
+        "errorTitle": "Ошибка",
+        "updated": "Инструктор обновлен!",
+        "updating": "Обновление инструктора..."
       },
       "validation": {
         "required": "Обязательно"
