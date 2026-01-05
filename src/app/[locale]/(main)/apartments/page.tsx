@@ -33,9 +33,9 @@ const ApartmentsPage = async () => {
   const apartments = await getApartments()
 
   return (
-    <main className="bg-background min-h-screen">
-      <section className="to-background from-card bg-gradient-to-b px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl text-center">
+    <>
+      <section className="flex min-h-[30vh] items-center justify-center px-4 py-16 sm:px-6 md:min-h-[40svh] lg:px-8">
+        <div className="bg-gradient-fade rounded-2xl px-8 py-8 text-center md:px-16">
           <h1 className="text-foreground mb-4 text-4xl font-bold md:text-5xl">
             {t('apartments.title')}
           </h1>
@@ -43,12 +43,14 @@ const ApartmentsPage = async () => {
         </div>
       </section>
 
-      <section className="px-4 py-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <ApartmentGrid apartments={apartments} />
-        </div>
-      </section>
-    </main>
+      <div className="bg-background flex-1">
+        <section className="px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <ApartmentGrid apartments={apartments} />
+          </div>
+        </section>
+      </div>
+    </>
   )
 }
 

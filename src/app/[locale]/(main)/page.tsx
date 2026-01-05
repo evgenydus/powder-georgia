@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import { CTASection, FeaturedToursSection, HeroSection } from '@/components/home'
 
 import { createClient } from '@/lib/supabase/server'
@@ -34,22 +32,11 @@ const HomePage = async () => {
 
   return (
     <>
-      <div className="relative">
-        <Image
-          alt="Mountain background"
-          className="object-cover object-center md:object-top"
-          fill
-          priority
-          quality={100}
-          src="/images/mainBg.png"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-
-        <HeroSection />
-        <FeaturedToursSection tours={featuredTours} />
+      <HeroSection />
+      <FeaturedToursSection tours={featuredTours} />
+      <div className="bg-background flex-1">
+        <CTASection />
       </div>
-
-      <CTASection />
     </>
   )
 }

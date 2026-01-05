@@ -3,12 +3,14 @@ import { CTASection } from '@/components/home/CTASection'
 
 const AboutPage = () => {
   return (
-    <main className="bg-background text-foreground min-h-screen">
+    <>
       <HeroSection />
-      <MissionSection />
-      <TeamSection />
-      <CTASection />
-    </main>
+      <div className="bg-background flex-1">
+        <MissionSection />
+        <TeamSection />
+        <CTASection />
+      </div>
+    </>
   )
 }
 
