@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Menu } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-import { routes } from '@/constants'
+import { navLinks } from './constants'
 
 import {
   Drawer,
@@ -21,15 +21,6 @@ export const MobileNav = () => {
   const t = useTranslations()
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
-
-  const navLinks = [
-    { href: routes.tours, label: t('navigation.tours') },
-    { href: routes.transfers, label: t('navigation.transfers') },
-    { href: routes.instructors, label: t('navigation.instructors') },
-    { href: routes.apartments, label: t('navigation.apartments') },
-    { href: routes.about, label: t('navigation.about') },
-    { href: routes.contact, label: t('navigation.contact') },
-  ]
 
   return (
     <Drawer direction="top" onOpenChange={setOpen} open={open}>
@@ -52,7 +43,7 @@ export const MobileNav = () => {
                   href={link.href}
                   onClick={() => setOpen(false)}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               </DrawerClose>
             )
