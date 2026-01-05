@@ -32,7 +32,7 @@ const AdminInquiriesPage = async () => {
   const inquiries = await getInquiries()
 
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">{t('inquiries')}</h1>
       </div>
@@ -40,36 +40,38 @@ const AdminInquiriesPage = async () => {
       {inquiries.length === 0 ? (
         <p className="text-muted-foreground">{t('noInquiries')}</p>
       ) : (
-        <div className="bg-card overflow-x-auto rounded-lg">
-          <table className="divide-border min-w-full divide-y">
-            <thead className="bg-muted">
-              <tr>
-                <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                  {t('table.clientName')}
-                </th>
-                <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                  {t('table.email')}
-                </th>
-                <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                  {t('table.type')}
-                </th>
-                <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                  {t('table.status')}
-                </th>
-                <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
-                  {t('table.date')}
-                </th>
-                <th className="relative px-6 py-3">
-                  <span className="sr-only">Actions</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-border divide-y">
-              {inquiries.map((inquiry) => (
-                <InquiryRow key={inquiry.id} inquiry={inquiry} />
-              ))}
-            </tbody>
-          </table>
+        <div className="bg-card flex flex-1 flex-col overflow-hidden rounded-lg">
+          <div className="overflow-auto">
+            <table className="divide-border min-w-full divide-y">
+              <thead className="bg-muted sticky top-0 z-10">
+                <tr>
+                  <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
+                    {t('table.clientName')}
+                  </th>
+                  <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
+                    {t('table.email')}
+                  </th>
+                  <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
+                    {t('table.type')}
+                  </th>
+                  <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
+                    {t('table.status')}
+                  </th>
+                  <th className="text-muted-foreground px-6 py-3 text-left text-xs font-medium tracking-wider uppercase">
+                    {t('table.date')}
+                  </th>
+                  <th className="relative px-6 py-3">
+                    <span className="sr-only">Actions</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-border divide-y">
+                {inquiries.map((inquiry) => (
+                  <InquiryRow key={inquiry.id} inquiry={inquiry} />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

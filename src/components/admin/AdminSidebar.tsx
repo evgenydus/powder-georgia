@@ -5,16 +5,25 @@ import { routes } from '@/constants'
 
 import { Link } from '@/i18n/navigation'
 
+const primaryNavLinks = [
+  { href: routes.adminApartments, labelKey: 'navigation.apartments' },
+  { href: routes.adminInstructors, labelKey: 'navigation.instructors' },
+  { href: routes.adminTours, labelKey: 'navigation.tours' },
+  { href: routes.adminTransfers, labelKey: 'navigation.transfers' },
+]
+
+const secondaryNavLinks = [{ href: routes.adminInquiries, labelKey: 'navigation.inquiries' }]
+
+const NavLink = ({ href, label }: { href: string; label: string }) => (
+  <Link href={href}>
+    <span className="hover:bg-sidebar-accent block rounded-lg px-4 py-2 transition-colors">
+      {label}
+    </span>
+  </Link>
+)
+
 export const AdminSidebar = () => {
   const t = useTranslations()
-
-  const navLinks = [
-    { href: routes.adminApartments, label: t('navigation.apartments') },
-    { href: routes.adminInquiries, label: t('navigation.inquiries') },
-    { href: routes.adminInstructors, label: t('navigation.instructors') },
-    { href: routes.adminTours, label: t('navigation.tours') },
-    { href: routes.adminTransfers, label: t('navigation.transfers') },
-  ]
 
   return (
     <aside className="bg-sidebar flex w-64 flex-col p-4">
@@ -22,15 +31,21 @@ export const AdminSidebar = () => {
         <h2 className="mb-8 text-2xl font-bold">{t('admin.title')}</h2>
       </Link>
 
-      <nav className="flex-1">
+      <nav className="flex-1 space-y-6">
         <ul className="space-y-4">
-          {navLinks.map((link) => (
+          {primaryNavLinks.map((link) => (
             <li key={link.href}>
-              <Link href={link.href}>
-                <span className="hover:bg-sidebar-accent block rounded-lg px-4 py-2 transition-colors">
-                  {link.label}
-                </span>
-              </Link>
+              <NavLink href={link.href} label={t(link.labelKey)} />
+            </li>
+          ))}
+        </ul>
+
+        <hr />
+
+        <ul className="space-y-4">
+          {secondaryNavLinks.map((link) => (
+            <li key={link.href}>
+              <NavLink href={link.href} label={t(link.labelKey)} />
             </li>
           ))}
         </ul>
