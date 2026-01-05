@@ -474,7 +474,19 @@
   },
   "about": {
     "title": "About Us",
-    "description": "Learn about Powder Georgia"
+    "description": "Learn about Powder Georgia",
+    "hero": {
+      "title": "About Powder Georgia",
+      "subtitle": "Your gateway to unforgettable mountain adventures in the heart of the Caucasus"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "We are passionate about sharing the beauty and thrill of Georgian mountains with adventurers from around the world. Our team of experienced guides and instructors is dedicated to providing safe, memorable, and authentic mountain experiences."
+    },
+    "team": {
+      "title": "Meet Our Team",
+      "viewAll": "View All Instructors"
+    }
   },
   "contact": {
     "title": "Contact Us",
