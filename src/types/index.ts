@@ -39,10 +39,10 @@ export interface Tour {
   required_equipment_en?: string
   required_equipment_ka?: string
   required_equipment_ru?: string
-  images: string[]
   is_published: boolean
   created_at: string
   updated_at: string
+  media?: Media[]
 }
 
 export interface Transfer {
@@ -57,10 +57,10 @@ export interface Transfer {
   description_en?: string
   description_ka?: string
   description_ru?: string
-  image_url: string
   is_active: boolean
   created_at: string
   updated_at: string
+  media?: Media[]
 }
 
 export interface Instructor {
@@ -73,7 +73,6 @@ export interface Instructor {
   bio_en?: string
   bio_ka?: string
   bio_ru?: string
-  photo_url: string
   services_en?: string
   services_ka?: string
   services_ru?: string
@@ -83,6 +82,7 @@ export interface Instructor {
   is_active: boolean
   created_at: string
   updated_at: string
+  media?: Media[]
 }
 
 export interface Apartment {
@@ -102,10 +102,10 @@ export interface Apartment {
   amenities_ka?: string
   amenities_ru?: string
   price_per_night_usd: number
-  images: string[]
   is_published: boolean
   created_at: string
   updated_at: string
+  media?: Media[]
 }
 
 export interface Inquiry {

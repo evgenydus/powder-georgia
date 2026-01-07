@@ -432,6 +432,8 @@
     "services": "სერვისი",
     "pricePerHour": "ფასი საათში",
     "contact": "კონტაქტი",
+    "noPhoto": "ფოტო არ არის",
+    "viewProfile": "პროფილის ნახვა",
     "requestLesson": "გაკვეთილის მოთხოვნა"
   },
   "lessonRequest": {

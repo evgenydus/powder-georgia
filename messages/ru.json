@@ -432,6 +432,8 @@
     "services": "Услуги",
     "pricePerHour": "Цена в час",
     "contact": "Контакты",
+    "noPhoto": "Нет фото",
+    "viewProfile": "Смотреть профиль",
     "requestLesson": "Записаться на урок"
   },
   "lessonRequest": {

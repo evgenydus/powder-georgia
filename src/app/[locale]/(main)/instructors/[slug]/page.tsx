@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 
 import { RequestLessonButton } from '@/components/instructors'
 
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
@@ -17,7 +18,9 @@ async function getInstructorBySlug(slug: string): Promise<Instructor | null> {
       return null
     }
 
-    return data || null
+    if (!data) return null
+
+    return fetchMediaForEntity(supabase, data, 'instructor')
   } catch (error) {
     console.error('Error fetching instructor:', error)
 
@@ -50,12 +53,14 @@ const InstructorPage = async ({ params }: { params: Promise<{ slug: string }> })
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           <div className="md:col-span-1">
             <div className="relative h-80 w-full overflow-hidden rounded-lg">
-              <Image
-                alt={instructor.name}
-                className="object-cover"
-                fill
-                src={instructor.photo_url}
-              />
+              {instructor.media?.[0] && (
+                <Image
+                  alt={instructor.name}
+                  className="object-cover"
+                  fill
+                  src={instructor.media[0].url}
+                />
+              )}
             </div>
           </div>
           <div className="md:col-span-2">

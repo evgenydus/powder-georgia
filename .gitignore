@@ -48,4 +48,4 @@ AGENTS.md
 CLAUDE.md
 .claude
 local/
-supabase/
+/supabase

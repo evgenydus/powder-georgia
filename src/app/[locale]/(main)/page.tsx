@@ -1,9 +1,10 @@
 import { CTASection, FeaturedToursSection, HeroSection } from '@/components/home'
 
+import { fetchMediaForEntities } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
-async function getTours(): Promise<Tour[]> {
+async function getFeaturedTours(): Promise<Tour[]> {
   try {
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -11,6 +12,7 @@ async function getTours(): Promise<Tour[]> {
       .select('*')
       .eq('is_published', true)
       .order('created_at', { ascending: false })
+      .limit(3)
 
     if (error) {
       console.error('Supabase error:', error)
@@ -18,7 +20,9 @@ async function getTours(): Promise<Tour[]> {
       return []
     }
 
-    return data || []
+    if (!data || data.length === 0) return []
+
+    return fetchMediaForEntities(supabase, data, 'tour')
   } catch (error) {
     console.error('Error fetching tours:', error)
 
@@ -27,8 +31,7 @@ async function getTours(): Promise<Tour[]> {
 }
 
 const HomePage = async () => {
-  const tours = await getTours()
-  const featuredTours = tours.slice(0, 3)
+  const featuredTours = await getFeaturedTours()
 
   return (
     <>

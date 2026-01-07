@@ -443,6 +443,7 @@
     "services": "Services",
     "pricePerHour": "Price per hour",
     "contact": "Contact",
+    "noPhoto": "No photo",
     "viewProfile": "View Profile",
     "requestLesson": "Request Lesson"
   },
