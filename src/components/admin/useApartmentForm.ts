@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import type { RefObject } from 'react'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
@@ -15,7 +16,20 @@ import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
 import type { Apartment } from '@/types'
 
-export const useApartmentForm = (apartment?: Apartment) => {
+const syncEntityMedia = async (entityType: string, entityId: string, mediaIds: string[]) => {
+  if (mediaIds.length === 0) return
+
+  const records = mediaIds.map((mediaId, index) => ({
+    entity_id: entityId,
+    entity_type: entityType,
+    media_id: mediaId,
+    position: index,
+  }))
+
+  await supabase.from('entity_media').insert(records)
+}
+
+export const useApartmentForm = (apartment?: Apartment, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -56,17 +70,36 @@ export const useApartmentForm = (apartment?: Apartment) => {
 
     toastInfo(t(`admin.apartmentForm.toast.${isUpdate ? 'updating' : 'creating'}`))
 
-    const { error } = isUpdate
-      ? await supabase.from('apartments').update(data).eq('id', apartment.id)
-      : await supabase.from('apartments').insert([data])
+    if (isUpdate) {
+      const { error } = await supabase.from('apartments').update(data).eq('id', apartment.id)
 
-    if (error) {
-      toastError(t('admin.apartmentForm.toast.errorTitle'), {
-        error,
-        message: t('admin.apartmentForm.toast.errorMessage'),
-      })
+      if (error) {
+        toastError(t('admin.apartmentForm.toast.errorTitle'), {
+          error,
+          message: t('admin.apartmentForm.toast.errorMessage'),
+        })
 
-      return
+        return
+      }
+    } else {
+      const { data: newApartment, error } = await supabase
+        .from('apartments')
+        .insert([data])
+        .select('id')
+        .single()
+
+      if (error || !newApartment) {
+        toastError(t('admin.apartmentForm.toast.errorTitle'), {
+          error,
+          message: t('admin.apartmentForm.toast.errorMessage'),
+        })
+
+        return
+      }
+
+      if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
+        await syncEntityMedia('apartment', newApartment.id, mediaIdsRef.current)
+      }
     }
 
     toastSuccess(t(`admin.apartmentForm.toast.${isUpdate ? 'updated' : 'created'}`))

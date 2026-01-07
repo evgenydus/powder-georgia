@@ -12,6 +12,15 @@ export interface Media {
   created_at: string
 }
 
+export interface EntityMedia {
+  id: string
+  entity_type: MediaEntityType
+  entity_id: string
+  media_id: string
+  position: number
+  created_at: string
+}
+
 export interface Tour {
   id: string
   slug: string

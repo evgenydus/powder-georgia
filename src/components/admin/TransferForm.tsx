@@ -1,14 +1,15 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
 
 import { Button } from '@/components/ui'
+import { ImageSection } from './image-section'
 import { SlugSection } from './SlugSection'
 import {
   DescriptionsSection,
-  ImageSection,
   PriceSection,
   TitlesSection,
   VehicleCapacitySection,
@@ -23,19 +24,22 @@ type TransferFormProps = {
 
 const TransferForm = ({ transfer }: TransferFormProps) => {
   const t = useTranslations()
-  const { form, handleTitleEnBlur, onSubmit } = useTransferForm(transfer)
+  const mediaIdsRef = useRef<string[]>([])
+  const [mediaDirty, setMediaDirty] = useState(false)
+  const { form, handleTitleEnBlur, onSubmit } = useTransferForm(transfer, mediaIdsRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
-    setValue,
-    watch,
   } = form
 
-  useUnsavedChanges({ isDirty, isSubmitSuccessful })
+  useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const imageUrl = watch('image_url') || ''
+  const handleMediaChange = (ids: string[]) => {
+    mediaIdsRef.current = ids
+    setMediaDirty(true)
+  }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -49,7 +53,12 @@ const TransferForm = ({ transfer }: TransferFormProps) => {
       <VehicleCapacitySection errors={errors} register={register} />
       <PriceSection register={register} />
       <DescriptionsSection register={register} />
-      <ImageSection imageUrl={imageUrl} setValue={setValue} />
+      <ImageSection
+        entityId={transfer?.id}
+        entityType="transfer"
+        limit={1}
+        onChange={handleMediaChange}
+      />
       <Button type="submit">
         {transfer ? t('admin.transferForm.submit.update') : t('admin.transferForm.submit.create')}
       </Button>

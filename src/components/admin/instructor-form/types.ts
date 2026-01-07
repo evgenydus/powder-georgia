@@ -1,4 +1,4 @@
-import type { FieldErrors, UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import type { InstructorFormData } from '../instructorSchema'
 
@@ -9,9 +9,4 @@ type SectionProps = {
 
 type RegisterOnlyProps = Pick<SectionProps, 'register'>
 
-type PhotoSectionProps = {
-  photoUrl: string
-  setValue: UseFormSetValue<InstructorFormData>
-}
-
-export type { PhotoSectionProps, RegisterOnlyProps, SectionProps }
+export type { RegisterOnlyProps, SectionProps }

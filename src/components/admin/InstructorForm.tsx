@@ -1,15 +1,16 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
 
 import { Button } from '@/components/ui'
+import { ImageSection } from './image-section'
 import {
   BioSection,
   ContactPriceSection,
   NameSection,
-  PhotoSection,
   ServicesSection,
   SpecializationSection,
 } from './instructor-form'
@@ -24,19 +25,22 @@ type InstructorFormProps = {
 
 const InstructorForm = ({ instructor }: InstructorFormProps) => {
   const t = useTranslations()
-  const { form, handleNameBlur, onSubmit } = useInstructorForm(instructor)
+  const mediaIdsRef = useRef<string[]>([])
+  const [mediaDirty, setMediaDirty] = useState(false)
+  const { form, handleNameBlur, onSubmit } = useInstructorForm(instructor, mediaIdsRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
-    setValue,
-    watch,
   } = form
 
-  useUnsavedChanges({ isDirty, isSubmitSuccessful })
+  useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const photoUrl = watch('photo_url')
+  const handleMediaChange = (ids: string[]) => {
+    mediaIdsRef.current = ids
+    setMediaDirty(true)
+  }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -51,7 +55,12 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
       <BioSection register={register} />
       <ServicesSection register={register} />
       <ContactPriceSection register={register} />
-      <PhotoSection photoUrl={photoUrl ?? ''} setValue={setValue} />
+      <ImageSection
+        entityId={instructor?.id}
+        entityType="instructor"
+        limit={1}
+        onChange={handleMediaChange}
+      />
       <Button type="submit">
         {instructor
           ? t('admin.instructorForm.submit.update')

@@ -1,7 +1,6 @@
 export { BioSection } from './BioSection'
 export { ContactPriceSection } from './ContactPriceSection'
 export { NameSection } from './NameSection'
-export { PhotoSection } from './PhotoSection'
 export { ServicesSection } from './ServicesSection'
 export { SpecializationSection } from './SpecializationSection'
-export type { PhotoSectionProps, RegisterOnlyProps, SectionProps } from './types'
+export type { RegisterOnlyProps, SectionProps } from './types'
