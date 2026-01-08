@@ -54,8 +54,8 @@ const TransferForm = ({ transfer }: TransferFormProps) => {
       <PriceSection register={register} />
       <DescriptionsSection register={register} />
       <ImageSection
-        entityId={transfer?.id}
         entityType="transfer"
+        initialMedia={transfer?.media}
         limit={1}
         onChange={handleMediaChange}
       />

@@ -69,6 +69,20 @@ export const useTransferForm = (transfer?: Transfer, mediaIdsRef?: RefObject<str
 
         return
       }
+
+      // Sync media for existing transfer
+      if (mediaIdsRef?.current) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'transfer',
+          transfer.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for transfer:', mediaResult.error)
+        }
+      }
     } else {
       const { data: newTransfer, error } = await supabase
         .from('transfers')

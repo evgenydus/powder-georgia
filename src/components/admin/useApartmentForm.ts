@@ -69,6 +69,20 @@ export const useApartmentForm = (apartment?: Apartment, mediaIdsRef?: RefObject<
 
         return
       }
+
+      // Sync media for existing apartment
+      if (mediaIdsRef?.current) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'apartment',
+          apartment.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for apartment:', mediaResult.error)
+        }
+      }
     } else {
       const { data: newApartment, error } = await supabase
         .from('apartments')

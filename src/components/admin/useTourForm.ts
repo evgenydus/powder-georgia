@@ -69,6 +69,15 @@ export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
 
         return
       }
+
+      // Sync media for existing tour
+      if (mediaIdsRef?.current) {
+        const mediaResult = await syncEntityMedia(supabase, 'tour', tour.id, mediaIdsRef.current)
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for tour:', mediaResult.error)
+        }
+      }
     } else {
       const { data: newTour, error } = await supabase
         .from('tours')

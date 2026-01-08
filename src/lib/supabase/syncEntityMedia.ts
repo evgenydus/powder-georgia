@@ -13,6 +13,20 @@ export const syncEntityMedia = async (
   entityId: string,
   mediaIds: string[],
 ): Promise<SyncEntityMediaResult> => {
+  // Delete existing associations first
+  const { error: deleteError } = await supabase
+    .from('entity_media')
+    .delete()
+    .eq('entity_type', entityType)
+    .eq('entity_id', entityId)
+
+  if (deleteError) {
+    console.error('Failed to delete existing entity media:', deleteError.message)
+
+    return { error: deleteError.message, success: false }
+  }
+
+  // Insert new associations if any
   if (mediaIds.length === 0) {
     return { success: true }
   }
@@ -24,12 +38,12 @@ export const syncEntityMedia = async (
     position: index,
   }))
 
-  const { error } = await supabase.from('entity_media').insert(records)
+  const { error: insertError } = await supabase.from('entity_media').insert(records)
 
-  if (error) {
-    console.error('Failed to sync entity media:', error.message)
+  if (insertError) {
+    console.error('Failed to sync entity media:', insertError.message)
 
-    return { error: error.message, success: false }
+    return { error: insertError.message, success: false }
   }
 
   return { success: true }

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { InstructorForm } from '@/components/admin/InstructorForm'
 
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
@@ -16,7 +17,9 @@ async function getInstructorById(id: string): Promise<Instructor | null> {
       return null
     }
 
-    return data || null
+    if (!data) return null
+
+    return fetchMediaForEntity(supabase, data, 'instructor')
   } catch (error) {
     console.error('Error fetching instructor:', error)
 

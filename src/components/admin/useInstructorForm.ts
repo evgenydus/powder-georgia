@@ -69,6 +69,20 @@ export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObje
 
         return
       }
+
+      // Sync media for existing instructor
+      if (mediaIdsRef?.current) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'instructor',
+          instructor.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for instructor:', mediaResult.error)
+        }
+      }
     } else {
       const { data: newInstructor, error } = await supabase
         .from('instructors')

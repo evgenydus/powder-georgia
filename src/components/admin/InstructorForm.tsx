@@ -56,8 +56,8 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
       <ServicesSection register={register} />
       <ContactPriceSection register={register} />
       <ImageSection
-        entityId={instructor?.id}
         entityType="instructor"
+        initialMedia={instructor?.media}
         limit={1}
         onChange={handleMediaChange}
       />

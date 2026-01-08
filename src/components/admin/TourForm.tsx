@@ -57,7 +57,7 @@ const TourForm = ({ tour }: TourFormProps) => {
       <GroupSizeSection register={register} />
       <VerticalDropSection register={register} />
       <EquipmentSection register={register} />
-      <ImageSection entityId={tour?.id} entityType="tour" onChange={handleMediaChange} />
+      <ImageSection entityType="tour" initialMedia={tour?.media} onChange={handleMediaChange} />
       <Button type="submit">
         {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}
       </Button>

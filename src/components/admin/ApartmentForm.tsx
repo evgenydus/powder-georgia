@@ -53,7 +53,11 @@ const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
       <DescriptionsSection errors={errors} register={register} />
       <CapacityPriceSection register={register} />
       <AmenitiesSection register={register} />
-      <ImageSection entityId={apartment?.id} entityType="apartment" onChange={handleMediaChange} />
+      <ImageSection
+        entityType="apartment"
+        initialMedia={apartment?.media}
+        onChange={handleMediaChange}
+      />
       <Button type="submit">
         {apartment
           ? t('admin.apartmentForm.submit.update')
