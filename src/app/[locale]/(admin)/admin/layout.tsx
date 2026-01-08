@@ -4,9 +4,9 @@ import { AdminGuard } from '@/components/auth'
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <AdminGuard>
-      <div className="bg-background text-foreground flex h-screen overflow-y-auto">
+      <div className="bg-background text-foreground flex h-screen overflow-hidden">
         <AdminSidebar />
-        <main className="flex-1 p-8">{children}</main>
+        <main className="flex-1 overflow-y-auto p-8">{children}</main>
       </div>
     </AdminGuard>
   )
