@@ -44,41 +44,54 @@ const ImageSection = ({
     entityType,
     onSuccess: async (uploaded) => {
       if (entityId) {
-        await addMedia(uploaded.map((m) => m.id))
+        // For entity-backed mode, addMedia will update mediaIds and useEffect will call onChange
+        await addMedia(uploaded.map((media) => media.id))
       } else {
-        setLocalMedia((prev) => [...prev, ...uploaded].slice(0, limit))
-      }
+        setLocalMedia((prev) => {
+          const updated = [...prev, ...uploaded].slice(0, limit)
 
-      onChange?.(
-        entityId ? mediaIds : [...currentIds, ...uploaded.map((m) => m.id)].slice(0, limit),
-      )
+          onChange?.(updated.map((media) => media.id))
+
+          return updated
+        })
+      }
     },
   })
 
   useEffect(() => {
-    if (entityId && mediaIds.length > 0) {
+    if (entityId) {
       onChange?.(mediaIds)
     }
   }, [entityId, mediaIds, onChange])
 
   const handleRemove = async (mediaId: string) => {
     if (entityId) {
+      // For entity-backed mode, removeMedia will update mediaIds and useEffect will call onChange
       await removeMedia(mediaId)
     } else {
-      setLocalMedia((prev) => prev.filter((m) => m.id !== mediaId))
-    }
+      setLocalMedia((prev) => {
+        const updated = prev.filter((media) => media.id !== mediaId)
 
-    onChange?.(currentIds.filter((id) => id !== mediaId))
+        onChange?.(updated.map((media) => media.id))
+
+        return updated
+      })
+    }
   }
 
   const handleLibrarySelect = async (selected: Media[]) => {
     if (entityId) {
-      await addMedia(selected.map((m) => m.id))
+      // For entity-backed mode, addMedia will update mediaIds and useEffect will call onChange
+      await addMedia(selected.map((media) => media.id))
     } else {
-      setLocalMedia((prev) => [...prev, ...selected].slice(0, limit))
-    }
+      setLocalMedia((prev) => {
+        const updated = [...prev, ...selected].slice(0, limit)
 
-    onChange?.([...currentIds, ...selected.map((m) => m.id)].slice(0, limit))
+        onChange?.(updated.map((media) => media.id))
+
+        return updated
+      })
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

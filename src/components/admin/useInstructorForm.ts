@@ -14,20 +14,8 @@ import { getInitialValues, type InstructorFormData, instructorSchema } from './i
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Instructor } from '@/types'
-
-const syncEntityMedia = async (entityType: string, entityId: string, mediaIds: string[]) => {
-  if (mediaIds.length === 0) return
-
-  const records = mediaIds.map((mediaId, index) => ({
-    entity_id: entityId,
-    entity_type: entityType,
-    media_id: mediaId,
-    position: index,
-  }))
-
-  await supabase.from('entity_media').insert(records)
-}
 
 export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
@@ -98,7 +86,16 @@ export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObje
       }
 
       if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
-        await syncEntityMedia('instructor', newInstructor.id, mediaIdsRef.current)
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'instructor',
+          newInstructor.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for instructor:', mediaResult.error)
+        }
       }
     }
 

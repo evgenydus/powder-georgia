@@ -100,7 +100,17 @@ const useEntityMedia = ({ entityId, entityType }: UseEntityMediaOptions) => {
       if (!id) return
 
       // Delete existing
-      await supabase.from('entity_media').delete().eq('entity_type', entityType).eq('entity_id', id)
+      const { error: deleteError } = await supabase
+        .from('entity_media')
+        .delete()
+        .eq('entity_type', entityType)
+        .eq('entity_id', id)
+
+      if (deleteError) {
+        console.error('Failed to delete existing media associations:', deleteError.message)
+
+        return
+      }
 
       // Insert new
       if (mediaIds.length > 0) {
@@ -111,10 +121,10 @@ const useEntityMedia = ({ entityId, entityType }: UseEntityMediaOptions) => {
           position: index,
         }))
 
-        const { error } = await supabase.from('entity_media').insert(records)
+        const { error: insertError } = await supabase.from('entity_media').insert(records)
 
-        if (error) {
-          console.error('Failed to sync media:', error.message)
+        if (insertError) {
+          console.error('Failed to sync media:', insertError.message)
         }
       }
 

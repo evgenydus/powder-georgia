@@ -18,12 +18,16 @@ const fetchMediaForEntities = async <T extends { id: string }>(
 
   const entityIds = entities.map((e) => e.id)
 
-  const { data: entityMedia } = await supabase
+  const { data: entityMedia, error } = await supabase
     .from('entity_media')
     .select('entity_id, media:media_id(*)')
     .eq('entity_type', entityType)
     .in('entity_id', entityIds)
     .order('position', { ascending: true })
+
+  if (error) {
+    console.error('Failed to fetch media for entities:', error.message)
+  }
 
   const mediaByEntityId = new Map<string, Media[]>()
 

@@ -14,20 +14,8 @@ import { getInitialValues, type TourFormData, tourSchema } from './tourSchema'
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Tour } from '@/types'
-
-const syncEntityMedia = async (entityType: string, entityId: string, mediaIds: string[]) => {
-  if (mediaIds.length === 0) return
-
-  const records = mediaIds.map((mediaId, index) => ({
-    entity_id: entityId,
-    entity_type: entityType,
-    media_id: mediaId,
-    position: index,
-  }))
-
-  await supabase.from('entity_media').insert(records)
-}
 
 export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
@@ -99,7 +87,11 @@ export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
 
       // Sync media for new tour
       if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
-        await syncEntityMedia('tour', newTour.id, mediaIdsRef.current)
+        const mediaResult = await syncEntityMedia(supabase, 'tour', newTour.id, mediaIdsRef.current)
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for tour:', mediaResult.error)
+        }
       }
     }
 
