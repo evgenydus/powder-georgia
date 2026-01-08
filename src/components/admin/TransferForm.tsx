@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
@@ -22,9 +22,13 @@ type TransferFormProps = {
   transfer?: Transfer
 }
 
+const arraysEqual = (a: string[], b: string[]) =>
+  a.length === b.length && a.every((id, i) => id === b[i])
+
 const TransferForm = ({ transfer }: TransferFormProps) => {
   const t = useTranslations()
-  const mediaIdsRef = useRef<string[]>([])
+  const initialMediaIds = useMemo(() => transfer?.media?.map((m) => m.id) ?? [], [transfer?.media])
+  const mediaIdsRef = useRef<string[]>(initialMediaIds)
   const [mediaDirty, setMediaDirty] = useState(false)
   const { form, handleTitleEnBlur, onSubmit } = useTransferForm(transfer, mediaIdsRef)
 
@@ -36,10 +40,13 @@ const TransferForm = ({ transfer }: TransferFormProps) => {
 
   useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const handleMediaChange = (ids: string[]) => {
-    mediaIdsRef.current = ids
-    setMediaDirty(true)
-  }
+  const handleMediaChange = useCallback(
+    (ids: string[]) => {
+      mediaIdsRef.current = ids
+      setMediaDirty(!arraysEqual(ids, initialMediaIds))
+    },
+    [initialMediaIds],
+  )
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
