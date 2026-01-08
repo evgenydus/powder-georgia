@@ -1,7 +1,6 @@
 export { DescriptionsSection } from './DescriptionsSection'
 export { EquipmentSection } from './EquipmentSection'
 export { GroupSizeSection } from './GroupSizeSection'
-export { ImagesSection } from './ImagesSection'
 export { MetricsSection } from './MetricsSection'
 export { TitlesSection } from './TitlesSection'
 export { VerticalDropSection } from './VerticalDropSection'

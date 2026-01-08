@@ -3,6 +3,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 
 import { ImageGallery } from '@/components/ui'
 
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
@@ -22,7 +23,9 @@ async function getTourBySlug(slug: string): Promise<Tour | null> {
       return null
     }
 
-    return data || null
+    if (!data) return null
+
+    return fetchMediaForEntity(supabase, data, 'tour')
   } catch (error) {
     console.error('Error fetching tour:', error)
 
@@ -49,10 +52,12 @@ const TourPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const requiredEquipment =
     tour[`required_equipment_${locale as 'en' | 'ka' | 'ru'}`] || tour.required_equipment_en
 
+  const images = tour.media?.map((media) => media.url) ?? []
+
   return (
     <main className="bg-background text-foreground min-h-screen">
       <div className="relative h-96 w-full">
-        <Image alt={title} className="object-cover" fill src={tour.images[0]} />
+        {images[0] && <Image alt={title} className="object-cover" fill src={images[0]} />}
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>
@@ -96,10 +101,10 @@ const TourPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           </div>
         )}
 
-        {tour.images.length > 1 && (
+        {images.length > 1 && (
           <div className="mt-8">
             <h2 className="mb-4 text-2xl font-bold">{t('tours.gallery')}</h2>
-            <ImageGallery alt={title} images={tour.images} />
+            <ImageGallery alt={title} images={images} />
           </div>
         )}
 

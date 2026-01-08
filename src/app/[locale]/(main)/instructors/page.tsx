@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { InstructorGrid } from '@/components/instructors'
 
+import { fetchMediaForEntities } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
@@ -20,7 +21,9 @@ async function getInstructors(): Promise<Instructor[]> {
       return []
     }
 
-    return data || []
+    if (!data || data.length === 0) return []
+
+    return fetchMediaForEntities(supabase, data, 'instructor')
   } catch (error) {
     console.error('Error fetching instructors:', error)
 

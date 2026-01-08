@@ -63,7 +63,14 @@
       "addSelected": "{count} არჩეულის დამატება",
       "cancel": "გაუქმება",
       "chooseFromLibrary": "ბიბლიოთეკიდან არჩევა",
-      "empty": "ბიბლიოთეკა ცარიელია. ჯერ ატვირთეთ სურათები.",
+      "cover": "გარეკანი",
+      "empty": "სურათები არ არის ატვირთული",
+      "heading": "სურათები",
+      "hint": "JPEG, PNG, WebP ან GIF (მაქს. 5MB)",
+      "libraryEmpty": "ბიბლიოთეკა ცარიელია",
+      "loading": "იტვირთება...",
+      "maxReached": "მაქსიმუმ {limit} სურათი",
+      "remove": "სურათის წაშლა",
       "selectImages": "სურათების არჩევა",
       "tabs": {
         "all": "ყველა",
@@ -72,7 +79,8 @@
         "tour": "ტურები",
         "transfer": "ტრანსფერები"
       },
-      "upload": "ატვირთვა"
+      "upload": "ატვირთვა",
+      "uploading": "იტვირთება..."
     },
     "tourForm": {
       "active": {
@@ -424,6 +432,8 @@
     "services": "სერვისი",
     "pricePerHour": "ფასი საათში",
     "contact": "კონტაქტი",
+    "noPhoto": "ფოტო არ არის",
+    "viewProfile": "პროფილის ნახვა",
     "requestLesson": "გაკვეთილის მოთხოვნა"
   },
   "lessonRequest": {

@@ -23,12 +23,18 @@ export const InstructorCard = ({ instructor }: InstructorCardProps) => {
     <Link href={`${routes.instructors}/${instructor.slug}`}>
       <div className="group bg-card cursor-pointer overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
         <div className="bg-muted relative h-64 w-full overflow-hidden">
-          <Image
-            alt={instructor.name}
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
-            fill
-            src={instructor.photo_url}
-          />
+          {instructor.media?.[0] ? (
+            <Image
+              alt={instructor.name}
+              className="object-cover transition-transform duration-300 group-hover:scale-110"
+              fill
+              src={instructor.media[0].url}
+            />
+          ) : (
+            <div className="text-muted-foreground flex h-full items-center justify-center">
+              {t('instructors.noPhoto')}
+            </div>
+          )}
         </div>
         <div className="p-4">
           <h3 className="text-foreground mb-1 text-lg font-bold">{instructor.name}</h3>

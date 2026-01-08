@@ -1,16 +1,17 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
 
 import { Button } from '@/components/ui/Button'
+import { ImageSection } from './image-section'
 import { SlugSection } from './SlugSection'
 import {
   DescriptionsSection,
   EquipmentSection,
   GroupSizeSection,
-  ImagesSection,
   MetricsSection,
   TitlesSection,
   VerticalDropSection,
@@ -25,19 +26,22 @@ type TourFormProps = {
 
 const TourForm = ({ tour }: TourFormProps) => {
   const t = useTranslations()
-  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour)
+  const mediaIdsRef = useRef<string[]>([])
+  const [mediaDirty, setMediaDirty] = useState(false)
+  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour, mediaIdsRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
-    setValue,
-    watch,
   } = form
 
-  useUnsavedChanges({ isDirty, isSubmitSuccessful })
+  useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const images = watch('images')
+  const handleMediaChange = (ids: string[]) => {
+    mediaIdsRef.current = ids
+    setMediaDirty(true)
+  }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -53,11 +57,7 @@ const TourForm = ({ tour }: TourFormProps) => {
       <GroupSizeSection register={register} />
       <VerticalDropSection register={register} />
       <EquipmentSection register={register} />
-      <ImagesSection
-        entityType="tour"
-        images={images}
-        onImagesChange={(imgs) => setValue('images', imgs)}
-      />
+      <ImageSection entityId={tour?.id} entityType="tour" onChange={handleMediaChange} />
       <Button type="submit">
         {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}
       </Button>

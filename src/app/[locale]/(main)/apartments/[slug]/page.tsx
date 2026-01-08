@@ -8,6 +8,7 @@ import { Button, ImageGallery } from '@/components/ui'
 
 import type { Locale } from '@/i18n/config'
 import { Link } from '@/i18n/navigation'
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
@@ -26,7 +27,9 @@ async function getApartmentBySlug(slug: string): Promise<Apartment | null> {
     return null
   }
 
-  return data || null
+  if (!data) return null
+
+  return fetchMediaForEntity(supabase, data, 'apartment')
 }
 
 const ApartmentPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
@@ -43,16 +46,17 @@ const ApartmentPage = async ({ params }: { params: Promise<{ slug: string }> }) 
     )
   }
 
-  const { amenities_en, description_en, images, price_per_night_usd, title_en } = apartment
+  const { amenities_en, description_en, price_per_night_usd, title_en } = apartment
 
   const title = apartment[`title_${locale}`] || title_en
   const description = apartment[`description_${locale}`] || description_en
   const amenities = apartment[`amenities_${locale}`] || amenities_en
+  const images = apartment.media?.map((m) => m.url) ?? []
 
   return (
     <main className="bg-background text-foreground min-h-screen">
       <div className="relative h-96 w-full">
-        {images.length > 0 && <Image alt={title} className="object-cover" fill src={images[0]} />}
+        {images[0] && <Image alt={title} className="object-cover" fill src={images[0]} />}
         <div className="absolute inset-0 flex items-center justify-center bg-black/50">
           <h1 className="text-5xl font-bold">{title}</h1>
         </div>

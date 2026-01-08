@@ -1,7 +1,7 @@
 'use client'
 
-import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 import { useTranslations } from 'next-intl'
+import type { FieldErrors, UseFormRegister } from 'react-hook-form'
 
 import { Select } from '@/components/contact/FormPrimitives'
 import { FormField } from '@/components/ui'

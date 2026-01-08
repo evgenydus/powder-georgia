@@ -63,7 +63,14 @@
       "addSelected": "Добавить {count} выбранных",
       "cancel": "Отмена",
       "chooseFromLibrary": "Выбрать из библиотеки",
-      "empty": "Библиотека пуста. Сначала загрузите изображения.",
+      "cover": "Обложка",
+      "empty": "Изображения не загружены",
+      "heading": "Изображения",
+      "hint": "JPEG, PNG, WebP или GIF (макс. 5MB)",
+      "libraryEmpty": "Библиотека пуста",
+      "loading": "Загрузка...",
+      "maxReached": "Максимум {limit} изображений",
+      "remove": "Удалить изображение",
       "selectImages": "Выбрать изображения",
       "tabs": {
         "all": "Все",
@@ -72,7 +79,8 @@
         "tour": "Туры",
         "transfer": "Трансферы"
       },
-      "upload": "Загрузить"
+      "upload": "Загрузить",
+      "uploading": "Загрузка..."
     },
     "tourForm": {
       "active": {
@@ -424,6 +432,8 @@
     "services": "Услуги",
     "pricePerHour": "Цена в час",
     "contact": "Контакты",
+    "noPhoto": "Нет фото",
+    "viewProfile": "Смотреть профиль",
     "requestLesson": "Записаться на урок"
   },
   "lessonRequest": {

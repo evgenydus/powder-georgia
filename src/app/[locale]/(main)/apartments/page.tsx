@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { ApartmentGrid } from '@/components/apartments'
 
+import { fetchMediaForEntities } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
@@ -20,7 +21,9 @@ async function getApartments(): Promise<Apartment[]> {
       return []
     }
 
-    return data || []
+    if (!data || data.length === 0) return []
+
+    return fetchMediaForEntities(supabase, data, 'apartment')
   } catch (error) {
     console.error('Error fetching apartments:', error)
 

@@ -70,7 +70,14 @@
       "addSelected": "Add {count} selected",
       "cancel": "Cancel",
       "chooseFromLibrary": "Choose from Library",
-      "empty": "No images in library. Upload some first.",
+      "cover": "Cover",
+      "empty": "No images uploaded yet",
+      "heading": "Images",
+      "hint": "JPEG, PNG, WebP or GIF (max 5MB)",
+      "libraryEmpty": "No images in library",
+      "loading": "Loading...",
+      "maxReached": "Maximum {limit} images",
+      "remove": "Remove image",
       "selectImages": "Select Images",
       "tabs": {
         "all": "All",
@@ -79,7 +86,8 @@
         "tour": "Tours",
         "transfer": "Transfers"
       },
-      "upload": "Upload"
+      "upload": "Upload",
+      "uploading": "Uploading..."
     },
     "tourForm": {
       "active": {
@@ -435,6 +443,7 @@
     "services": "Services",
     "pricePerHour": "Price per hour",
     "contact": "Contact",
+    "noPhoto": "No photo",
     "viewProfile": "View Profile",
     "requestLesson": "Request Lesson"
   },

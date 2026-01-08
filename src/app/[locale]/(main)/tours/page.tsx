@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { TourGrid } from '@/components/tours'
 
+import { fetchMediaForEntities } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Tour } from '@/types'
 
@@ -20,7 +21,9 @@ async function getTours(): Promise<Tour[]> {
       return []
     }
 
-    return data || []
+    if (!data || data.length === 0) return []
+
+    return fetchMediaForEntities(supabase, data, 'tour')
   } catch (error) {
     console.error('Error fetching tours:', error)
 

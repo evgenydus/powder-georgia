@@ -11,29 +11,13 @@ type CacheEntry = {
 }
 
 const cache = new Map<string, CacheEntry>()
-const cacheTTL = 60000 // 1 minute
+const CACHE_TTL = 60000 // 1 minute
 
-const getCacheKey = (filter: MediaEntityType | null | undefined) => filter ?? 'all'
-
-const fetchMediaFromDb = async (entityTypeFilter: MediaEntityType | null | undefined) => {
-  let query = supabase.from('media').select('*')
-
-  if (entityTypeFilter) {
-    query = query.eq('entity_type', entityTypeFilter)
-  }
-
-  const { data, error } = await query.order('created_at', { ascending: false })
-
-  if (error) {
-    console.error('Failed to fetch media:', error.message)
-
-    return []
-  }
-
-  return (data as Media[]) ?? []
+type UseMediaLibraryOptions = {
+  entityType?: MediaEntityType | 'all'
 }
 
-const useMediaLibrary = (entityTypeFilter?: MediaEntityType | null) => {
+const useMediaLibrary = ({ entityType = 'all' }: UseMediaLibraryOptions = {}) => {
   const [media, setMedia] = useState<Media[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [refreshKey, setRefreshKey] = useState(0)
@@ -42,11 +26,11 @@ const useMediaLibrary = (entityTypeFilter?: MediaEntityType | null) => {
     let cancelled = false
 
     const load = async () => {
-      const key = getCacheKey(entityTypeFilter)
-      const cached = cache.get(key)
+      const cacheKey = entityType
+      const cached = cache.get(cacheKey)
       const now = Date.now()
 
-      if (cached && now - cached.timestamp < cacheTTL) {
+      if (cached && now - cached.timestamp < CACHE_TTL) {
         if (!cancelled) {
           setMedia(cached.data)
           setIsLoading(false)
@@ -55,15 +39,25 @@ const useMediaLibrary = (entityTypeFilter?: MediaEntityType | null) => {
         return
       }
 
-      if (!cancelled) {
-        setIsLoading(true)
+      if (!cancelled) setIsLoading(true)
+
+      let query = supabase.from('media').select('*')
+
+      if (entityType !== 'all') {
+        query = query.eq('entity_type', entityType)
       }
 
-      const result = await fetchMediaFromDb(entityTypeFilter)
+      const { data, error } = await query.order('created_at', { ascending: false })
 
       if (!cancelled) {
-        cache.set(key, { data: result, timestamp: Date.now() })
-        setMedia(result)
+        if (error) {
+          console.error('Failed to fetch media:', error.message)
+          setMedia([])
+        } else {
+          cache.set(cacheKey, { data: data as Media[], timestamp: Date.now() })
+          setMedia(data as Media[])
+        }
+
         setIsLoading(false)
       }
     }
@@ -73,21 +67,18 @@ const useMediaLibrary = (entityTypeFilter?: MediaEntityType | null) => {
     return () => {
       cancelled = true
     }
-  }, [entityTypeFilter, refreshKey])
+  }, [entityType, refreshKey])
 
-  const invalidateCache = useCallback(() => {
+  const refetch = useCallback(() => {
+    cache.delete(entityType)
+    setRefreshKey((k) => k + 1)
+  }, [entityType])
+
+  const invalidateAll = useCallback(() => {
     cache.clear()
   }, [])
 
-  const refresh = useCallback(() => {
-    const key = getCacheKey(entityTypeFilter)
-
-    cache.delete(key)
-
-    setRefreshKey((k) => k + 1)
-  }, [entityTypeFilter])
-
-  return { invalidateCache, isLoading, media, refresh }
+  return { invalidateAll, isLoading, media, refetch }
 }
 
 export { useMediaLibrary }

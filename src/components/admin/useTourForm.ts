@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import type { RefObject } from 'react'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
@@ -13,9 +14,10 @@ import { getInitialValues, type TourFormData, tourSchema } from './tourSchema'
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Tour } from '@/types'
 
-export const useTourForm = (tour?: Tour) => {
+export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -56,17 +58,41 @@ export const useTourForm = (tour?: Tour) => {
 
     toastInfo(t(`admin.tourForm.toast.${isUpdate ? 'updating' : 'creating'}`))
 
-    const { error } = isUpdate
-      ? await supabase.from('tours').update(data).eq('id', tour.id)
-      : await supabase.from('tours').insert([data])
+    if (isUpdate) {
+      const { error } = await supabase.from('tours').update(data).eq('id', tour.id)
 
-    if (error) {
-      toastError(t('admin.tourForm.toast.errorTitle'), {
-        error,
-        message: t('admin.tourForm.toast.errorMessage'),
-      })
+      if (error) {
+        toastError(t('admin.tourForm.toast.errorTitle'), {
+          error,
+          message: t('admin.tourForm.toast.errorMessage'),
+        })
 
-      return
+        return
+      }
+    } else {
+      const { data: newTour, error } = await supabase
+        .from('tours')
+        .insert([data])
+        .select('id')
+        .single()
+
+      if (error || !newTour) {
+        toastError(t('admin.tourForm.toast.errorTitle'), {
+          error,
+          message: t('admin.tourForm.toast.errorMessage'),
+        })
+
+        return
+      }
+
+      // Sync media for new tour
+      if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
+        const mediaResult = await syncEntityMedia(supabase, 'tour', newTour.id, mediaIdsRef.current)
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for tour:', mediaResult.error)
+        }
+      }
     }
 
     toastSuccess(t(`admin.tourForm.toast.${isUpdate ? 'updated' : 'created'}`))

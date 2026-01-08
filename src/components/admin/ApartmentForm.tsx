@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
@@ -11,8 +12,8 @@ import {
   DescriptionsSection,
   TitlesSection,
 } from './apartment-form'
+import { ImageSection } from './image-section'
 import { SlugSection } from './SlugSection'
-import { ImagesSection } from './tour-form'
 import { useApartmentForm } from './useApartmentForm'
 
 import type { Apartment } from '@/types'
@@ -23,19 +24,22 @@ type ApartmentFormProps = {
 
 const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
   const t = useTranslations()
-  const { form, handleTitleEnBlur, onSubmit } = useApartmentForm(apartment)
+  const mediaIdsRef = useRef<string[]>([])
+  const [mediaDirty, setMediaDirty] = useState(false)
+  const { form, handleTitleEnBlur, onSubmit } = useApartmentForm(apartment, mediaIdsRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
     handleSubmit,
     register,
-    setValue,
-    watch,
   } = form
 
-  useUnsavedChanges({ isDirty, isSubmitSuccessful })
+  useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const images = watch('images')
+  const handleMediaChange = (ids: string[]) => {
+    mediaIdsRef.current = ids
+    setMediaDirty(true)
+  }
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -49,11 +53,7 @@ const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
       <DescriptionsSection errors={errors} register={register} />
       <CapacityPriceSection register={register} />
       <AmenitiesSection register={register} />
-      <ImagesSection
-        entityType="apartment"
-        images={images}
-        onImagesChange={(imgs) => setValue('images', imgs)}
-      />
+      <ImageSection entityId={apartment?.id} entityType="apartment" onChange={handleMediaChange} />
       <Button type="submit">
         {apartment
           ? t('admin.apartmentForm.submit.update')

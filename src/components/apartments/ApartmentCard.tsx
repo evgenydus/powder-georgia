@@ -24,12 +24,12 @@ export const ApartmentCard = ({ apartment }: ApartmentCardProps) => {
     <Link href={`${routes.apartments}/${apartment.slug}`}>
       <div className="group bg-card cursor-pointer overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
         <div className="bg-muted relative h-48 w-full overflow-hidden">
-          {apartment.images && apartment.images.length > 0 ? (
+          {apartment.media && apartment.media.length > 0 ? (
             <Image
               alt={title}
               className="object-cover transition-transform duration-300 group-hover:scale-110"
               fill
-              src={apartment.images[0]}
+              src={apartment.media[0].url}
             />
           ) : (
             <div className="text-muted-foreground flex h-full items-center justify-center">

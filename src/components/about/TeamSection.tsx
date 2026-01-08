@@ -6,6 +6,7 @@ import { InstructorCard } from '@/components/instructors'
 import { Button } from '@/components/ui'
 
 import { Link } from '@/i18n/navigation'
+import { fetchMediaForEntities } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Instructor } from '@/types'
 
@@ -24,7 +25,9 @@ async function getFeaturedInstructors(): Promise<Instructor[]> {
       return []
     }
 
-    return data || []
+    if (!data || data.length === 0) return []
+
+    return fetchMediaForEntities(supabase, data, 'instructor')
   } catch (error) {
     console.error('Error fetching instructors:', error)
 

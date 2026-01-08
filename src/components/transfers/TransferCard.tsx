@@ -30,13 +30,13 @@ export const TransferCard = ({ transfer }: TransferCardProps) => {
     <>
       <div className="bg-card flex flex-col overflow-hidden rounded-lg md:flex-row">
         <div className="bg-muted relative h-48 w-full shrink-0 md:h-auto md:w-64">
-          {transfer.image_url ? (
+          {transfer.media?.[0] ? (
             <Image
               alt={title}
               className="object-cover"
               fill
               sizes="(max-width: 768px) 100vw, 256px"
-              src={transfer.image_url}
+              src={transfer.media[0].url}
             />
           ) : (
             <div className="text-muted-foreground flex h-full items-center justify-center">

@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import type { RefObject } from 'react'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
@@ -13,9 +14,10 @@ import { getInitialValues, type TransferFormData, transferSchema } from './trans
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Transfer } from '@/types'
 
-export const useTransferForm = (transfer?: Transfer) => {
+export const useTransferForm = (transfer?: Transfer, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -56,17 +58,45 @@ export const useTransferForm = (transfer?: Transfer) => {
 
     toastInfo(t(`admin.transferForm.toast.${isUpdate ? 'updating' : 'creating'}`))
 
-    const { error } = isUpdate
-      ? await supabase.from('transfers').update(data).eq('id', transfer.id)
-      : await supabase.from('transfers').insert([data])
+    if (isUpdate) {
+      const { error } = await supabase.from('transfers').update(data).eq('id', transfer.id)
 
-    if (error) {
-      toastError(t('admin.transferForm.toast.errorTitle'), {
-        error,
-        message: t('admin.transferForm.toast.errorMessage'),
-      })
+      if (error) {
+        toastError(t('admin.transferForm.toast.errorTitle'), {
+          error,
+          message: t('admin.transferForm.toast.errorMessage'),
+        })
 
-      return
+        return
+      }
+    } else {
+      const { data: newTransfer, error } = await supabase
+        .from('transfers')
+        .insert([data])
+        .select('id')
+        .single()
+
+      if (error || !newTransfer) {
+        toastError(t('admin.transferForm.toast.errorTitle'), {
+          error,
+          message: t('admin.transferForm.toast.errorMessage'),
+        })
+
+        return
+      }
+
+      if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'transfer',
+          newTransfer.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for transfer:', mediaResult.error)
+        }
+      }
     }
 
     toastSuccess(t(`admin.transferForm.toast.${isUpdate ? 'updated' : 'created'}`))

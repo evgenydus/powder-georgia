@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import type { RefObject } from 'react'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
@@ -13,9 +14,10 @@ import { getInitialValues, type InstructorFormData, instructorSchema } from './i
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Instructor } from '@/types'
 
-export const useInstructorForm = (instructor?: Instructor) => {
+export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -56,17 +58,45 @@ export const useInstructorForm = (instructor?: Instructor) => {
 
     toastInfo(t(`admin.instructorForm.toast.${isUpdate ? 'updating' : 'creating'}`))
 
-    const { error } = isUpdate
-      ? await supabase.from('instructors').update(data).eq('id', instructor.id)
-      : await supabase.from('instructors').insert([data])
+    if (isUpdate) {
+      const { error } = await supabase.from('instructors').update(data).eq('id', instructor.id)
 
-    if (error) {
-      toastError(t('admin.instructorForm.toast.errorTitle'), {
-        error,
-        message: t('admin.instructorForm.toast.errorMessage'),
-      })
+      if (error) {
+        toastError(t('admin.instructorForm.toast.errorTitle'), {
+          error,
+          message: t('admin.instructorForm.toast.errorMessage'),
+        })
 
-      return
+        return
+      }
+    } else {
+      const { data: newInstructor, error } = await supabase
+        .from('instructors')
+        .insert([data])
+        .select('id')
+        .single()
+
+      if (error || !newInstructor) {
+        toastError(t('admin.instructorForm.toast.errorTitle'), {
+          error,
+          message: t('admin.instructorForm.toast.errorMessage'),
+        })
+
+        return
+      }
+
+      if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'instructor',
+          newInstructor.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for instructor:', mediaResult.error)
+        }
+      }
     }
 
     toastSuccess(t(`admin.instructorForm.toast.${isUpdate ? 'updated' : 'created'}`))

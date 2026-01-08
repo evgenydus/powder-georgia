@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
+import type { RefObject } from 'react'
 import type { Resolver } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import slugify from 'slugify'
@@ -13,9 +14,10 @@ import { type ApartmentFormData, apartmentSchema, getInitialValues } from './apa
 
 import { useRouter } from '@/i18n/navigation'
 import { supabase } from '@/lib/supabase/client'
+import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Apartment } from '@/types'
 
-export const useApartmentForm = (apartment?: Apartment) => {
+export const useApartmentForm = (apartment?: Apartment, mediaIdsRef?: RefObject<string[]>) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -56,17 +58,45 @@ export const useApartmentForm = (apartment?: Apartment) => {
 
     toastInfo(t(`admin.apartmentForm.toast.${isUpdate ? 'updating' : 'creating'}`))
 
-    const { error } = isUpdate
-      ? await supabase.from('apartments').update(data).eq('id', apartment.id)
-      : await supabase.from('apartments').insert([data])
+    if (isUpdate) {
+      const { error } = await supabase.from('apartments').update(data).eq('id', apartment.id)
 
-    if (error) {
-      toastError(t('admin.apartmentForm.toast.errorTitle'), {
-        error,
-        message: t('admin.apartmentForm.toast.errorMessage'),
-      })
+      if (error) {
+        toastError(t('admin.apartmentForm.toast.errorTitle'), {
+          error,
+          message: t('admin.apartmentForm.toast.errorMessage'),
+        })
 
-      return
+        return
+      }
+    } else {
+      const { data: newApartment, error } = await supabase
+        .from('apartments')
+        .insert([data])
+        .select('id')
+        .single()
+
+      if (error || !newApartment) {
+        toastError(t('admin.apartmentForm.toast.errorTitle'), {
+          error,
+          message: t('admin.apartmentForm.toast.errorMessage'),
+        })
+
+        return
+      }
+
+      if (mediaIdsRef?.current && mediaIdsRef.current.length > 0) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'apartment',
+          newApartment.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for apartment:', mediaResult.error)
+        }
+      }
     }
 
     toastSuccess(t(`admin.apartmentForm.toast.${isUpdate ? 'updated' : 'created'}`))

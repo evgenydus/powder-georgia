@@ -23,12 +23,12 @@ export const TourCard = ({ tour }: TourCardProps) => {
     <Link className="block h-full" href={`${routes.tours}/${tour.slug}`}>
       <div className="group bg-card flex h-full cursor-pointer flex-col overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105">
         <div className="bg-muted relative h-48 w-full shrink-0 overflow-hidden">
-          {tour.images && tour.images.length > 0 ? (
+          {tour.media && tour.media.length > 0 ? (
             <Image
               alt={title}
               className="object-cover transition-transform duration-300 group-hover:scale-110"
               fill
-              src={tour.images[0]}
+              src={tour.media[0].url}
             />
           ) : (
             <div className="text-muted-foreground flex h-full items-center justify-center">
