@@ -16,21 +16,24 @@ import {
 } from './transfer-form'
 import { useTransferForm } from './useTransferForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Transfer } from '@/types'
 
 type TransferFormProps = {
   transfer?: Transfer
 }
 
-const arraysEqual = (a: string[], b: string[]) =>
-  a.length === b.length && a.every((id, i) => id === b[i])
-
 const TransferForm = ({ transfer }: TransferFormProps) => {
   const t = useTranslations()
   const initialMediaIds = useMemo(() => transfer?.media?.map((m) => m.id) ?? [], [transfer?.media])
   const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleTitleEnBlur, onSubmit } = useTransferForm(transfer, mediaIdsRef)
+  const { form, handleTitleEnBlur, onSubmit } = useTransferForm(
+    transfer,
+    mediaIdsRef,
+    mediaDirtyRef,
+  )
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -43,7 +46,10 @@ const TransferForm = ({ transfer }: TransferFormProps) => {
   const handleMediaChange = useCallback(
     (ids: string[]) => {
       mediaIdsRef.current = ids
-      setMediaDirty(!arraysEqual(ids, initialMediaIds))
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
     },
     [initialMediaIds],
   )

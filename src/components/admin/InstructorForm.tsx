@@ -17,14 +17,12 @@ import {
 import { SlugSection } from './SlugSection'
 import { useInstructorForm } from './useInstructorForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Instructor } from '@/types'
 
 type InstructorFormProps = {
   instructor?: Instructor
 }
-
-const arraysEqual = (a: string[], b: string[]) =>
-  a.length === b.length && a.every((id, i) => id === b[i])
 
 const InstructorForm = ({ instructor }: InstructorFormProps) => {
   const t = useTranslations()
@@ -33,8 +31,13 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
     [instructor?.media],
   )
   const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleNameBlur, onSubmit } = useInstructorForm(instructor, mediaIdsRef)
+  const { form, handleNameBlur, onSubmit } = useInstructorForm(
+    instructor,
+    mediaIdsRef,
+    mediaDirtyRef,
+  )
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -47,7 +50,10 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
   const handleMediaChange = useCallback(
     (ids: string[]) => {
       mediaIdsRef.current = ids
-      setMediaDirty(!arraysEqual(ids, initialMediaIds))
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
     },
     [initialMediaIds],
   )

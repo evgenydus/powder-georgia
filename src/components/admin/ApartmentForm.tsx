@@ -16,21 +16,27 @@ import { ImageSection } from './image-section'
 import { SlugSection } from './SlugSection'
 import { useApartmentForm } from './useApartmentForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Apartment } from '@/types'
 
 type ApartmentFormProps = {
   apartment?: Apartment
 }
 
-const arraysEqual = (a: string[], b: string[]) =>
-  a.length === b.length && a.every((id, i) => id === b[i])
-
 const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
   const t = useTranslations()
-  const initialMediaIds = useMemo(() => apartment?.media?.map((m) => m.id) ?? [], [apartment?.media])
+  const initialMediaIds = useMemo(
+    () => apartment?.media?.map((m) => m.id) ?? [],
+    [apartment?.media],
+  )
   const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleTitleEnBlur, onSubmit } = useApartmentForm(apartment, mediaIdsRef)
+  const { form, handleTitleEnBlur, onSubmit } = useApartmentForm(
+    apartment,
+    mediaIdsRef,
+    mediaDirtyRef,
+  )
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -43,7 +49,10 @@ const ApartmentForm = ({ apartment }: ApartmentFormProps) => {
   const handleMediaChange = useCallback(
     (ids: string[]) => {
       mediaIdsRef.current = ids
-      setMediaDirty(!arraysEqual(ids, initialMediaIds))
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
     },
     [initialMediaIds],
   )

@@ -42,6 +42,13 @@ const DeleteEntityButton = ({ entityId, tableName }: DeleteEntityButtonProps) =>
 
       if (mediaError) {
         console.error('Failed to delete media connections:', mediaError.message)
+        toastError(t('admin.actions.deleteError'), {
+          error: mediaError,
+          message: t('admin.actions.deleteErrorMessage'),
+        })
+        setIsLoading(false)
+
+        return
       }
     }
 

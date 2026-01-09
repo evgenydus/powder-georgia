@@ -17,7 +17,11 @@ import { supabase } from '@/lib/supabase/client'
 import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Apartment } from '@/types'
 
-export const useApartmentForm = (apartment?: Apartment, mediaIdsRef?: RefObject<string[]>) => {
+export const useApartmentForm = (
+  apartment?: Apartment,
+  mediaIdsRef?: RefObject<string[]>,
+  mediaDirtyRef?: RefObject<boolean>,
+) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -70,8 +74,8 @@ export const useApartmentForm = (apartment?: Apartment, mediaIdsRef?: RefObject<
         return
       }
 
-      // Sync media for existing apartment
-      if (mediaIdsRef?.current) {
+      // Sync media for existing apartment (only if media changed)
+      if (mediaIdsRef?.current && mediaDirtyRef?.current) {
         const mediaResult = await syncEntityMedia(
           supabase,
           'apartment',

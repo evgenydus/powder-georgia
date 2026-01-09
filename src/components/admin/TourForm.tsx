@@ -18,21 +18,20 @@ import {
 } from './tour-form'
 import { useTourForm } from './useTourForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Tour } from '@/types'
 
 type TourFormProps = {
   tour?: Tour
 }
 
-const arraysEqual = (a: string[], b: string[]) =>
-  a.length === b.length && a.every((id, i) => id === b[i])
-
 const TourForm = ({ tour }: TourFormProps) => {
   const t = useTranslations()
   const initialMediaIds = useMemo(() => tour?.media?.map((m) => m.id) ?? [], [tour?.media])
   const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour, mediaIdsRef)
+  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour, mediaIdsRef, mediaDirtyRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -45,7 +44,10 @@ const TourForm = ({ tour }: TourFormProps) => {
   const handleMediaChange = useCallback(
     (ids: string[]) => {
       mediaIdsRef.current = ids
-      setMediaDirty(!arraysEqual(ids, initialMediaIds))
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
     },
     [initialMediaIds],
   )

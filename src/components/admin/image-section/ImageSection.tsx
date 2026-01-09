@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ImagePlus, Library } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -24,9 +24,22 @@ const ImageSection = ({
   const t = useTranslations()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [media, setMedia] = useState<Media[]>(initialMedia)
+  const isInitialMount = useRef(true)
+
+  // Sync local state when initialMedia prop changes (e.g., after data fetch)
+  useEffect(() => {
+    setMedia(initialMedia)
+  }, [initialMedia])
 
   // Sync media IDs to parent via useEffect (not during render)
+  // Skip on initial mount to avoid unnecessary state updates in parent
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+
+      return
+    }
+
     onChange?.(media.map((m) => m.id))
   }, [media, onChange])
 
