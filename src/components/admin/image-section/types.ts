@@ -1,8 +1,8 @@
 import type { Media, MediaEntityType } from '@/types'
 
 export type ImageSectionProps = {
-  entityId?: string
   entityType: MediaEntityType
+  initialMedia?: Media[]
   limit?: number
   onChange?: (mediaIds: string[]) => void
 }

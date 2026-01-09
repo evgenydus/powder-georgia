@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
@@ -18,6 +18,7 @@ import {
 } from './tour-form'
 import { useTourForm } from './useTourForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Tour } from '@/types'
 
 type TourFormProps = {
@@ -26,9 +27,11 @@ type TourFormProps = {
 
 const TourForm = ({ tour }: TourFormProps) => {
   const t = useTranslations()
-  const mediaIdsRef = useRef<string[]>([])
+  const initialMediaIds = useMemo(() => tour?.media?.map((m) => m.id) ?? [], [tour?.media])
+  const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour, mediaIdsRef)
+  const { form, handleTitleEnBlur, onSubmit } = useTourForm(tour, mediaIdsRef, mediaDirtyRef)
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -38,10 +41,16 @@ const TourForm = ({ tour }: TourFormProps) => {
 
   useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const handleMediaChange = (ids: string[]) => {
-    mediaIdsRef.current = ids
-    setMediaDirty(true)
-  }
+  const handleMediaChange = useCallback(
+    (ids: string[]) => {
+      mediaIdsRef.current = ids
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
+    },
+    [initialMediaIds],
+  )
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -57,7 +66,7 @@ const TourForm = ({ tour }: TourFormProps) => {
       <GroupSizeSection register={register} />
       <VerticalDropSection register={register} />
       <EquipmentSection register={register} />
-      <ImageSection entityId={tour?.id} entityType="tour" onChange={handleMediaChange} />
+      <ImageSection entityType="tour" initialMedia={tour?.media} onChange={handleMediaChange} />
       <Button type="submit">
         {tour ? t('admin.tourForm.submit.update') : t('admin.tourForm.submit.create')}
       </Button>

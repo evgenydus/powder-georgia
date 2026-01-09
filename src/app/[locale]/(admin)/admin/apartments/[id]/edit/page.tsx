@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { ApartmentForm } from '@/components/admin/ApartmentForm'
 
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Apartment } from '@/types'
 
@@ -16,7 +17,9 @@ async function getApartmentById(id: string): Promise<Apartment | null> {
       return null
     }
 
-    return data || null
+    if (!data) return null
+
+    return fetchMediaForEntity(supabase, data, 'apartment')
   } catch (error) {
     console.error('Error fetching apartment:', error)
 

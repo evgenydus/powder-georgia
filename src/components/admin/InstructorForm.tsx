@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges'
@@ -17,6 +17,7 @@ import {
 import { SlugSection } from './SlugSection'
 import { useInstructorForm } from './useInstructorForm'
 
+import { arraysEqual } from '@/lib/utils'
 import type { Instructor } from '@/types'
 
 type InstructorFormProps = {
@@ -25,9 +26,18 @@ type InstructorFormProps = {
 
 const InstructorForm = ({ instructor }: InstructorFormProps) => {
   const t = useTranslations()
-  const mediaIdsRef = useRef<string[]>([])
+  const initialMediaIds = useMemo(
+    () => instructor?.media?.map((m) => m.id) ?? [],
+    [instructor?.media],
+  )
+  const mediaIdsRef = useRef<string[]>(initialMediaIds)
+  const mediaDirtyRef = useRef(false)
   const [mediaDirty, setMediaDirty] = useState(false)
-  const { form, handleNameBlur, onSubmit } = useInstructorForm(instructor, mediaIdsRef)
+  const { form, handleNameBlur, onSubmit } = useInstructorForm(
+    instructor,
+    mediaIdsRef,
+    mediaDirtyRef,
+  )
 
   const {
     formState: { errors, isDirty, isSubmitSuccessful },
@@ -37,10 +47,16 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
 
   useUnsavedChanges({ isDirty: isDirty || mediaDirty, isSubmitSuccessful })
 
-  const handleMediaChange = (ids: string[]) => {
-    mediaIdsRef.current = ids
-    setMediaDirty(true)
-  }
+  const handleMediaChange = useCallback(
+    (ids: string[]) => {
+      mediaIdsRef.current = ids
+      const isDirty = !arraysEqual(ids, initialMediaIds)
+
+      mediaDirtyRef.current = isDirty
+      setMediaDirty(isDirty)
+    },
+    [initialMediaIds],
+  )
 
   return (
     <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
@@ -56,8 +72,8 @@ const InstructorForm = ({ instructor }: InstructorFormProps) => {
       <ServicesSection register={register} />
       <ContactPriceSection register={register} />
       <ImageSection
-        entityId={instructor?.id}
         entityType="instructor"
+        initialMedia={instructor?.media}
         limit={1}
         onChange={handleMediaChange}
       />

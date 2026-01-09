@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 
 import { TransferForm } from '@/components/admin/TransferForm'
 
+import { fetchMediaForEntity } from '@/lib/supabase/queries'
 import { createClient } from '@/lib/supabase/server'
 import type { Transfer } from '@/types'
 
@@ -16,7 +17,9 @@ async function getTransferById(id: string): Promise<Transfer | null> {
       return null
     }
 
-    return data || null
+    if (!data) return null
+
+    return fetchMediaForEntity(supabase, data, 'transfer')
   } catch (error) {
     console.error('Error fetching transfer:', error)
 

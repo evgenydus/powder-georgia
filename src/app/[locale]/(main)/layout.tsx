@@ -14,7 +14,7 @@ const MainLayout = ({ children }: MainLayoutProps) => (
         className="object-cover object-top"
         fill
         priority
-        quality={85}
+        quality={75}
         src="/images/mainBg.png"
       />
       <div className="absolute inset-0 bg-black/40" />

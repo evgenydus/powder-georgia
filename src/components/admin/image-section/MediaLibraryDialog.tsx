@@ -64,12 +64,16 @@ const MediaLibraryDialog = ({
 
   return (
     <Dialog onOpenChange={handleOpenChange} open={open}>
-      <DialogContent className="max-w-3xl">
+      <DialogContent className="flex max-h-[85vh] max-w-3xl flex-col">
         <DialogHeader>
           <DialogTitle>{t('admin.media.selectImages')}</DialogTitle>
         </DialogHeader>
-        <Tabs onValueChange={(v) => setActiveTab(v as MediaEntityType | 'all')} value={activeTab}>
-          <TabsList>
+        <Tabs
+          className="flex min-h-0 flex-1 flex-col"
+          onValueChange={(v) => setActiveTab(v as MediaEntityType | 'all')}
+          value={activeTab}
+        >
+          <TabsList className="shrink-0">
             {TABS.map((tab) => (
               <TabsTrigger key={tab.value} value={tab.value}>
                 {t(tab.label)}
@@ -77,7 +81,11 @@ const MediaLibraryDialog = ({
             ))}
           </TabsList>
           {TABS.map((tab) => (
-            <TabsContent key={tab.value} value={tab.value}>
+            <TabsContent
+              key={tab.value}
+              className="min-h-0 flex-1 overflow-y-auto"
+              value={tab.value}
+            >
               {isLoading ? (
                 <div className="grid grid-cols-4 gap-3">
                   {Array.from({ length: 8 }).map((_, i) => (
@@ -104,7 +112,7 @@ const MediaLibraryDialog = ({
             </TabsContent>
           ))}
         </Tabs>
-        <DialogFooter>
+        <DialogFooter className="shrink-0">
           <Button onClick={() => handleOpenChange(false)} type="button" variant="outline">
             {t('admin.media.cancel')}
           </Button>

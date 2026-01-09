@@ -26,7 +26,7 @@ export const AdminSidebar = () => {
   const t = useTranslations()
 
   return (
-    <aside className="bg-sidebar flex w-64 flex-col p-4">
+    <aside className="bg-sidebar flex w-64 shrink-0 flex-col p-4">
       <Link href={routes.admin}>
         <h2 className="mb-8 text-2xl font-bold">{t('admin.title')}</h2>
       </Link>

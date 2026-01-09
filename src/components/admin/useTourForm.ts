@@ -17,7 +17,11 @@ import { supabase } from '@/lib/supabase/client'
 import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Tour } from '@/types'
 
-export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
+export const useTourForm = (
+  tour?: Tour,
+  mediaIdsRef?: RefObject<string[]>,
+  mediaDirtyRef?: RefObject<boolean>,
+) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -68,6 +72,15 @@ export const useTourForm = (tour?: Tour, mediaIdsRef?: RefObject<string[]>) => {
         })
 
         return
+      }
+
+      // Sync media for existing tour (only if media changed)
+      if (mediaIdsRef?.current && mediaDirtyRef?.current) {
+        const mediaResult = await syncEntityMedia(supabase, 'tour', tour.id, mediaIdsRef.current)
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for tour:', mediaResult.error)
+        }
       }
     } else {
       const { data: newTour, error } = await supabase

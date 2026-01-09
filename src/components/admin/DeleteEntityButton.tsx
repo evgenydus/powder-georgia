@@ -18,6 +18,8 @@ type DeleteEntityButtonProps = {
   tableName: string
 }
 
+const TABLES_WITH_MEDIA = ['tours', 'apartments', 'instructors', 'transfers']
+
 const DeleteEntityButton = ({ entityId, tableName }: DeleteEntityButtonProps) => {
   const router = useRouter()
   const t = useTranslations()
@@ -29,6 +31,28 @@ const DeleteEntityButton = ({ entityId, tableName }: DeleteEntityButtonProps) =>
     setIsLoading(true)
     toastInfo(t('admin.actions.deleting'))
 
+    // Delete media connections first (if entity has media)
+    if (TABLES_WITH_MEDIA.includes(tableName)) {
+      const entityType = tableName.slice(0, -1) // "tours" -> "tour"
+      const { error: mediaError } = await supabase
+        .from('entity_media')
+        .delete()
+        .eq('entity_type', entityType)
+        .eq('entity_id', entityId)
+
+      if (mediaError) {
+        console.error('Failed to delete media connections:', mediaError.message)
+        toastError(t('admin.actions.deleteError'), {
+          error: mediaError,
+          message: t('admin.actions.deleteErrorMessage'),
+        })
+        setIsLoading(false)
+
+        return
+      }
+    }
+
+    // Delete the entity
     const { error } = await supabase.from(tableName).delete().eq('id', entityId)
 
     if (error) {

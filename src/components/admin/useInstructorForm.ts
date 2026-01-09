@@ -17,7 +17,11 @@ import { supabase } from '@/lib/supabase/client'
 import { syncEntityMedia } from '@/lib/supabase/syncEntityMedia'
 import type { Instructor } from '@/types'
 
-export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObject<string[]>) => {
+export const useInstructorForm = (
+  instructor?: Instructor,
+  mediaIdsRef?: RefObject<string[]>,
+  mediaDirtyRef?: RefObject<boolean>,
+) => {
   const t = useTranslations()
   const router = useRouter()
   const { toastError, toastInfo, toastSuccess } = useToast()
@@ -68,6 +72,20 @@ export const useInstructorForm = (instructor?: Instructor, mediaIdsRef?: RefObje
         })
 
         return
+      }
+
+      // Sync media for existing instructor (only if media changed)
+      if (mediaIdsRef?.current && mediaDirtyRef?.current) {
+        const mediaResult = await syncEntityMedia(
+          supabase,
+          'instructor',
+          instructor.id,
+          mediaIdsRef.current,
+        )
+
+        if (!mediaResult.success) {
+          console.error('Failed to sync media for instructor:', mediaResult.error)
+        }
       }
     } else {
       const { data: newInstructor, error } = await supabase
